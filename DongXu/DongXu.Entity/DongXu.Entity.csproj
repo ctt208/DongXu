@@ -49,7 +49,9 @@
     <Compile Include="Feedback.cs" />
     <Compile Include="FeedbackNum.cs" />
     <Compile Include="IndexDecomposition.cs" />
-    <Compile Include="Level.cs" />
+    <Compile Include="IndexLevel.cs" />
+    <Compile Include="Integral.cs" />
+    <Compile Include="Levels.cs" />
     <Compile Include="PerMission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolePerMission.cs" />

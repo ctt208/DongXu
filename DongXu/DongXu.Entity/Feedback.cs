@@ -17,6 +17,10 @@ namespace DongXu.Entity
         /// </summary>
         public string FeedbackName { get; set; }
         /// <summary>
+        /// 反馈图片
+        /// </summary>
+        public string FeedbackPicture { get; set; }
+        /// <summary>
         /// 目标详情Id
         /// </summary>
         public int TargetDetailsId { get; set; }

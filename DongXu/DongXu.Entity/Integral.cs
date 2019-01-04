@@ -7,17 +7,25 @@ using System.Threading.Tasks;
 namespace DongXu.Entity
 {
     /// <summary>
-    /// 目标等级表
+    /// 积分表
     /// </summary>
-   public class Level
+    public class Integral
     {
         /// <summary>
         /// 主键Id
         /// </summary>
         public int Id { get; set; }
         /// <summary>
-        /// 目标等级
+        /// 集团Id
         /// </summary>
-        public string LevelName { get; set; }
+        public int BlocId { get; set; }
+        /// <summary>
+        /// 目标详情Id
+        /// </summary>
+        public int TargetDetailsId { get; set; }
+        /// <summary>
+        /// 积分
+        /// </summary>
+        public int IntegralNum { get; set; }
     }
 }
