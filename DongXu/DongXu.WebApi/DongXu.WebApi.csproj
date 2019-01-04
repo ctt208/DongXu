@@ -120,6 +120,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -139,6 +140,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DongXu.IServices\DongXu.IServices.csproj">
+      <Project>{2468a6ce-4d76-48b1-9910-6f4987142253}</Project>
+      <Name>DongXu.IServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DongXu.Services\DongXu.Services.csproj">
+      <Project>{4ad6bfc3-6e07-4027-b128-0e7f6263911c}</Project>
+      <Name>DongXu.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
