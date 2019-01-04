@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DongXu.Entity
 {
+    /// <summary>
+    /// 反馈表
+    /// </summary>
    public class Feedback
     {
         /// <summary>
