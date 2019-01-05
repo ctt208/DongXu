@@ -23,5 +23,9 @@ namespace DongXu.Entity
         /// 权限ID
         /// </summary>
         public int PerMissionID { get; set; }
+        /// <summary>
+        /// 员工Id
+        /// </summary>
+        public int EmploYeeID { get; set; }
     }
 }

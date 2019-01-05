@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DongXu.Entity
 {
     /// <summary>
-    /// 用户角色关联表
+    /// 员工角色关联表
     /// </summary>
     public class EmploYeeRoles
     {
