@@ -51,5 +51,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DongXu.Common\DongXu.Common.csproj">
+      <Project>{9cc416ed-c327-469d-92fc-0c1659f190e1}</Project>
+      <Name>DongXu.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DongXu.IServices\DongXu.IServices.csproj">
+      <Project>{2468a6ce-4d76-48b1-9910-6f4987142253}</Project>
+      <Name>DongXu.IServices</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

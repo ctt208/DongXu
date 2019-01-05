@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APCS.cs" />
+    <Compile Include="Bloc.cs" />
     <Compile Include="BtnPerMission.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="ConfigurationActivites.cs" />
     <Compile Include="DutyUnit.cs" />
     <Compile Include="EmploYee.cs" />
     <Compile Include="EmploYeeRoles.cs" />
@@ -60,7 +62,9 @@
     <Compile Include="Roles.cs" />
     <Compile Include="Target.cs" />
     <Compile Include="TargetDetails.cs" />
+    <Compile Include="TarGetType.cs" />
     <Compile Include="TargetUnit.cs" />
+    <Compile Include="TarGetuntType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,7 +16,7 @@ namespace DongXu.Entity
         /// </summary>
         public int EmploYeeID { get; set; }
         /// <summary>
-        /// 员工名称
+        /// 员工用户名
         /// </summary>
         public string EmploYeeName { get; set; }
         /// <summary>
@@ -39,5 +39,9 @@ namespace DongXu.Entity
         /// 员工年龄
         /// </summary>
         public int EmploYeeAge { get; set; }
+        /// <summary>
+        /// 员工真实姓名
+        /// </summary>
+        public string EmpNickName { get; set; }
     }
 }

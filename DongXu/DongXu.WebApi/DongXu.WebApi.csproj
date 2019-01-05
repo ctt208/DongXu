@@ -142,6 +142,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DongXu.Entity\DongXu.Entity.csproj">
+      <Project>{ee80c784-21ea-439e-991a-ba36c486a6dd}</Project>
+      <Name>DongXu.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DongXu.IServices\DongXu.IServices.csproj">
       <Project>{2468a6ce-4d76-48b1-9910-6f4987142253}</Project>
       <Name>DongXu.IServices</Name>
