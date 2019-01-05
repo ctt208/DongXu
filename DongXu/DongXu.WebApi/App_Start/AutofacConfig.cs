@@ -41,6 +41,7 @@ namespace DongXu.WebApi.App_Start
         {
             //container.RegisterType<StudentRespository>().As<IStudentRespository>();
             container.RegisterType<EmploYeeServices>().As<IEmploYeeServices>();
+            container.RegisterType<PerMissionServices>().As<IPerMission>();
         }
     }
 }
