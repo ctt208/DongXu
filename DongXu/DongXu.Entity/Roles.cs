@@ -20,6 +20,10 @@ namespace DongXu.Entity
         /// </summary>
         public string RoleName { get; set; }
         /// <summary>
+        /// 角色描述
+        /// </summary>
+        public string RoleDescribe { get; set; }
+        /// <summary>
         /// 角色创建时间
         /// </summary>
         public DateTime RoleEstablishTime { get; set; }
