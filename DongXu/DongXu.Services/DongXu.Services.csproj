@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\..\dlls\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.18.3.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
@@ -44,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="EmploYeeServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +58,10 @@
     <ProjectReference Include="..\DongXu.Common\DongXu.Common.csproj">
       <Project>{9cc416ed-c327-469d-92fc-0c1659f190e1}</Project>
       <Name>DongXu.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DongXu.Entity\DongXu.Entity.csproj">
+      <Project>{ee80c784-21ea-439e-991a-ba36c486a6dd}</Project>
+      <Name>DongXu.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\DongXu.IServices\DongXu.IServices.csproj">
       <Project>{2468a6ce-4d76-48b1-9910-6f4987142253}</Project>

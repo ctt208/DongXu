@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DongXu.IServices
 {
     using DongXu.Entity;
-    public interface IEmploYee
+    public interface IEmploYeeServices
     {
         /// <summary>
         /// 新增员工
