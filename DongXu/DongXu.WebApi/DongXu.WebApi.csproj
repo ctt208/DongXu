@@ -127,6 +127,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EmploYeeAPIController.cs" />
     <Compile Include="Controllers\PerMissionAPIController.cs" />
+    <Compile Include="Controllers\RolesAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

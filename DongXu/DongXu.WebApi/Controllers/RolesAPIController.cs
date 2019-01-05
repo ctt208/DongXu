@@ -10,6 +10,7 @@ namespace DongXu.WebApi.Controllers
     using DongXu.Entity;
     using DongXu.IServices;
     using DongXu.Services;
+    [RoutePrefix("Role")]
     public class RolesAPIController : ApiController
     {
         public IRoleService roleService { get; set; }
@@ -18,6 +19,7 @@ namespace DongXu.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("GetRoles")]
         public List<Roles> GetRoles()
         {
             return roleService.GetRoles();
