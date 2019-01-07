@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BlocAPIController.cs" />
     <Compile Include="Controllers\EmploYeeAPIController.cs" />
     <Compile Include="Controllers\PerMissionAPIController.cs" />
     <Compile Include="Controllers\RolesAPIController.cs" />

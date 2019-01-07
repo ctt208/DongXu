@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBlocServices.cs" />
     <Compile Include="IEmploYeeServices.cs" />
     <Compile Include="IPerMission.cs" />
     <Compile Include="IRoleService.cs" />
