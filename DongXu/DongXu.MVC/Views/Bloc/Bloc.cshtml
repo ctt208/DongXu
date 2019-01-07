@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Bloc</title>
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <script src="~/Scripts/jquery.ztree.core.js"></script>
+    <script src="~/Scripts/jquery.ztree.excheck.js"></script>
+    <script src="~/Scripts/jquery.ztree.exedit.js"></script>
+    <SCRIPT type="text/javascript">
+        var zTreeObj,
+            setting = {
+                view: {
+                    selectedMulti: false
+                }
+            },
+            zTreeNodes = [
+                {
+                    "name": "网站导航", open: true, children: [
+                        { "name": "马上", "url": "http://g.cn", "target": "_blank" },
+                        { "name": "baidu", "url": "http://baidu.com", "target": "_blank" },
+                        { "name": "sina", "url": "http://www.sina.com.cn", "target": "_blank" }
+                    ]
+                }
+            ];
+
+
+        $(document).ready(function () {
+            zTreeObj = $.fn.zTree.init($("#tree"), setting, zTreeNodes);
+
+
+        });
+    </SCRIPT>
+</head>
+<body>
+    <div>
+        <ul id="tree" class="ztree" style="width:230px; overflow:auto;"></ul>
+    </div>
+</body>
+</html>

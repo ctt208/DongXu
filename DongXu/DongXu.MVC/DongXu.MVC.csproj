@@ -194,11 +194,23 @@
     <Content Include="Content\layui-v2.4.5\layui\lay\modules\upload.js" />
     <Content Include="Content\layui-v2.4.5\layui\lay\modules\util.js" />
     <Content Include="Scripts\axios.js" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\jquery.ztree.all.js" />
+    <Content Include="Scripts\jquery.ztree.all.min.js" />
+    <Content Include="Scripts\jquery.ztree.core.js" />
+    <Content Include="Scripts\jquery.ztree.core.min.js" />
+    <Content Include="Scripts\jquery.ztree.excheck.js" />
+    <Content Include="Scripts\jquery.ztree.excheck.min.js" />
+    <Content Include="Scripts\jquery.ztree.exedit.js" />
+    <Content Include="Scripts\jquery.ztree.exedit.min.js" />
+    <Content Include="Scripts\jquery.ztree.exhide.js" />
+    <Content Include="Scripts\jquery.ztree.exhide.min.js" />
     <Content Include="Scripts\vue.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BlocController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,6 +227,7 @@
     <Content Include="Content\layui-v2.4.5\文档与示例\快速上手.url" />
     <Content Include="Content\layui-v2.4.5\更新日志.url" />
     <None Include="packages.config" />
+    <Content Include="Views\Bloc\Bloc.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -224,7 +237,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

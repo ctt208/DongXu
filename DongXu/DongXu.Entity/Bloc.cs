@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DongXu.Entity
 {
     /// <summary>
-    /// 集团表
+    /// 集团组织表
     /// </summary>
     public class Bloc
     {
@@ -16,7 +16,7 @@ namespace DongXu.Entity
         /// </summary>
         public int BlocID { get; set; }
         /// <summary>
-        /// 集团名称
+        /// 组织名称
         /// </summary>
         public string BlocName { get; set; }
         /// <summary>
