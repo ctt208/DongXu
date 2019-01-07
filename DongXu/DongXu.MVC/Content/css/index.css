@@ -1,0 +1,108 @@
+﻿*{
+    padding:0;
+    margin:0;
+}
+body{
+    background-color:#f7f7f7;
+}
+ul{
+    list-style:none;
+}
+a{
+    text-decoration:none;
+}
+.clearboth{
+    clear:both;
+}
+.Head {
+    height: 50px;
+    background-color: #e4e0e0;
+}
+.Head h3{
+    line-height:50px;
+    padding-left:30px;
+}
+.nav {
+    height: 50px;
+    padding-left: 30px;
+    margin-top:10px;
+}
+.nav_left{
+    float:left;
+}
+.nav_left li{
+    float:left;
+    width:100px;
+    height:50px;
+    margin-right:20px;
+}
+    .nav_left a {
+        display: block;
+        text-align: center;
+        line-height: 50px;
+        background-color: #fff;
+        color: black;
+        border:1px solid #666;
+        border-radius:5px;
+    }
+        .nav_left a:hover {
+            background-color: #ccc;
+            color:#fff;
+        }
+.nav_right{
+    float:right;
+    height:50px;
+    padding-right:30px;
+    font-size:14px;
+}
+.nav_right span{
+    line-height:50px;
+}
+.content{
+    padding:0 30px 0 30px;
+    margin-top:10px;
+}
+.content h4{
+    height:30px;
+    line-height:30px;
+    border:1px solid #ccc;
+}
+.content .cot{
+    width:100%;
+    height:300px;
+    border:1px solid #ccc;
+    background-color:#eee;
+}
+.goal ul{
+    width:100%;
+    border:1px solid #ccc;
+}
+.goal li {
+    float: left;   
+}
+    .goal #more {
+        float: right;       
+        padding-right:20px;
+    }
+        .goal #more a {
+            height: 50px;
+            line-height: 50px;
+            font-size: 14px;
+            color: #66ace6;
+        }
+    .goal li button {
+        width: 100px;
+        height: 50px;
+        background: #fff;
+        border: none;
+        border-right: 1px solid #ccc;
+        cursor: pointer
+    }
+    .goal span{
+        float:right;
+    }
+.goal iframe{
+    width:100%;
+    height:300px;
+    border:1px solid #ccc;
+}

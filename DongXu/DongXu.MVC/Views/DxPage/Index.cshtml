@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
+    <script>
+        $(function () {
+            $(".username").click(function () {
+                layer.open({
+                    type: 1,
+                    area: ['600px', '400px'],
+                    fix: false, //不固定
+                    maxmin: true,
+                    shade: 0.6,
+                    title: '查看信息',
+                    content: '<div>店员信息</div>'
+                });
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <div class="Head">
+        <h3>东旭集团目标管理系统</h3>
+    </div>
+    <div class="nav">
+        <ul class="nav_left">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">目标管理</a></li>
+            <li><a href="#">进度查询</a></li>
+            <li><a href="#">结果统计</a></li>
+            <li><a href="#">系统管理</a></li>
+            <div class="clearboth"></div>
+        </ul>
+        <div class="nav_right">
+            <span class="username" style="cursor:pointer">张三</span>
+            <a href="">退出</a>
+        </div>
+        <div class="clearboth"></div>
+    </div>
+    <div class="content goal">
+        <ul class="layui-tab-title site-demo-title">
+            <li><button>我的待办</button></li>
+            <li><button>我的已办</button></li>
+            <li><button>我的待阅</button></li>
+            <li id="more"><a href="#">More>></a></li>
+            <div class="clearboth"></div>
+        </ul>
+        <iframe src="/DxPage/Backlog"></iframe>
+    </div>
+    <div class="content integral">
+        <h4>积分排名</h4>
+        <div class="cot"></div>
+    </div>
+    <div class="content ight">
+        <h4>红绿灯状态</h4>
+        <div class="cot"></div>
+    </div>
+    <div class="content run">
+        <h4>运行情况</h4>
+        <div class="cot"></div>
+    </div>
+</body>
+</html>
