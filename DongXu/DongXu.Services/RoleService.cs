@@ -49,7 +49,7 @@ namespace DongXu.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
-                string sql = "select * from Roles where RoleName=" + name;
+                string sql = "select * from Roles where RoleName like '%" + name+"%'";
                 var getrolecha = conn.Query<Roles>(sql, name).ToList();
                 return getrolecha;
             }

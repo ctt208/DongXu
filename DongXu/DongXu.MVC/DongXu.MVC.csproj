@@ -393,6 +393,7 @@
     <Content Include="Views\RolesMVC\Add.cshtml" />
     <Content Include="Views\RolesMVC\Index.cshtml" />
     <Content Include="Views\Bloc\Blocs.cshtml" />
+    <Content Include="Views\RolesMVC\Cha.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -41,6 +41,7 @@ namespace DongXu.WebApi.Controllers
         /// <param name="name"></param>
         /// <returns></returns>
         [HttpGet]
+        [Route("GetRolescha")]
         public List<Roles> GetRolescha(string name)
         {
             return roleService.GetRolescha(name);
