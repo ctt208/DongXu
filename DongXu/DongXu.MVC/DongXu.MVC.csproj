@@ -364,6 +364,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BlocController.cs" />
     <Compile Include="Controllers\DongXuController.cs" />
+    <Compile Include="Controllers\RolesMVCController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -389,6 +390,9 @@
     <Content Include="Views\DongXu\Login.cshtml" />
     <Content Include="Views\DongXu\Index.cshtml" />
     <Content Include="Views\DongXu\Backlog.cshtml" />
+    <Content Include="Views\RolesMVC\Add.cshtml" />
+    <Content Include="Views\RolesMVC\Index.cshtml" />
+    <Content Include="Views\Bloc\Blocs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
