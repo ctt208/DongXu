@@ -30,6 +30,7 @@ namespace DongXu.WebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
+        [Route("DelteRole")]
         public int DelteRole(int id)
         {
             return roleService.DelteRole(id);
@@ -50,6 +51,7 @@ namespace DongXu.WebApi.Controllers
         /// <param name="r"></param>
         /// <returns></returns>
         [HttpPost]
+        [Route("AddRoles")]
         public int AddRoles(Roles r)
         {
             return roleService.AddRoles(r);

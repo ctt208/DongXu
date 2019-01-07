@@ -21,7 +21,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql ="select RoleName,RoleDescribe from roles";
+                string sql = "select RoleID, RoleName,RoleDescribe from roles";
                 var getrole = conn.Query<Roles>(sql, null).ToList();
                 return getrole;
             }
@@ -63,10 +63,10 @@ namespace DongXu.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
-                string sql = "insert into Roles(RoleName,RoleDescribe)values(:RoleName,:RoleDescribe)";
+                string sql = "insert into Roles(RoleName,RoleDescribe,RoleEstablishTime,RoleUpTime)values(:RoleName,:RoleDescribe,:RoleEstablishTime,:RoleUpTime)";
                 r.RoleEstablishTime = System.DateTime.Now;
                 r.RoleUpTime = System.DateTime.Now;
-                var roleslist = new { RoleName = r.RoleName, RoleDescribe = r.RoleDescribe };
+                var roleslist = new { RoleName = r.RoleName, RoleDescribe = r.RoleDescribe, RoleEstablishTime=r.RoleEstablishTime, RoleUpTime=r.RoleUpTime };
                 var addroles = conn.Execute(sql, roleslist);
                 return addroles;
             }
