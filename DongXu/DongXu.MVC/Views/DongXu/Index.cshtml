@@ -1,10 +1,7 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -14,7 +11,7 @@
     <script src="~/Scripts/vue.js"></script>
     <script src="~/Scripts/layer/2.4/layer.js"></script>
     <script>
-        $(function () {
+        $(function(){
             $(".username").click(function () {
                 layer.open({
                     type: 1,
@@ -27,7 +24,6 @@
                 });
             })
         })
-
     </script>
 </head>
 <body>
@@ -50,14 +46,14 @@
         <div class="clearboth"></div>
     </div>
     <div class="content goal">
-        <ul class="layui-tab-title site-demo-title">
+        <ul>
             <li><button>我的待办</button></li>
             <li><button>我的已办</button></li>
             <li><button>我的待阅</button></li>
             <li id="more"><a href="#">More>></a></li>
             <div class="clearboth"></div>
         </ul>
-        <iframe src="/DxPage/Backlog"></iframe>
+        <iframe src="/DongXu/Backlog"></iframe>
     </div>
     <div class="content integral">
         <h4>积分排名</h4>

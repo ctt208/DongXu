@@ -88,6 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\index.css" />
     <Content Include="demo.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\layui-v2.4.5\layui\css\layui.css" />
@@ -211,6 +212,13 @@
     <Content Include="Scripts\jquery.ztree.exedit.min.js" />
     <Content Include="Scripts\jquery.ztree.exhide.js" />
     <Content Include="Scripts\jquery.ztree.exhide.min.js" />
+    <Content Include="Scripts\layer\2.4\layer.js" />
+    <Content Include="Scripts\layer\2.4\skin\default\icon-ext.png" />
+    <Content Include="Scripts\layer\2.4\skin\default\icon.png" />
+    <Content Include="Scripts\layer\2.4\skin\default\loading-0.gif" />
+    <Content Include="Scripts\layer\2.4\skin\default\loading-1.gif" />
+    <Content Include="Scripts\layer\2.4\skin\default\loading-2.gif" />
+    <Content Include="Scripts\layer\2.4\skin\layer.css" />
     <Content Include="Scripts\vue.js" />
     <Content Include="Web.config" />
     <Content Include="zTreeStyle\img\diy\1_close.png" />
@@ -251,6 +259,8 @@
     <None Include="packages.config" />
     <Content Include="Views\Bloc\Bloc.cshtml" />
     <Content Include="Views\DongXu\Login.cshtml" />
+    <Content Include="Views\DongXu\Index.cshtml" />
+    <Content Include="Views\DongXu\Backlog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

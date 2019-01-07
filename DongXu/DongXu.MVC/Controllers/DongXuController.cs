@@ -21,5 +21,9 @@ namespace DongXu.MVC.Controllers
         {
             return View();
         }
+        public ActionResult Backlog()
+        {
+            return View();
+        }
     }
 }
