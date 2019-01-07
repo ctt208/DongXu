@@ -88,6 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="demo.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\layui-v2.4.5\layui\css\layui.css" />
     <Content Include="Content\layui-v2.4.5\layui\css\layui.mobile.css" />
@@ -193,6 +194,11 @@
     <Content Include="Content\layui-v2.4.5\layui\lay\modules\tree.js" />
     <Content Include="Content\layui-v2.4.5\layui\lay\modules\upload.js" />
     <Content Include="Content\layui-v2.4.5\layui\lay\modules\util.js" />
+    <Content Include="metroStyle\img\line_conn.png" />
+    <Content Include="metroStyle\img\loading.gif" />
+    <Content Include="metroStyle\img\metro.gif" />
+    <Content Include="metroStyle\img\metro.png" />
+    <Content Include="metroStyle\metroStyle.css" />
     <Content Include="Scripts\axios.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
     <Content Include="Scripts\jquery.ztree.all.js" />
@@ -207,6 +213,21 @@
     <Content Include="Scripts\jquery.ztree.exhide.min.js" />
     <Content Include="Scripts\vue.js" />
     <Content Include="Web.config" />
+    <Content Include="zTreeStyle\img\diy\1_close.png" />
+    <Content Include="zTreeStyle\img\diy\1_open.png" />
+    <Content Include="zTreeStyle\img\diy\2.png" />
+    <Content Include="zTreeStyle\img\diy\3.png" />
+    <Content Include="zTreeStyle\img\diy\4.png" />
+    <Content Include="zTreeStyle\img\diy\5.png" />
+    <Content Include="zTreeStyle\img\diy\6.png" />
+    <Content Include="zTreeStyle\img\diy\7.png" />
+    <Content Include="zTreeStyle\img\diy\8.png" />
+    <Content Include="zTreeStyle\img\diy\9.png" />
+    <Content Include="zTreeStyle\img\line_conn.gif" />
+    <Content Include="zTreeStyle\img\loading.gif" />
+    <Content Include="zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="zTreeStyle\zTreeStyle.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -245,6 +266,14 @@
     <ProjectReference Include="..\DongXu.Entity\DongXu.Entity.csproj">
       <Project>{ee80c784-21ea-439e-991a-ba36c486a6dd}</Project>
       <Name>DongXu.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DongXu.IServices\DongXu.IServices.csproj">
+      <Project>{2468a6ce-4d76-48b1-9910-6f4987142253}</Project>
+      <Name>DongXu.IServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DongXu.Services\DongXu.Services.csproj">
+      <Project>{4ad6bfc3-6e07-4027-b128-0e7f6263911c}</Project>
+      <Name>DongXu.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

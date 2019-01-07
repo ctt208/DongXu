@@ -14,7 +14,7 @@ namespace DongXu.Entity
         /// <summary>
         /// 主键ID
         /// </summary>
-        public int BlocID { get; set; }
+        public int ID { get; set; }
         /// <summary>
         /// 组织名称
         /// </summary>
