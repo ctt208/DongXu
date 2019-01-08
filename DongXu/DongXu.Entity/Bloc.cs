@@ -14,15 +14,16 @@ namespace DongXu.Entity
         /// <summary>
         /// 主键ID
         /// </summary>
-        public int ID { get; set; }
-        /// <summary>
-        /// 组织名称
-        /// </summary>
-        public string BlocName { get; set; }
+        public int id { get; set; }
         /// <summary>
         /// PID
         /// </summary>
-        public int PID { get; set; }
+        public int pId { get; set; }
+        /// <summary>
+        /// 组织名称
+        /// </summary>
+        public string name { get; set; }
+       
         /// <summary>
         /// 是否启用
         /// </summary>

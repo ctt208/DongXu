@@ -7,118 +7,201 @@
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <script src="~/Scripts/jquery.ztree.core.js"></script>
-    <SCRIPT LANGUAGE="JavaScript">
-        var zTreeObj;
-        var setting = {};        // zTree 的参数配置，后面详解
-        var zNodes = [           // zTree 的数据属性，此处使用标准json格式
-            {
-                name: "东旭控股集团", open: true, children: [
-                    {
-                        name: "东旭光电", open: true, children:
-                            [{
-                                name: "东旭建设集团", open: true, children:
-                                    [{
-                                        name: "财务管理部", open: true, children:
-                                            [{ name: "财务管理部总经理" }]
-                                    }, { name: "投资拓展部" }, { name: "产品定制部" }, { name: "销售管理部" }, { name: "成本管理部" }, { name: "人力行政部" }, { name: "设计管理部" }]
-                            },{ name: "光电显示材料" }, { name: "高端装备制造" }, { name:"石墨烯产业化" }, { name:"新能源汽车" }, { name:"装备贸易" }]
-                    }, { name: "东旭蓝天" }, { name: "嘉麟杰"}, { name: "产业发展集团" }, { name: "东旭资本" }, { name: "职能部门" }]
-            },
-
-
-
-        ];
-        var nodes = [
-            { id: 1, pId: 0, name: "父节点1" },
-            { id: 11, pId: 1, name: "子节点1" },
-            { id: 12, pId: 1, name: "子节点2" }
-        ]
-
-        $(document).ready(function () {
-            zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes); //初始化zTree，三个参数一次分别是容器(zTree 的容器 className 别忘了设置为 "ztree")、参数配置、数据源
-        });
-
-
-
-
-
-
-
-
-
+    <SCRIPT>
+        //var zTreeObj;
+        //var setting = {};        // zTree 的参数配置，后面详解
+        function zTreeOnClick(event, treeId, treeNode) {
+            alert(treeNode);
+            console.log(treeNode);
+           // alert(treeNode.tId + ", " + treeNode.name);
+        };
         var setting = {
-            view: {
-                selectedMulti: true, //设置是否能够同时选中多个节点
-                showIcon: true,      //设置是否显示节点图标
-                showLine: false,      //设置是否显示节点与节点之间的连线
-                showTitle: true,     //设置是否显示节点的title提示信息
-            },
             data: {
                 simpleData: {
-                    enable: false,   //设置是否启用简单数据格式（zTree支持标准数据格式跟简单数据格式，上面例子中是标准数据格式）
-                    idKey: "id",     //设置启用简单数据格式时id对应的属性名称
-                    pidKey: "pId"    //设置启用简单数据格式时parentId对应的属性名称,ztree根据id及pid层级关系构建树结构
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "pId",
+                    rootPId: 0
                 }
             },
-            check: {
-                enable: true         //设置是否显示checkbox复选框
-            },
             callback: {
-                onClick: onClick,             //定义节点单击事件回调函数
-                onRightClick: OnRightClick,   //定义节点右键单击事件回调函数
-                beforeRename: beforeRename,   //定义节点重新编辑成功前回调函数，一般用于节点编辑时判断输入的节点名称是否合法
-                onDblClick: onDblClick,       //定义节点双击事件回调函数
-                onCheck: onCheck              //定义节点复选框选中或取消选中事件的回调函数
-            },
-            async: {
-                enable: false,                      //设置启用异步加载
-                type: "get",                       //异步加载类型:post和get
-                contentType: "application/json",   //定义ajax提交参数的参数类型，一般为json格式
-                url: "/Design/Get",                //定义数据请求路径
-                autoParam: ["id=id", "name=name"]  //定义提交时参数的名称，=号前面标识节点属性，后面标识提交时json数据中参数的名称
+                onClick: zTreeOnClick
             }
         };
-        treeNode: {
-            name,       //节点显示的文本
-                checked,    //节点是否勾选，ztree配置启用复选框时有效
-                open,       //节点是否展开
-                icon,       //节点的图标
-                iconOpen,   //节点展开式的图标
-                iconClose,  //节点折叠时的图标
-                id,         //节点的标识属性，对应的是启用简单数据格式时idKey对应的属性名，并不一定是id,如果setting中定义的idKey:"zId",那么此处就是zId
-                pId,        //节点parentId属性，命名规则同id
-                children,   //得到该节点所有孩子节点，直接下级，若要得到所有下属层级节点，需要自己写递归得到
-                isParent,   //判断该节点是否是父节点，一般应用中通常需要判断只有叶子节点才能进行相关操作，或者删除时判断下面是有子节点时经常用到。
-                getPath()   //得到该节点的路径，即所有父节点，包括自己，此方法返回的是一个数组，通常用于创建类似面包屑导航的东西A-->B-->C
-        }
-        //节点点击事件
-        function onClick(event, treeId, treeNode) {
-            alert(1)
-        };
-        //增加节点
-        function addTreeNode() {
-            hideRMenu();
-            var name = new Date().getTime(); //利用时间戳生成节点名称，保证节点名称唯一
-            var newNode = {
-                name: name
-            };
-            if (zTree.getSelectedNodes()[0]) {
-                newNode.checked = zTree.getSelectedNodes()[0].checked;
-                newNode.pid = zTree.getSelectedNodes()[0].id;
-                zTree.addNodes(zTree.getSelectedNodes()[0], newNode);
-            } else {
-                zTree.addNodes(null, newNode);
-            }
-            var node = zTree.getNodeByParam("name", name, null);  //得到新增加的节点
-            zTree.selectNode(node);   //选中新增加的节点
-            zTree.editName(node);     //让新增加的节点处于编辑状态
-        }
+        //var zNodes = [           // zTree 的数据属性，此处使用标准json格式
+        //    {
+        //        name: "东旭控股集团", open: true, children: [
+        //            {
+        //                name: "东旭光电", open: true, children:
+        //                    [{
+        //                        name: "东旭建设集团", open: true, children:
+        //                            [{
+        //                                name: "财务管理部", open: true, children:
+        //                                    [{ name: "财务管理部总经理" }]
+        //                            }, { name: "投资拓展部" }, { name: "产品定制部" }, { name: "销售管理部" }, { name: "成本管理部" }, { name: "人力行政部" }, { name: "设计管理部" }]
+        //                    },{ name: "光电显示材料" }, { name: "高端装备制造" }, { name:"石墨烯产业化" }, { name:"新能源汽车" }, { name:"装备贸易" }]
+        //            }, { name: "东旭蓝天" }, { name: "嘉麟杰"}, { name: "产业发展集团" }, { name: "东旭资本" }, { name: "职能部门" }]
+        //    },
+
+
+
+        //];
+        var zNodes = [];
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:51206/Bloc/GetBloc",
+                success: function (data) {
+                    zNodes = data;
+                    zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes); //初始化zTree，三个参数一次分别是容器(zTree 的容器 className 别忘了设置为 "ztree")、参数配置、数据源
+                    console.log(zNodes);
+                }
+
+            });
+            
+        });
+
+     
+
+
+
+
+
+
+
+        //var setting = {
+        //    view: {
+        //        selectedMulti: true, //设置是否能够同时选中多个节点
+        //        showIcon: true,      //设置是否显示节点图标
+        //        showLine: false,      //设置是否显示节点与节点之间的连线
+        //        showTitle: true,     //设置是否显示节点的title提示信息
+        //    },
+        //    data: {
+        //        simpleData: {
+        //            enable: false,   //设置是否启用简单数据格式（zTree支持标准数据格式跟简单数据格式，上面例子中是标准数据格式）
+        //            idKey: "id",     //设置启用简单数据格式时id对应的属性名称
+        //            pidKey: "pId"    //设置启用简单数据格式时parentId对应的属性名称,ztree根据id及pid层级关系构建树结构
+        //        }
+        //    },
+        //    check: {
+        //        enable: true         //设置是否显示checkbox复选框
+        //    },
+        //    callback: {
+        //        onClick: onClick,             //定义节点单击事件回调函数
+        //        onRightClick: OnRightClick,   //定义节点右键单击事件回调函数
+        //        beforeRename: beforeRename,   //定义节点重新编辑成功前回调函数，一般用于节点编辑时判断输入的节点名称是否合法
+        //        onDblClick: onDblClick,       //定义节点双击事件回调函数
+        //        onCheck: onCheck              //定义节点复选框选中或取消选中事件的回调函数
+        //    },
+        //    async: {
+        //        enable: false,                      //设置启用异步加载
+        //        type: "get",                       //异步加载类型:post和get
+        //        contentType: "application/json",   //定义ajax提交参数的参数类型，一般为json格式
+        //        url: "/Design/Get",                //定义数据请求路径
+        //        autoParam: ["id=id", "name=name"]  //定义提交时参数的名称，=号前面标识节点属性，后面标识提交时json数据中参数的名称
+        //    }
+        //};
+        //treeNode: {
+        //    name,       //节点显示的文本
+        //        checked,    //节点是否勾选，ztree配置启用复选框时有效
+        //        open,       //节点是否展开
+        //        icon,       //节点的图标
+        //        iconOpen,   //节点展开式的图标
+        //        iconClose,  //节点折叠时的图标
+        //        id,         //节点的标识属性，对应的是启用简单数据格式时idKey对应的属性名，并不一定是id,如果setting中定义的idKey:"zId",那么此处就是zId
+        //        pId,        //节点parentId属性，命名规则同id
+        //        children,   //得到该节点所有孩子节点，直接下级，若要得到所有下属层级节点，需要自己写递归得到
+        //        isParent,   //判断该节点是否是父节点，一般应用中通常需要判断只有叶子节点才能进行相关操作，或者删除时判断下面是有子节点时经常用到。
+        //        getPath()   //得到该节点的路径，即所有父节点，包括自己，此方法返回的是一个数组，通常用于创建类似面包屑导航的东西A-->B-->C
+        //}
+        ////节点点击事件
+        //function onClick(event, treeId, treeNode) {
+        //    alert(treeNode.tId + ", " + treeNode.name);
+        //};
+        //var setting = {
+        //    callback: {
+        //        onClick: zTreeOnClick
+        //    }
+        //};
+        ////增加节点
+        //function addTreeNode() {
+        //    hideRMenu();
+        //    var name = new Date().getTime(); //利用时间戳生成节点名称，保证节点名称唯一
+        //    var newNode = {
+        //        name: name
+        //    };
+        //    if (zTree.getSelectedNodes()[0]) {
+        //        newNode.checked = zTree.getSelectedNodes()[0].checked;
+        //        newNode.pid = zTree.getSelectedNodes()[0].id;
+        //        zTree.addNodes(zTree.getSelectedNodes()[0], newNode);
+        //    } else {
+        //        zTree.addNodes(null, newNode);
+        //    }
+        //    var node = zTree.getNodeByParam("name", name, null);  //得到新增加的节点
+        //    zTree.selectNode(node);   //选中新增加的节点
+        //    zTree.editName(node);     //让新增加的节点处于编辑状态
+        //}
 
     </SCRIPT>
 </HEAD>
 <BODY>
     <div>
-        <ul id="treeDemo" class="ztree"></ul>
+        <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#ffffff"></ul>
+        <table style="float:left;margin-left:300px;margin-top:150px;margin-right:60px;border-collapse:separate; border-spacing:0px 50px;";>
+            <tr>
+                <td>
+                    组织名称:
+                </td>
+                <td>
+                    <input id="Text1" type="text" name="BlocName" />
+                </td>
+                <td>
+                    组织层级:
+                </td>
+                <td>
+                    <select id="Select1">
+                        <option>东旭总部集团</option>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>组织状态</td>
+                <td>
+                    <input id="Radio1" type="radio" name="IsorNo" checked="checked">启用
+                    <input type="radio" name="IsorNo" />禁用
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    创建人：
+                </td>
+                <td>
+                    <input name="RoleName" type="text" />
+                </td>
+                <td>
+                    创建时间：
+                </td>
+                <td>
+                    <input name="CreateTime" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    修改人：
+                </td>
+                <td>
+                    <input name="XiuName" type="text" />
+                </td>
+                <td>
+                    修改时间：
+                </td>
+                <td>
+                    <input name="XiuTime" type="text" />
+                </td>
+            </tr>
+        </table>
     </div>
+
 </BODY>
 </HTML>

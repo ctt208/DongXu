@@ -26,5 +26,13 @@ namespace DongXu.IServices
         /// <param name="blocs"></param>
         /// <returns></returns>
         int UpdateBloc(Bloc blocs);
+
+        /// <summary>
+        /// 反填
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        List<Bloc> GetBlocById(int Id);
+     
     }
 }

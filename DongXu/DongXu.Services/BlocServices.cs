@@ -29,7 +29,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select BLOCNAME,PID,ISORNO from bloc";
+                string sql = @"select id,pid,name from bloc";
                 var result = conn.Query<Bloc>(sql,null);
                 return result.ToList();
             }
@@ -43,6 +43,17 @@ namespace DongXu.Services
                 string sql = @"update bloc set BLOCNAME=:BLOCNAME,PID=:PID,ISORNO=:ISORNO where ID=:ID";
                 int result = conn.Execute(sql, blocs);
                 return result;
+            }
+        }
+        public List<Bloc> GetBlocById(int Id)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"select * from where Id=:Id ";
+                var Collectlist = new { Id = Id };
+                var result = conn.Query<Bloc>(sql, Collectlist);
+                return result.ToList();
             }
         }
     }
