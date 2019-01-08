@@ -390,7 +390,10 @@
     <Content Include="Views\DongXu\Login.cshtml" />
     <Content Include="Views\DongXu\Index.cshtml" />
     <Content Include="Views\DongXu\Backlog.cshtml" />
-    <Content Include="Views\RolesMVC\Add.cshtml" />
+    <Content Include="Views\RolesMVC\Add.cshtml" />    
+	<Content Include="Views\Shared\_TestLayout.cshtml" />
+    <Content Include="Views\DongXu\Goal.cshtml" />
+    <Content Include="Views\DongXu\Index.cshtml" />
     <Content Include="Views\RolesMVC\Index.cshtml" />
     <Content Include="Views\Bloc\Blocs.cshtml" />
     <Content Include="Views\RolesMVC\Cha.cshtml" />

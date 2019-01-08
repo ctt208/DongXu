@@ -25,5 +25,13 @@ namespace DongXu.MVC.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 目标管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Goal()
+        {
+            return View();
+        }
     }
 }

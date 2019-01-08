@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
+    <script>
+        $(function () {
+            $(".username").click(function () {
+                layer.open({
+                    type: 1,
+                    area: ['600px', '400px'],
+                    fix: false, //不固定
+                    maxmin: true,
+                    shade: 0.7,
+                    title: '查看信息',
+                    content: '<div>个人信息</div>'
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="Head">
+        <h3>东旭集团目标管理系统</h3>
+    </div>
+    <div class="nav">
+        <ul class="nav_left">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">目标管理</a></li>
+            <li><a href="#">进度查询</a></li>
+            <li><a href="#">结果统计</a></li>
+            <li class="systemParent">
+                <a href="#">系统管理</a>
+                <ul class="system">
+                    <li><a href="#">组织管理</a></li>
+                    <li><a href="#">岗位管理</a></li>
+                    <li><a href="#">角色管理</a></li>
+                    <li><a href="#">授权管理</a></li>
+                    <li><a href="#">周期设置</a></li>
+                    <li><a href="#">投入产出比设置</a></li>
+                </ul>
+            </li>
+            <div class="clearboth"></div>
+        </ul>
+        <div class="nav_right">
+            <span class="username" style="cursor:pointer">张三</span>
+            <a href="">退出</a>
+        </div>
+        <div class="clearboth"></div>
+    </div>
+    <div style="height:20px;background-color:#3e90e3;">
+    </div>
+    @RenderBody()
+</body>
+</html>

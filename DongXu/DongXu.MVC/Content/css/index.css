@@ -34,17 +34,19 @@
         margin-top: 10px;
     }
 
-    .nav_left {
-        float: left;
-    }
+.nav_left {
+    float: left;
+    position: relative;
+    display: inline-block;
+}
 
         .nav_left li {
             float: left;
             width: 100px;
             height: 50px;
             margin-right: 20px;
-        }
-
+            overflow:hidden;
+        }      
         .nav_left a {
             display: block;
             text-align: center;
@@ -54,18 +56,47 @@
             border: 1px solid #666;
             border-radius: 5px;
         }
-
-            .nav_left a:hover {
-                background-color: #ccc;
-                color: #fff;
+    .nav_left li .system {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+    .system li{
+        float:none;
+        padding:0;
+        margin:0;
+        height:30px;
+    }
+.system a {
+    background-color: #66ace6;
+    border-radius: 2px;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+}
+   
+        .nav_left a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+.system a:hover {
+    background-color: #ff7244;
+    color: #fff;
+}
+            .nav_left .systemParent:hover .system {
+                display: block;
             }
 
-    .nav_right {
-        float: right;
-        height: 50px;
-        padding-right: 30px;
-        font-size: 14px;
-    }
+                .nav_right {
+                    float: right;
+                    height: 50px;
+                    padding-right: 30px;
+                    font-size: 14px;
+                }
 
         .nav_right span {
             line-height: 50px;
