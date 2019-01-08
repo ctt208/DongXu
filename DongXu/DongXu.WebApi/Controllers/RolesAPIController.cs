@@ -10,6 +10,8 @@ namespace DongXu.WebApi.Controllers
     using DongXu.Entity;
     using DongXu.IServices;
     using DongXu.Services;
+    using Newtonsoft.Json;
+
     [RoutePrefix("Role")]
     public class RolesAPIController : ApiController
     {
@@ -20,9 +22,22 @@ namespace DongXu.WebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetRoles")]
-        public List<Roles> GetRoles()
+        public PageBox GetRoles(string currentpage, string name)
         {
-            return roleService.GetRoles();
+            var rolelist = roleService.GetRoles(name);
+            if (currentpage == null)
+            {
+                currentpage = "";
+            }
+            int totlepage = rolelist.Count / 3 + (rolelist.Count % 3 == 0 ? 0 : 1);
+            rolelist = rolelist.Skip((int.Parse(currentpage) - 1) * 3).Take(3).ToList();
+
+            PageBox pagebox = new PageBox();
+            pagebox.CurrentPage = int.Parse(currentpage);
+            pagebox.TotlePage = totlepage;
+            pagebox.PageData = rolelist;
+            return pagebox;
+            
         }
         /// <summary>
         /// 角色删除
@@ -40,12 +55,12 @@ namespace DongXu.WebApi.Controllers
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("GetRolescha")]
-        public List<Roles> GetRolescha(string name)
-        {
-            return roleService.GetRolescha(name);
-        }
+        //[HttpGet]
+        //[Route("GetRolescha")]
+        //public List<Roles> GetRolescha(string name)
+        //{
+        //    return roleService.GetRolescha(name);
+        //}
         /// <summary>
         /// 角色添加
         /// </summary>

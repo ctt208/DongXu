@@ -16,13 +16,13 @@ namespace DongXu.Services
         /// 角色显示
         /// </summary>
         /// <returns></returns>
-        public List<Roles> GetRoles()
+        public List<Roles> GetRoles(string name)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = "select RoleID, RoleName,RoleDescribe from roles";
-                var getrole = conn.Query<Roles>(sql, null).ToList();
+                string sql = "select RoleID, RoleName,RoleDescribe from roles where RoleName like '%" + name + "%'";
+                var getrole = conn.Query<Roles>(sql,name).ToList();
                 return getrole;
             }
         }
@@ -45,15 +45,15 @@ namespace DongXu.Services
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public List<Roles> GetRolescha(string name)
-        {
-            using (OracleConnection conn = DapperHelper.GetConnectionString())
-            {
-                string sql = "select * from Roles where RoleName like '%" + name+"%'";
-                var getrolecha = conn.Query<Roles>(sql, name).ToList();
-                return getrolecha;
-            }
-        }
+        //public List<Roles> GetRolescha(string name)
+        //{
+        //    using (OracleConnection conn = DapperHelper.GetConnectionString())
+        //    {
+        //        string sql = "select * from Roles where RoleName like '%" + name+"%'";
+        //        var getrolecha = conn.Query<Roles>(sql, name).ToList();
+        //        return getrolecha;
+        //    }
+        //}
         /// <summary>
         /// 角色添加
         /// </summary>

@@ -15,7 +15,7 @@ namespace DongXu.IServices
         /// 角色显示
         /// </summary>
         /// <returns></returns>
-        List<Roles> GetRoles();
+        List<Roles> GetRoles(string name);
         /// <summary>
         /// 角色删除
         /// </summary>
@@ -27,7 +27,7 @@ namespace DongXu.IServices
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        List<Roles> GetRolescha(string name);
+        //List<Roles> GetRolescha(string name);
         /// <summary>
         /// 角色添加
         /// </summary>
