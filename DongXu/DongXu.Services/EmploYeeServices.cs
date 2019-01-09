@@ -14,6 +14,11 @@ namespace DongXu.Services
 
     public class EmployeeServices : IEmployeeServices
     {
+        /// <summary>
+        /// 添加员工
+        /// </summary>
+        /// <param name="emploYee"></param>
+        /// <returns></returns>
         public int AddEmployee(Employee emploYee)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
@@ -24,7 +29,11 @@ namespace DongXu.Services
                 return result;
             }
         }
-
+        /// <summary>
+        /// 删除员工
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns></returns>
         public int DeleteEmployee(int employeeId)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
@@ -35,15 +44,50 @@ namespace DongXu.Services
                 return result;
             }
         }
-
+        /// <summary>
+        /// 显示员工
+        /// </summary>
+        /// <returns></returns>
         public List<Employee> GetEmployees()
         {
-            throw new NotImplementedException();
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"select EmployeeName,EmployeePwd,EmpNickName from employee";
+                var result = conn.Query<Employee>(sql, null);
+                return result.ToList();
+            }
         }
-
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="emploYee"></param>
+        /// <returns></returns>
         public int UpdateEmployee(Employee emploYee)
         {
-            throw new NotImplementedException();
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"update Employee set EmployeeName=:EmployeeName,EmployeePwd=:EmployeePwd,EmpNickName=:EmpNickName where EMPLOYEEID=:EMPLOYEEID";
+                int result = conn.Execute(sql, emploYee);
+                return result;
+            }
+        }
+        /// <summary>
+        /// 根据Id获取员工
+        /// </summary>
+        /// <param name="EmployeeID"></param>
+        /// <returns></returns>
+        public List<Employee> GetEmployeeById(int EmployeeID)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"select  EmployeeName,EmployeePwd,EmpNickName from Employee where EmployeeID=:EmployeeID";
+                var Collectlist = new { EmployeeID = EmployeeID };
+                var result = conn.Query<Employee>(sql, Collectlist);
+                return result.ToList();
+            }
         }
     }
 }

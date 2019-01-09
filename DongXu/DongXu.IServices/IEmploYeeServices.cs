@@ -32,5 +32,11 @@ namespace DongXu.IServices
         /// <param name="emploYee"></param>
         /// <returns></returns>
         int UpdateEmployee(Employee emploYee);
+        /// <summary>
+        /// 根据Id查询员工
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns></returns>
+         List<Employee> GetEmployeeById(int employeeId);
     }
 }

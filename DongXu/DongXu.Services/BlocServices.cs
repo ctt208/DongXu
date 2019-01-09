@@ -13,6 +13,11 @@ namespace DongXu.Services
     using Dapper;
     public class BlocServices : IBlocServices
     {
+        /// <summary>
+        /// 组织添加
+        /// </summary>
+        /// <param name="blocs"></param>
+        /// <returns></returns>
         public int AddBloc(Bloc blocs)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
@@ -23,6 +28,10 @@ namespace DongXu.Services
                 return result;
             }
         }
+    /// <summary>
+    /// 组织显示
+    /// </summary>
+    /// <returns></returns>
 
         public List<Bloc> GetBlocs()
         {
@@ -34,6 +43,11 @@ namespace DongXu.Services
                 return result.ToList();
             }
         }
+        /// <summary>
+        /// 组织修改
+        /// </summary>
+        /// <param name="blocs"></param>
+        /// <returns></returns>
 
         public int UpdateBloc(Bloc blocs)
         {
@@ -45,6 +59,11 @@ namespace DongXu.Services
                 return result;
             }
         }
+        /// <summary>
+        /// 根据id显示组织层级
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public List<Bloc> GetBlocById(int Id)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())

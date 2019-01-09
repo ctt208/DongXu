@@ -1,28 +1,172 @@
-﻿
+﻿<!DOCTYPE html>
 @{
-    Layout = "~/Views/Shared/_TestLayout.cshtml"; 
+    ViewBag.Title = "Goal";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
 }
+<HTML>
+<HEAD>
+    <TITLE> ZTREE DEMO </TITLE>
+    @*<link href="~/demo.css" rel="stylesheet" />*@
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <link href="~/metroStyle/metroStyle.css" rel="stylesheet" />
+    <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
 
-<!DOCTYPE html>
+    <script src="~/Scripts/jquery.ztree.core.js"></script>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <script src="~/Scripts/vue.js"></script>
     <script src="~/Scripts/axios.js"></script>
-    <link href="~/Content/layui.css" rel="stylesheet" />
-</head>
-<body>
-    <div id="app">
-        <div>
-            
-        </div>
-        <div>
-            <table class="layui-table">
+    <script src="~/Scripts/vue.js"></script>
 
-            </table>
-        </div>
+    <SCRIPT>
+        $(function () {
+            $("#Addbtn").click(function () {
+                alert(1)
+                $.ajax({
+                    url: 'http://localhost:8098/Bloc/AddBloc',
+                    type: 'post',
+                    data: $("#FormData").serialize(),
+                    success: function (data) {
+                        if (data > 0) {
+                            alert("添加成功")
+                        }
+                        else {
+                            alert("添加失败")
+                        }
+                    }
+                })
+
+            })
+
+
+                $.ajax(
+                    {
+                        url: 'http://localhost:8098/Bloc/GetBloc',
+                        type: 'get',
+                        success: function (data) {
+                            $(data).each(function (index, data) {
+                                $("#s2").append("<option value='"+data.id+"'>" + data.name + "</option>")
+                            })
+
+                        }
+
+                    })
+
+
+        })
+
+        //var zTreeObj;
+        //var setting = {};        // zTree 的参数配置，后面详解
+        function zTreeOnClick(event, treeId, treeNode) {
+
+            console.log(treeNode);
+            console.log(treeNode.pId);
+            $("input[name=name]").val(treeNode.name);
+            if (treeNode.pId == 0) {
+                $("select[name=pId] option[value=0]").attr("selected", "selected");
+            }
+            else {
+                $("select[name=pId] option[value=" + treeNode.pId + "]").attr("selected", "selected");
+            }
+
+
+
+            // alert(treeNode.tId + ", " + treeNode.name);
+        };
+        var setting = {
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "pId",
+                    rootPId: 0
+                }
+            },
+            callback: {
+                onClick: zTreeOnClick
+            }
+        };
+      
+
+
+        //];
+        var zNodes = [];
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:8098/Bloc/GetBloc",
+                success: function (data) {
+                    zNodes = data;
+                    zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes); //初始化zTree，三个参数一次分别是容器(zTree 的容器 className 别忘了设置为 "ztree")、参数配置、数据源
+
+                }
+
+            });
+
+        });
+    
+        function addDiyDom(treeId, treeNode) {
+            var spaceWidth = 5;
+            var switchObj = $("#" + treeNode.tId + "_switch"),
+                icoObj = $("#" + treeNode.tId + "_ico");
+            switchObj.remove();
+            icoObj.before(switchObj);
+
+            if (treeNode.level > 1) {
+                var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
+                switchObj.before(spaceStr);
+            }
+        }
+
+
+    </SCRIPT>
+    <style>
+        .ztree * {
+         
+           color:blue;
+            font-size: 10pt;
+            font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial
+            
+        }
+
+        .ztree li {
+            line-height: 20px;
+           
+        }
+
+            .ztree li a {
+                width: 200px;
+                height: 30px;
+                padding-top: 0px;
+                
+            }
+
+                .ztree li a:hover {
+                    text-decoration: none;
+                    background-color: #E7E7E7;
+                }
+
+                .ztree li a span.button.switch {
+                    visibility: hidden
+                }
+
+                .ztree li a.curSelectedNode {
+                    background-color: #D4D4D4;
+                    border: 0;
+                    height: 30px;
+                }
+    </style>
+</HEAD>
+<BODY>
+
+
+    <div>
+
+
+        <h6 style="float:left">您当前的位置:系统管理>>岗位管理</h6>
+        
+        <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#ffffff"></ul>
+
+
     </div>
-</body>
-</html>
+
+</BODY>
+</HTML>
