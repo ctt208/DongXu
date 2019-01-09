@@ -1,4 +1,8 @@
 ﻿<!DOCTYPE html>
+@{
+    ViewBag.Title = "Goal";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
 <HTML>
 <HEAD>
     <TITLE> ZTREE DEMO </TITLE>
@@ -31,8 +35,8 @@
                 })
 
             })
-         
-       
+
+
                 $.ajax(
                     {
                         url: 'http://localhost:8098/Bloc/GetBloc',
@@ -43,9 +47,9 @@
                             })
 
                         }
-                       
+
                     })
-            
+
 
         })
         $(function () {
@@ -72,13 +76,13 @@
         //var zTreeObj;
         //var setting = {};        // zTree 的参数配置，后面详解
         function zTreeOnClick(event, treeId, treeNode) {
-           
+
             console.log(treeNode);
             console.log(treeNode.pId);
             $("input[name=name]").val(treeNode.name);
             $("select[name=Pid] option[value=" + treeNode.pId + "]").attr("checked", "checked");
 
-           
+
             // alert(treeNode.tId + ", " + treeNode.name);
         };
         var setting = {
@@ -157,41 +161,45 @@
 
 
     </SCRIPT>
-    @*<style>
-        .ztree * {
-            font-size: 10pt;
-            font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial
-        }
-
-        .ztree li {
-            line-height: 20px;
-        }
-
-            .ztree li a {
-                width: 200px;
-                height: 30px;
-                padding-top: 0px;
+    <style>
+            .ztree * {
+                font-size: 10pt;
+                font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial
             }
 
-                .ztree li a:hover {
-                    text-decoration: none;
-                    background-color: #E7E7E7;
-                }
+            .ztree li {
+                line-height: 20px;
+            }
 
-                .ztree li a span.button.switch {
-                    visibility: hidden
-                }
-
-                .ztree li a.curSelectedNode {
-                    background-color: #D4D4D4;
-                    border: 0;
+                .ztree li a {
+                    width: 200px;
                     height: 30px;
+                    padding-top: 0px;
                 }
-    </style>*@
+
+                    .ztree li a:hover {
+                        text-decoration: none;
+                        background-color: #E7E7E7;
+                    }
+
+                    .ztree li a span.button.switch {
+                        visibility: hidden
+                    }
+
+                    .ztree li a.curSelectedNode {
+                        background-color: #D4D4D4;
+                        border: 0;
+                        height: 30px;
+                    }
+        </style>
 </HEAD>
 <BODY>
+  
+   
     <div>
+
         <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#ffffff"></ul>
+        <h6 style="float:left">您当前的位置:系统管理>>组织管理</h6>
         <form id="FormData" enctype="multipart/form-data" method="post">
             <table style="float:left;margin-left:300px;margin-top:150px;margin-right:60px;border-collapse:separate; border-spacing:0px 50px;" ;>
                 <tr>
@@ -220,20 +228,20 @@
                 </tr>
 
             </table>
-            <table style="float:left;margin-left:200px;margin-top:400px;margin-right:40px;border-collapse:separate; border-spacing:0px 50px;" ;>
+            <table style="float:left;margin-left:150px;margin-top:300px;margin-right:20px;border-collapse:separate; border-spacing:0px 50px;" ;>
                 <tr>
                     <td>
-                        <input type="button" value="新增" id="Addbtn" />
+                        <input type="button" value="新增" id="Addbtn" style="background-color:#ffffff;border:none;width:80px;height:50px" />
                     </td>
 
-                    <td>  </td>
+                
 
                     <td>
-                        <input type="button" value="修改" id="Xiubtn" />
+                        <input type="button" value="修改" id="Xiubtn" style="background-color:#ffffff;border:none;width:80px;height:50px"/>
                     </td>
                 </tr>
             </table>
-            </form>
+        </form>
 
     </div>
 

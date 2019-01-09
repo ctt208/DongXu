@@ -20,10 +20,8 @@ namespace DongXu.MVC.Controllers
         {
             return View();
         }
-        public ActionResult Blocs()
-        {
-            return View();
-        }
+      
+       
         //public ActionResult GetDesignTreeData()
         //{
         //    var result = BlocServices();
