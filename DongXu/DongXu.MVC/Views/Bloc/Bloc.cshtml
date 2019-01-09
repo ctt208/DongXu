@@ -80,7 +80,13 @@
             console.log(treeNode);
             console.log(treeNode.pId);
             $("input[name=name]").val(treeNode.name);
-            $("select[name=Pid] option[value=" + treeNode.pId + "]").attr("checked", "checked");
+            if (treeNode.pId == 0) {
+                $("select[name=pId] option[value=0]").attr("selected", "selected");
+            }
+            else {
+                $("select[name=pId] option[value=" + treeNode.pId + "]").attr("selected", "selected");
+            }
+            
 
 
             // alert(treeNode.tId + ", " + treeNode.name);
@@ -214,7 +220,7 @@
                     </td>
                     <td>
                         <select id="s2" name="pId">
-                            <option>请选择</option>
+                            <option value="0">请选择</option>
 
                         </select>
                     </td>
@@ -228,7 +234,7 @@
                 </tr>
 
             </table>
-            <table style="float:left;margin-left:150px;margin-top:300px;margin-right:20px;border-collapse:separate; border-spacing:0px 50px;" ;>
+            <table style="float:left;margin-left:40px;margin-top:300px;margin-right:20px;border-collapse:separate; border-spacing:0px 50px;" ;>
                 <tr>
                     <td>
                         <input type="button" value="新增" id="Addbtn" style="background-color:#ffffff;border:none;width:80px;height:50px" />
