@@ -47,8 +47,8 @@
     <Compile Include="Button.cs" />
     <Compile Include="ConfigurationActivites.cs" />
     <Compile Include="DutyUnit.cs" />
-    <Compile Include="EmploYee.cs" />
-    <Compile Include="EmploYeeRoles.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeRoles.cs" />
     <Compile Include="Feedback.cs" />
     <Compile Include="FeedbackNum.cs" />
     <Compile Include="IndexDecomposition.cs" />

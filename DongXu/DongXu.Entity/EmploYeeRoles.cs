@@ -9,16 +9,16 @@ namespace DongXu.Entity
     /// <summary>
     /// 员工角色关联表
     /// </summary>
-    public class EmploYeeRoles
+    public class EmployeeRoles
     {
         /// <summary>
         /// 主键ID
         /// </summary>
-        public int EmploYeeRolesID { get; set; }
+        public int EmployeeRolesID { get; set; }
         /// <summary>
         /// 用户ID
         /// </summary>
-        public int EmploYeeID { get; set; }
+        public int EmployeeID { get; set; }
         /// <summary>
         /// 角色ID
         /// </summary>

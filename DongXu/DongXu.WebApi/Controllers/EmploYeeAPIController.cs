@@ -11,14 +11,14 @@ namespace DongXu.WebApi.Controllers
     using DongXu.IServices;
     using DongXu.Services;
     [RoutePrefix("DongXu")]
-    public class EmploYeeAPIController : ApiController
+    public class EmployeeAPIController : ApiController
     {
-        public IEmploYeeServices EmploYeeServices { get; set; }
-        [Route("AddEmploYee")]
+        public IEmployeeServices EmployeeServices { get; set; }
+        [Route("AddEmployee")]
         [HttpPost]
-        public int AddEmploYee(EmploYee emploYee)
+        public int AddEmployee(Employee employee)
         {
-            return EmploYeeServices.AddEmploYee(emploYee);
+            return EmployeeServices.AddEmployee(employee);
         }
     }
 }

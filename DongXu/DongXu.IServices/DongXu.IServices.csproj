@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBlocServices.cs" />
-    <Compile Include="IEmploYeeServices.cs" />
+    <Compile Include="IEmployeeServices.cs" />
     <Compile Include="IPerMission.cs" />
     <Compile Include="IRoleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

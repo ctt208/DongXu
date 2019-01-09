@@ -40,7 +40,7 @@ namespace DongXu.WebApi.App_Start
         public static void SetupResolveRules(ContainerBuilder container)
         {
             //container.RegisterType<StudentRespository>().As<IStudentRespository>();
-            container.RegisterType<EmploYeeServices>().As<IEmploYeeServices>();
+            container.RegisterType<EmployeeServices>().As<IEmployeeServices>();
             container.RegisterType<PerMissionServices>().As<IPerMission>();
             container.RegisterType<RoleService>().As<IRoleService>();
             container.RegisterType<BlocServices>().As<IBlocServices>();

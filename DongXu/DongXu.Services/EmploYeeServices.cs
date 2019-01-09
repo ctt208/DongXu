@@ -12,11 +12,11 @@ namespace DongXu.Services
     using Oracle.ManagedDataAccess.Client;
     using Dapper;
 
-    public class EmploYeeServices : IEmploYeeServices
+    public class EmployeeServices : IEmployeeServices
     {
-        public int AddEmploYee(EmploYee emploYee)
+        public int AddEmployee(Employee emploYee)
         {
-            using(OracleConnection conn = DapperHelper.GetConnectionString())
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
                 string sql = @"insert into employee(employeename,employeepwd,employeephone,employeeentrytime,employeesex,employeeage,empnickname) values(:employeename,:employeepwd,:employeephone,:employeeentrytime,:employeesex,:employeeage,:empnickname)";
@@ -25,17 +25,23 @@ namespace DongXu.Services
             }
         }
 
-        public int DeleteEmploYee(int emploYeeId)
+        public int DeleteEmployee(int employeeId)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"delete from employee where employeeId=:employeeId";
+                int result = conn.Execute(sql, new { employeeId = employeeId });
+                return result;
+            }
+        }
+
+        public List<Employee> GetEmployees()
         {
             throw new NotImplementedException();
         }
 
-        public List<EmploYee> GetEmploYees()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int UpdateEmploYee(EmploYee emploYee)
+        public int UpdateEmployee(Employee emploYee)
         {
             throw new NotImplementedException();
         }
