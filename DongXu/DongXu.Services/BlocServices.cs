@@ -18,7 +18,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"insert into bloc(BLOCNAME,PID,Isorno)values(:BLOCNAME,:PID,:Isorno)";
+                string sql = @"insert into bloc(name,pId,Isorno)values(:name,:Pid,:Isorno)";
                 int result = conn.Execute(sql, blocs);
                 return result;
             }
@@ -40,7 +40,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"update bloc set BLOCNAME=:BLOCNAME,PID=:PID,ISORNO=:ISORNO where ID=:ID";
+                string sql = @"update bloc set name=:name,pId=:pId,Isorno=:Isorno where id=:id";
                 int result = conn.Execute(sql, blocs);
                 return result;
             }
@@ -50,7 +50,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select * from where Id=:Id ";
+                string sql = @"select * from bloc where Id=:Id ";
                 var Collectlist = new { Id = Id };
                 var result = conn.Query<Bloc>(sql, Collectlist);
                 return result.ToList();
