@@ -18,40 +18,33 @@
 
     <SCRIPT>
         $(function () {
-            $("#Addbtn").click(function () {
-                alert(1)
-                $.ajax({
-                    url: 'http://localhost:8098/Bloc/AddBloc',
-                    type: 'post',
-                    data: $("#FormData").serialize(),
-                    success: function (data) {
-                        if (data > 0) {
-                            alert("添加成功")
-                        }
-                        else {
-                            alert("添加失败")
-                        }
-                    }
-                })
+            $("#AddBtn").click(function () {
+                layer.open({
+                    type: 1,
+                    area: ['700px', '500px'],
 
+
+
+
+
+
+
+
+
+
+
+
+
+                    fix: false, //不固定
+                    maxmin: true,
+                    shade: 0.7,
+                    
+                    title: '添加用户',
+                    content: $('#AddUser')
+                });
             })
-
-
-                $.ajax(
-                    {
-                        url: 'http://localhost:8098/Bloc/GetBloc',
-                        type: 'get',
-                        success: function (data) {
-                            $(data).each(function (index, data) {
-                                $("#s2").append("<option value='"+data.id+"'>" + data.name + "</option>")
-                            })
-
-                        }
-
-                    })
-
-
         })
+  
 
         //var zTreeObj;
         //var setting = {};        // zTree 的参数配置，后面详解
@@ -60,13 +53,8 @@
             console.log(treeNode);
             console.log(treeNode.pId);
             $("input[name=name]").val(treeNode.name);
-            if (treeNode.pId == 0) {
-                $("select[name=pId] option[value=0]").attr("selected", "selected");
-            }
-            else {
-                $("select[name=pId] option[value=" + treeNode.pId + "]").attr("selected", "selected");
-            }
 
+            $("input[name=pId]").val(treeNode.name);
 
 
             // alert(treeNode.tId + ", " + treeNode.name);
@@ -119,6 +107,9 @@
 
     </SCRIPT>
     <style>
+        
+      
+     
         .ztree * {
          
            color:blue;
@@ -158,13 +149,85 @@
 <BODY>
 
 
-    <div>
+    <div >
 
 
         <h6 style="float:left">您当前的位置:系统管理>>岗位管理</h6>
         
-        <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#ffffff"></ul>
+        <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#f7f7f7"></ul>
+        <table  style="float:left;margin-right:50px;margin-right:60px;border-collapse:separate; border-spacing:0px 50px;" >
+            <tr style="margin-left:600px">
+                <td>
+                    &nbsp;  &nbsp; &nbsp; &nbsp;机构名称：
+                </td>
+                <td >
+                    <input type="text" name="pId" style="border:0px">
+                </td>
+                <td>
+                    岗位名称：
+                </td>
+                <td>
+                    <input type="text" name="name"  style="border:0px"/>
+                </td>
+            </tr>
+          
+        </table>
+        <table  style="margin-top:70px;border-collapse:separate;border-spacing:0px 100px;width:40px;" >
+            <tr>
+                <td>
+                    <input type="button" value="添加用户" id="AddBtn" style="background-color:#f7f7f7;width:60px;height:30px ;border-color:black;border-width:1px;" />
+                </td>
+            </tr>
+        </table>
+        <table style="margin-left:60px;margin-top:-60px; border-collapse:separate;border-spacing:150px 10px;width:900px;" id="Tab" >
+            <tr >
+                <td >
+                    用户姓名
+                </td>
+                <td>
+                    用户账号
+                 </td>
+                <td >
+                    操作
+                </td>
+            </tr>
+        </table>
 
+    </div>
+    
+    <div id="AddUser" style="display:none">
+        <table style=" margin-right:80px;border-collapse:separate; border-spacing:110px 50px;">
+            <tr>
+                <td>
+                    员工姓名
+                </td>
+                <td>
+                    <input type="text" name="EmpNickName" />
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    员工账号
+                </td>
+                <td>
+                    <input type="text" name="EmployeeName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    员工密码
+                </td>
+                <td>
+                    <input type="text" name="EmployeePwd" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" id="addu" value="添加用户"style="background-color:#f7f7f7;width:60px;height:30px ;border-color:black;border-width:1px;margin-left:150px;" />
+                </td>
+            </tr>
+        </table>
 
     </div>
 
