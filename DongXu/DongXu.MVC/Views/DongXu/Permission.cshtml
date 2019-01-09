@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Permission";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/css/permission.css" rel="stylesheet" />
+    <title>目标管理</title>
+</head>
+<body>
+    <h6>您当前的位置:系统管理>>授权管理</h6>
+    <div class="content_top">
+        <h5>添加权限</h5>
+        <div id="box">
+            <span>权限名称:</span>
+            <input class="PerMissionName" type="text" name="PerMissionName" />
+            <span>创建时间:</span>
+            <input class="EstablishTime" type="date" name="EstablishTime" />
+            <span>修改时间:</span>
+            <input class="UpTime" type="date" name="UpTime" />
+            <input type="button" name="name" class="layui-btn layui-btn-warm" id="search" value="查询" />
+            <input type="button" name="name" class="layui-btn layui-btn-danger" id="add" value="新增" />
+        </div>
+    </div>
+    <div class="content_bottom">
+        <h5>授权管理</h5>
+        <table class="layui-table">
+            <tr>
+                <th>权限名称</th>
+                <th>创建时间</th>
+                <th>修改时间</th>
+                <th>操作</th>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

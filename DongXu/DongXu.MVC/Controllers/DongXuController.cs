@@ -33,5 +33,13 @@ namespace DongXu.MVC.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 权限管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Permission()
+        {
+            return View();
+        }
     }
 }
