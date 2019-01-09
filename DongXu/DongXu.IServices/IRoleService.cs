@@ -34,5 +34,6 @@ namespace DongXu.IServices
         /// <param name="r"></param>
         /// <returns></returns>
         int AddRoles(Roles r);
+        int UpdateRole(Roles roles);
     }
 }

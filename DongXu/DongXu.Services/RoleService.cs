@@ -71,5 +71,15 @@ namespace DongXu.Services
                 return addroles;
             }
         }
+        public int UpdateRole(Roles roles)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                string sql = string.Format("update Roles set RoleName=:RoleName,RoleDescribe=:RoleDescribe where RoleID=:RoleID");
+                var rolesup = new { RoleName = roles.RoleName, RoleDescribe = roles.RoleDescribe, RoleID = roles.RoleID };
+                var updaterole = conn.Execute(sql, rolesup);
+                return updaterole;
+            }
+        }
     }
 }

@@ -72,5 +72,16 @@ namespace DongXu.WebApi.Controllers
         {
             return roleService.AddRoles(r);
         }
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="roles"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UpdateRole")]
+        public int UpdateRole(Roles roles)
+        {
+            return roleService.UpdateRole(roles);
+        }
     }
 }

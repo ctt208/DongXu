@@ -86,6 +86,7 @@
                 <td><input type="text" v-model="item.RoleDescribe" /></td>
                 <td>
                     <a href="#" v-on:click="delete1(item.RoleID)">删除</a>
+                    <a href="#" v-on:click="updateRole(item.RoleID,item.RoleName,item.RoleDescribe)">修改</a>
                 </td>
             </tr>
         </table>
@@ -193,6 +194,25 @@
                     alert(response);
                 });
             },
+            updateRole: function (RoleID, RoleName, RoleDescribe) {
+                var params = new URLSearchParams();
+                params.append('RoleID', RoleID);
+                params.append('RoleName', RoleName);
+                params.append('RoleDescribe', RoleDescribe);
+                axios.post('http://localhost:8098/Role/UpdateRole', params).then(
+                    (Response) => {
+                        if (Response.data > 0) {
+                            alert("修改成功!!");
+                            this.getList();
+                        }
+                    },
+                    (Response) => {
+                        alert(Response.status);
+                    }
+                ).catch (function (response) {
+                    alert(response);
+                });
+            }
         },
         computed: {
             indexs: function () {
