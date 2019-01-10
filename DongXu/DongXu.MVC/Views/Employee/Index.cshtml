@@ -30,11 +30,12 @@
                         $(data).each(function (index, data) {
 
                             var str = "<tr>"
+                           
                             str += "<td>" + data.EmpNickName + "</td>"
                             str += "<td>" + data.EmployeeName + "</td>"
 
 
-                            str += "<td><a href='#'onclick=Delete(" + data.ID + ",this)>删除</a></td>"
+                            str += "<td><a href='#'onclick=Delete(" + data.EmployeeID + ",this)>删除</a></td>"
                             str += "</tr>"
                             $("#Tab").append(str);
                         })
@@ -71,6 +72,7 @@
                                 url: 'http://localhost:8098/DongXu/AddEmployee',
                                 type: 'post',
                                 data: {
+                                 
                                     EmpNickName: $("input[name=EmpNickName]").val(),
                                     EmployeeName: $("input[name=EmployeeName]").val(),
                                     EmployeePwd: data,
@@ -91,24 +93,25 @@
 
             })
         })
-        function Delete(employeeId, obj) {
-            alert(0)
+        function Delete(EmployeeID, obj)
+        {
+        
             $.ajax({
                 url: 'http://localhost:8098/DongXu/DeleteEmployee',
-                tpe: 'get',
-                data: { employeeId: employeeId },
+                type: 'get',
+                data: { EmployeeID: EmployeeID },
                 success: function (data) {
                     if (data > 0) {
 
-                        alert("删除成功")
-                        location.href = '/Employee/Index'
+                        alert("删除成功");
+                        location.href ='/Employee/GetMd5Str';
                     }
                     else {
                         alert("删除失败")
+                        alert(EmployeeID);
                     }
                 }
             })
-      
         }
 
 
@@ -244,6 +247,7 @@
         </table>
         <table style="margin-left:60px;margin-top:-60px; border-collapse:separate;border-spacing:150px 10px;width:1000px;background-color:darkgray" id="Tab">
             <tr>
+            
                 <td>
                     用户姓名
                 </td>
@@ -260,6 +264,7 @@
 
     <div id="AddUser" style="display:none">
         <table id="Tab" style=" margin-right:80px;border-collapse:separate; border-spacing:110px 50px;">
+
             <tr>
                 <td>
                     员工姓名

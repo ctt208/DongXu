@@ -34,13 +34,13 @@ namespace DongXu.Services
         /// </summary>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        public int DeleteEmployee(int employeeId)
+        public int DeleteEmployee(int employeeID)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"delete from employee where employeeId=:employeeId";
-                int result = conn.Execute(sql, new { employeeId = employeeId });
+                string sql = @"delete from employee where employeeID=:employeeID";
+                int result = conn.Execute(sql, new { employeeID = employeeID });
                 return result;
             }
         }
@@ -53,7 +53,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select EmployeeName,EmployeePwd,EmpNickName from employee";
+                string sql = @"select employeeID ,EmployeeName,EmployeePwd,EmpNickName from employee";
                 var result = conn.Query<Employee>(sql, null);
                 return result.ToList();
             }

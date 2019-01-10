@@ -42,9 +42,9 @@ namespace DongXu.WebApi.Controllers
         /// <returns></returns>
         [Route("DeleteEmployee")]
         [HttpGet]
-        public int DeleteEmployee(int employeeId)
+        public int DeleteEmployee(int employeeID)
         {
-            return EmployeeServices.DeleteEmployee(employeeId);
+            return EmployeeServices.DeleteEmployee(employeeID);
         }
         /// <summary>
         /// 修改
