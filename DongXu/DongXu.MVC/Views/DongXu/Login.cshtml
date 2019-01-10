@@ -34,45 +34,47 @@
             </div>
         </div>
     </div><!-- /container -->
+
     <script src="~/Content/login1/login/js/TweenLite.min.js"></script>
     <script src="~/Content/login1/login/js/EasePack.min.js"></script>
     <script src="~/Content/login1/login/js/rAF.js"></script>
     <script src="~/Content/login1/login/js/demo-1.js"></script>
-<script>
-    //加载弹出层组件
-    layui.use('layer', function () {
+    <script>
+        //加载弹出层组件
+        layui.use('layer', function () {
 
-        var layer = layui.layer;
+            var layer = layui.layer;
 
-        //登录的点击事件
-        $("#sub").on("click", function () {
-            login();
-        })
-
-        $("body").keydown(function () {
-            if (event.keyCode == "13") {
+            //登录的点击事件
+            $("#sub").on("click", function () {
                 login();
-            }
-        })
+            })
 
-        //登录函数
-        function login() {
-            var username = $(" input[ name='username' ] ").val();
-            var password = $(" input[ name='password' ] ").val();
-            $.ajax({
-                url: "login",
-                data: { "username": username, "password": password },
-                type: "post",
-                dataType: "json",
-                success: function (data) {
-                    if (data.success) {
-                        window.location = "index";
-                    } else {
-                        layer.msg(data.msg);
-                    }
+            $("body").keydown(function () {
+                if (event.keyCode == "13") {
+                    login();
                 }
             })
-        }
-    })
-</script>
+
+            //登录函数
+            function login() {
+                var username = $(" input[ name='username' ] ").val();
+                var password = $(" input[ name='password' ] ").val();
+                $.ajax({
+                    url: "login",
+                    data: { "username": username, "password": password },
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.success) {
+                            window.location = "index";
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    }
+                })
+            }
+        })
+    </script>
+</body>
 </html>

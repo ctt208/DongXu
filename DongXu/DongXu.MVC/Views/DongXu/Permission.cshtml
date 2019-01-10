@@ -100,7 +100,7 @@
                 UpdatePerMission: function (PerMissionName, EstablishTime, UpTime, PerMissionID) {
                     var params = new URLSearchParams();
                     params.append("PerMissionName", PerMissionName);
-                    params.append("EstablishTime", PerMissionName);
+                    params.append("EstablishTime", EstablishTime);
                     params.append("UpTime", UpTime);
                     params.append("PerMissionID", PerMissionID);
                     axios.post('http://localhost:8098/DongXu/UpdatePerMission', params).then(

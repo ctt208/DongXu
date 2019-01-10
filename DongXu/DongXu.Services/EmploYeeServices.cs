@@ -34,13 +34,13 @@ namespace DongXu.Services
         /// </summary>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        public int DeleteEmployee(int employeeID)
+        public int DeleteEmployee(int employeeId)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"delete from employee where employeeID=:employeeID";
-                int result = conn.Execute(sql, new { employeeID = employeeID });
+                string sql = @"delete from employee where employeeId=:employeeId";
+                int result = conn.Execute(sql, new { employeeId = employeeId });
                 return result;
             }
         }
@@ -53,7 +53,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select employeeID ,EmployeeName,EmployeePwd,EmpNickName from employee";
+                string sql = @"select EmployeeName,EmployeePwd,EmpNickName from employee";
                 var result = conn.Query<Employee>(sql, null);
                 return result.ToList();
             }
@@ -87,6 +87,20 @@ namespace DongXu.Services
                 var Collectlist = new { EmployeeID = EmployeeID };
                 var result = conn.Query<Employee>(sql, Collectlist);
                 return result.ToList();
+            }
+        }
+        /// <summary>
+        /// 登陆
+        /// </summary>
+        /// <returns></returns>
+        public int LoginEmp(object empName, object empPwd)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"select count(1) from EMPLOYEE where EmployeeName=empName and EmployeePwd=empPwd";
+                var result = conn.Execute(sql,new { empName= empName, empPwd= empPwd });
+                return result;
             }
         }
     }

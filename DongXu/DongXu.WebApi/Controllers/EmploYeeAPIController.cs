@@ -42,9 +42,9 @@ namespace DongXu.WebApi.Controllers
         /// <returns></returns>
         [Route("DeleteEmployee")]
         [HttpGet]
-        public int DeleteEmployee(int employeeID)
+        public int DeleteEmployee(int employeeId)
         {
-            return EmployeeServices.DeleteEmployee(employeeID);
+            return EmployeeServices.DeleteEmployee(employeeId);
         }
         /// <summary>
         /// 修改
@@ -67,6 +67,18 @@ namespace DongXu.WebApi.Controllers
         public List<Employee> GetEmployeeById(int EmployeeID)
         {
             return EmployeeServices.GetEmployeeById(EmployeeID);
+        }
+        /// <summary>
+        /// 登陆
+        /// </summary>
+        /// <param name="empName"></param>
+        /// <param name="empPwd"></param>
+        /// <returns></returns>
+        [Route("LoginEmp")]
+        [HttpPost]
+        public int LoginEmp(object empName, object empPwd)
+        {
+            return EmployeeServices.LoginEmp(empName,empPwd);
         }
     }
 }

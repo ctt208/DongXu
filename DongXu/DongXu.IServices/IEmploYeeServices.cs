@@ -20,7 +20,7 @@ namespace DongXu.IServices
         /// </summary>
         /// <param name="emploYeeId"></param>
         /// <returns></returns>
-        int DeleteEmployee(int employeeID);
+        int DeleteEmployee(int employeeId);
         /// <summary>
         /// 获取所有员工
         /// </summary>
@@ -38,5 +38,10 @@ namespace DongXu.IServices
         /// <param name="employeeId"></param>
         /// <returns></returns>
          List<Employee> GetEmployeeById(int employeeId);
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <returns></returns>
+        int LoginEmp(object empName,object empPwd );
     }
 }
