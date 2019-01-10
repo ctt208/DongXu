@@ -2,13 +2,14 @@
     ViewBag.Title = "Permission";
     Layout = "~/Views/Shared/_TestLayout.cshtml";
 }
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
     <link href="~/Content/css/permission.css" rel="stylesheet" />
-    <title>目标管理</title>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/axios.js"></script>
+    <title>授权管理</title>
 </head>
 <body>
     <h6>您当前的位置:系统管理>>授权管理</h6>
@@ -16,25 +17,137 @@
         <h5>添加权限</h5>
         <div id="box">
             <span>权限名称:</span>
-            <input class="PerMissionName" type="text" name="PerMissionName" />
+            <input class="PerMissionName" v-model="PerMissionName" type="text"  />
             <span>创建时间:</span>
-            <input class="EstablishTime" type="date" name="EstablishTime" />
+            <input class="EstablishTime" v-model="EstablishTime" type="date"  />
             <span>修改时间:</span>
-            <input class="UpTime" type="date" name="UpTime" />
-            <input type="button" name="name" class="layui-btn layui-btn-warm" id="search" value="查询" />
-            <input type="button" name="name" class="layui-btn layui-btn-danger" id="add" value="新增" />
+            <input class="UpTime" type="date" v-model="UpTime"  />
+            <input type="button" name="name" class="layui-btn layui-btn-warm" id="search"  value="查询" />
+            <input type="button" name="name" class="layui-btn layui-btn-danger" id="add" value="新增"  v-on:click="AddPerMission(PerMissionName,PerMissionName,UpTime)"/>
         </div>
     </div>
     <div class="content_bottom">
         <h5>授权管理</h5>
-        <table class="layui-table">
+        <table class="layui-table" v-show="permissionList.length">
             <tr>
+                <th>Id</th>
                 <th>权限名称</th>
                 <th>创建时间</th>
                 <th>修改时间</th>
                 <th>操作</th>
             </tr>
+            <tr v-for="(item,index) in permissionList">
+                <td><input type="text" v-model="item.PerMissionID" disabled="disabled" class="layui-input"/></td>
+                <td><input type="text" v-model="item.PerMissionName" class="layui-input"/></td>
+                <td><input type="text" v-model="item.EstablishTime"  class="layui-input"/></td>
+                <td><input type="text" v-model="item.UpTime" class="layui-input"/></td>
+                <td>
+                    <div v-if="item.PerMissionID!=''">
+                        <a href="#" v-on:click="UpdatePerMission(item.PerMissionName,item.EstablishTime,item.UpTime,item.PerMissionID)">修改</a>
+                        <a href="#" v-on:click="DeletePerMission(item.PerMissionID)">删除</a>
+                    </div>
+                  
+                </td>
+            </tr>
         </table>
     </div>
+    <script type="text/javascript">
+        var ve = new Vue({
+            el: ".content_bottom",
+            data: {
+                permissionList: []
+            },
+            mounted() {
+                this.GetPerMissions();
+            },
+            methods: {
+                //加载权限信息
+                GetPerMissions: function () {
+                    axios.get('http://localhost:8098/DongXu/GetPerMissions').then(
+                        (response) => {
+                            this.permissionList = [];
+                            for (var i = 0; i < response.data.length; i++) {                                
+                                this.permissionList.push(response.data[i]);
+                            }
+                            console.log(this.permissionList);
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+                DeletePerMission: function (id) {
+                    axios.post('http://localhost:8098/DongXu/DeletePerMission?id=' + id).then(
+                        (response) => {
+                           
+                            if (response.data > 0) {
+                                var msg = confirm("确定要删除吗？")
+                                if (msg == true) {
+                                    alert("删除成功!");
+                                    this.GetPerMissions();
+                                }
+                            }                            
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function (response) {
+                        alert(response);
+                    });
+                },
+                UpdatePerMission: function (PerMissionName, EstablishTime, UpTime, PerMissionID) {
+                    var params = new URLSearchParams();
+                    params.append("PerMissionName", PerMissionName);
+                    params.append("EstablishTime", PerMissionName);
+                    params.append("UpTime", UpTime);
+                    params.append("PerMissionID", PerMissionID);
+                    axios.post('http://localhost:8098/DongXu/UpdatePerMission', params).then(
+                        (response) => {
+                            alert("修改成功")
+                            this.GetPerMissions()
+                        },
+                        (response) => {
+                            alert(response.status)
+                        }
+                    ).catch(function () {
+                        alert(response)
+                    });
+                }
+            }
+        });
+        var ve2 = new Vue({
+            el: ".content_top",
+            data: {
+                PerMissionName: "",
+                EstablishTime: "",
+                UpTime:""
+            },
+            mounted() {
+               
+            },
+            methods: {
+                //加载权限信息
+                AddPerMission: function (PerMissionName, EstablishTime, UpTime) {
+                    var params = new URLSearchParams();
+                    params.append("PerMissionName", PerMissionName);
+                    params.append("EstablishTime", PerMissionName);
+                    params.append("UpTime", UpTime);
+                    axios.post('http://localhost:8098/DongXu/AddPerMission', params).then(
+                        (response) => {
+                            alert("添加成功")
+                            ve.GetPerMissions()
+                        },
+                        (response) => {
+                            alert(response.status);
+                        }
+                    ).catch(function () {
+                        alert(response);
+                    });
+                }
+            }
+        })
+    </script>
 </body>
 </html>

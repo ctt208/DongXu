@@ -39,7 +39,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"delete from PERMISSION where permissionid=:id";
+                string sql = @"delete from PERMISSION where permissionid="+id;
                 int i = conn.Execute(sql,id);
                 return i;
             }
@@ -69,7 +69,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select permissionname,establishtime,uptime from PERMISSION ";
+                string sql = @"select permissionid,permissionname,establishtime,uptime from PERMISSION ";
                IEnumerable<PerMission> list = conn.Query<PerMission>(sql,null);
                 return list.ToList();
             }

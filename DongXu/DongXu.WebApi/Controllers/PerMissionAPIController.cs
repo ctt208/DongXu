@@ -19,6 +19,8 @@ namespace DongXu.WebApi.Controllers
         /// </summary>
         /// <param name="perMission"></param>
         /// <returns></returns>
+        [HttpPost]
+        [Route("AddPerMission")]
         public int AddPerMission(PerMission perMission)
         {
             int i= perMissionServices.AddPerMission(perMission);
@@ -29,6 +31,8 @@ namespace DongXu.WebApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [HttpPost]
+        [Route("DeletePerMission")]
         public int DeletePerMission(int id)
         {
             int i = perMissionServices.DeletePerMission(id);
@@ -39,6 +43,8 @@ namespace DongXu.WebApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [HttpGet]
+        [Route("GetPerMissionById")]
         public PerMission GetPerMissionById(int id)
         {
             PerMission perMission = perMissionServices.GetPerMissionById(id);
@@ -49,6 +55,8 @@ namespace DongXu.WebApi.Controllers
         /// 显示权限信息
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
+        [Route("GetPerMissions")]
         public List<PerMission> GetPerMissions()
         {
             var list = perMissionServices.GetPerMissions();
@@ -59,6 +67,8 @@ namespace DongXu.WebApi.Controllers
         /// </summary>
         /// <param name="perMission"></param>
         /// <returns></returns>
+        [HttpPost]
+        [Route("UpdatePerMission")]
         public int UpdatePerMission(PerMission perMission)
         {
             int i = perMissionServices.UpdatePerMission(perMission);
