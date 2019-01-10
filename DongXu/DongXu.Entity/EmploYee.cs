@@ -23,22 +23,10 @@ namespace DongXu.Entity
         /// 员工密码
         /// </summary>
         public string EmployeePwd { get; set; }
-        /// <summary>
-        /// 员工手机号
-        /// </summary>
-        public string EmployeePhone { get; set; }
-        /// <summary>
-        /// 入职时间
-        /// </summary>
-        public DateTime EmployeeEntryTime { get; set; }
-        /// <summary>
-        /// 员工性别
-        /// </summary>
-        public int EmployeeSxe { get; set; }
-        /// <summary>
-        /// 员工年龄
-        /// </summary>
-        public int EmployeeAge { get; set; }
+    
+
+
+    
         /// <summary>
         /// 员工真实姓名
         /// </summary>

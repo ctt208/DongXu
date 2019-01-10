@@ -17,34 +17,101 @@
     <script src="~/Scripts/vue.js"></script>
 
     <SCRIPT>
+
         $(function () {
+            $.ajax(
+                {
+                    url: 'http://localhost:8098/DongXu/GetEmployee',
+                    type: 'get',
+
+                    success: function (data) {
+
+
+                        $(data).each(function (index, data) {
+
+                            var str = "<tr>"
+                            str += "<td>" + data.EmpNickName + "</td>"
+                            str += "<td>" + data.EmployeeName + "</td>"
+
+
+                            str += "<td><a href='#'onclick=Delete(" + data.ID + ",this)>删除</a></td>"
+                            str += "</tr>"
+                            $("#Tab").append(str);
+                        })
+
+                    }
+                })
             $("#AddBtn").click(function () {
                 layer.open({
                     type: 1,
                     area: ['700px', '500px'],
 
 
-
-
-
-
-
-
-
-
-
-
-
                     fix: false, //不固定
                     maxmin: true,
                     shade: 0.7,
-                    
+
                     title: '添加用户',
                     content: $('#AddUser')
                 });
             })
+            $("#addu").click(function () {
+                //var str = "";
+                var ps = $("input[name=EmployeePwd]").val();
+                $.ajax(
+                    {
+                        url: '/Employee/GetMd5Str',
+                        data: {
+                            EmployeePwd: ps
+                        },
+                        type: 'post',
+                        success: function (data) {
+                            alert(1)
+                            $.ajax({
+                                url: 'http://localhost:8098/DongXu/AddEmployee',
+                                type: 'post',
+                                data: {
+                                    EmpNickName: $("input[name=EmpNickName]").val(),
+                                    EmployeeName: $("input[name=EmployeeName]").val(),
+                                    EmployeePwd: data,
+  },
+                                success: function (data) {
+                                    if (data > 0) {
+                                        alert("添加成功")
+                                        location.href = '/employee/Index';
+                                    }
+                                    else {
+                                        alert("添加失败")
+                                    }
+                                }
+                            })
+                        }
+                    })
+
+
+            })
         })
-  
+        function Delete(employeeId, obj) {
+            alert(0)
+            $.ajax({
+                url: 'http://localhost:8098/DongXu/DeleteEmployee',
+                tpe: 'get',
+                data: { employeeId: employeeId },
+                success: function (data) {
+                    if (data > 0) {
+
+                        alert("删除成功")
+                        location.href = '/Employee/Index'
+                    }
+                    else {
+                        alert("删除失败")
+                    }
+                }
+            })
+      
+        }
+
+
 
         //var zTreeObj;
         //var setting = {};        // zTree 的参数配置，后面详解
@@ -72,7 +139,7 @@
                 onClick: zTreeOnClick
             }
         };
-      
+
 
 
         //];
@@ -90,7 +157,7 @@
             });
 
         });
-    
+
         function addDiyDom(treeId, treeNode) {
             var spaceWidth = 5;
             var switchObj = $("#" + treeNode.tId + "_switch"),
@@ -107,27 +174,23 @@
 
     </SCRIPT>
     <style>
-        
-      
-     
+
+
+
         .ztree * {
-         
-           color:blue;
+            color: blue;
             font-size: 10pt;
             font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial
-            
         }
 
         .ztree li {
             line-height: 20px;
-           
         }
 
             .ztree li a {
                 width: 200px;
                 height: 30px;
                 padding-top: 0px;
-                
             }
 
                 .ztree li a:hover {
@@ -149,54 +212,54 @@
 <BODY>
 
 
-    <div >
+    <div>
 
 
         <h6 style="float:left">您当前的位置:系统管理>>岗位管理</h6>
-        
+
         <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#f7f7f7"></ul>
-        <table  style="float:left;margin-right:50px;margin-right:60px;border-collapse:separate; border-spacing:0px 50px;" >
+        <table style="float:left;margin-right:50px;margin-right:60px;border-collapse:separate; border-spacing:0px 50px;">
             <tr style="margin-left:600px">
                 <td>
                     &nbsp;  &nbsp; &nbsp; &nbsp;机构名称：
                 </td>
-                <td >
+                <td>
                     <input type="text" name="pId" style="border:0px">
                 </td>
                 <td>
                     岗位名称：
                 </td>
                 <td>
-                    <input type="text" name="name"  style="border:0px"/>
+                    <input type="text" name="name" style="border:0px" />
                 </td>
             </tr>
-          
+
         </table>
-        <table  style="margin-top:70px;border-collapse:separate;border-spacing:0px 100px;width:40px;" >
+        <table style="margin-top:70px;border-collapse:separate;border-spacing:0px 100px;width:40px;">
             <tr>
                 <td>
                     <input type="button" value="添加用户" id="AddBtn" style="background-color:#f7f7f7;width:60px;height:30px ;border-color:black;border-width:1px;" />
                 </td>
             </tr>
         </table>
-        <table style="margin-left:60px;margin-top:-60px; border-collapse:separate;border-spacing:150px 10px;width:900px;" id="Tab" >
-            <tr >
-                <td >
+        <table style="margin-left:60px;margin-top:-60px; border-collapse:separate;border-spacing:150px 10px;width:1000px;background-color:darkgray" id="Tab">
+            <tr>
+                <td>
                     用户姓名
                 </td>
                 <td>
                     用户账号
-                 </td>
-                <td >
+                </td>
+                <td>
                     操作
                 </td>
             </tr>
         </table>
 
     </div>
-    
+
     <div id="AddUser" style="display:none">
-        <table style=" margin-right:80px;border-collapse:separate; border-spacing:110px 50px;">
+        <table id="Tab" style=" margin-right:80px;border-collapse:separate; border-spacing:110px 50px;">
             <tr>
                 <td>
                     员工姓名
@@ -224,7 +287,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" id="addu" value="添加用户"style="background-color:#f7f7f7;width:60px;height:30px ;border-color:black;border-width:1px;margin-left:150px;" />
+                    <input type="button" id="addu" value="添加用户" style="background-color:#f7f7f7;width:60px;height:30px ;border-color:black;border-width:1px;margin-left:150px;" />
                 </td>
             </tr>
         </table>
