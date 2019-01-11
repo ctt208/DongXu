@@ -47,6 +47,7 @@
     <Compile Include="IPerMission.cs" />
     <Compile Include="IRolePermisson.cs" />
     <Compile Include="IRoleService.cs" />
+    <Compile Include="ITargetServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

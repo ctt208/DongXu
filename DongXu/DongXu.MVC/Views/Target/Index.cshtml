@@ -9,6 +9,10 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <script src="~/Scripts/jquery-1.4.4.min.js"></script>
+    <link href="~/metroStyle/metroStyle.css" rel="stylesheet" />
+    <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.ztree.core.js"></script>
     <style>
         #tree {
             float: left;
@@ -17,14 +21,14 @@
             height: auto;
             border: 1px gray solid;
         }
+
         #tab {
             float: right;
             background-color: blue;
             width: auto;
-            height:auto;
+            height: auto;
             border: 1px gray solid;
         }
-        
     </style>
     <script>
         var setting = {
@@ -44,7 +48,7 @@
 
         $(document).ready(function () {
             $.ajax({
-                url: "http://localhost:8098/Bloc/GetBloc",
+                url: "http://localhost:8098/DongXu/GetTargets",
                 success: function (data) {
                     zNodes = data;
                     zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes); //初始化zTree，三个参数一次分别是容器(zTree 的容器 className 别忘了设置为 "ztree")、参数配置、数据源

@@ -6,33 +6,31 @@ using System.Threading.Tasks;
 
 namespace DongXu.IServices
 {
-    
     using DongXu.Entity;
-    
-    public interface IRoleService
+    public interface ITargetServices
     {
         /// <summary>
-        /// 角色显示
+        /// 新增
         /// </summary>
+        /// <param name="target"></param>
         /// <returns></returns>
-        List<Roles> GetRoles(string name);
+        int AddTarget(Target target);
         /// <summary>
-        /// 角色删除
+        /// 删除
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="Id"></param>
         /// <returns></returns>
-        int DelteRole(int id);
+        int DeleteTarget(int Id);
         /// <summary>
-        /// 角色添加
+        /// 修改
         /// </summary>
-        /// <param name="r"></param>
+        /// <param name="target"></param>
         /// <returns></returns>
-        int AddRoles(Roles r);
+        int UpdateTarget(Target target);
         /// <summary>
-        /// 角色修改
+        /// 获取所有目标
         /// </summary>
-        /// <param name="roles"></param>
         /// <returns></returns>
-        int UpdateRole(Roles roles);
+        List<Target> GetTargets();
     }
 }
