@@ -22,11 +22,11 @@
                     <form action="#" name="f" method="post">
                         <div class="input_outer">
                             <span class="u_user"></span>
-                            <input name="username" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+                            <input name="empName" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
                         </div>
                         <div class="input_outer">
                             <span class="us_uer"></span>
-                            <input name="password" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="" type="password" placeholder="请输入密码">
+                            <input name="empPwd" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="" type="password" placeholder="请输入密码">
                         </div>
                         <div class="mb2"><a id="sub" lay-filter="sub" class="act-but submit" href="javascript:;" style="color: #FFFFFF">登录</a></div>
                     </form>
@@ -47,7 +47,7 @@
 
             //登录的点击事件
             $("#sub").on("click", function () {
-                location.href = "/DongXu/Index";
+                login();
             })
 
             $("body").keydown(function () {
@@ -58,21 +58,33 @@
 
             //登录函数
             function login() {
-                var username = $(" input[ name='username' ] ").val();
-                var password = $(" input[ name='password' ] ").val();
+                var empName = $(" input[ name='empName' ] ").val();
+                var empPwd = $(" input[ name='empPwd' ] ").val();
                 $.ajax({
-                    url: "login",
-                    data: { "username": username, "password": password },
-                    type: "post",
-                    dataType: "json",
+                    url:"/Employee/GetMd5Str",
+                    data: {
+                        EmployeePwd: empPwd
+                    },
+                    type: 'post',
                     success: function (data) {
-                        if (data.success) {
-                            window.location = "index";
-                        } else {
-                            layer.msg(data.msg);
-                        }
+                        $.ajax({
+                            url: "http://localhost:8098/DongXu/LoginEmp",
+                            data: {
+                                empName: empName,
+                                empPwd: data
+                            },
+                            type: "get",
+                            success: function (data) {
+                                if (data>0) {
+                                    location.href = "/DongXu/Index";
+                                } else {
+                                    layer.msg(data.msg);
+                                }
+                            }
+                        })
                     }
                 })
+               
             }
         })
     </script>

@@ -93,15 +93,17 @@ namespace DongXu.Services
         /// 登陆
         /// </summary>
         /// <returns></returns>
-        public int LoginEmp(object empName, object empPwd)
+        public int LoginEmp(string empName, string empPwd)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
-                conn.Open();
-                string sql = @"select count(1) from EMPLOYEE where EmployeeName=empName and EmployeePwd=empPwd";
-                var result = conn.Execute(sql,new { empName= empName, empPwd= empPwd });
-                return result;
+                conn.Open();               
+                string sql = @"select * from EMPLOYEE where EmployeeName=:empName and EmployeePwd=:empPwd";
+                var result = conn.Query<Employee>(sql, new { empName = empName, empPwd = empPwd });
+                return result.Count();
             }
         }
+
+    
     }
 }

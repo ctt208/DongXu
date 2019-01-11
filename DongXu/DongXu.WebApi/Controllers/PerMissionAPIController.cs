@@ -59,8 +59,15 @@ namespace DongXu.WebApi.Controllers
         [Route("GetPerMissions")]
         public List<PerMission> GetPerMissions()
         {
-            var list = perMissionServices.GetPerMissions();
-            return list;
+            var perMissionlist = perMissionServices.GetPerMissions();
+            foreach (var item in perMissionlist)
+            {
+               var EstablishTime= Convert.ToDateTime(item.EstablishTime);
+               var UpTime= Convert.ToDateTime(item.UpTime);
+                item.EstablishTime = EstablishTime;
+                item.UpTime = UpTime;
+            }
+            return perMissionlist;
         }
         /// <summary>
         /// 修改权限
