@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        #tree {
+            float: left;
+            background-color: red;
+            width: auto;
+            height: auto;
+            border: 1px gray solid;
+        }
+        #tab {
+            float: right;
+            background-color: blue;
+            width: auto;
+            height:auto;
+            border: 1px gray solid;
+        }
+        
+    </style>
+    <script>
+        var setting = {
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "pId",
+                    rootPId: 0
+                }
+            },
+            callback: {
+                onClick: zTreeOnClick
+            }
+        };
+        var zNodes = [];
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:8098/Bloc/GetBloc",
+                success: function (data) {
+                    zNodes = data;
+                    zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes); //初始化zTree，三个参数一次分别是容器(zTree 的容器 className 别忘了设置为 "ztree")、参数配置、数据源
+
+                }
+
+            });
+
+        });
+        function zTreeOnClick(event, treeId, treeNode) {
+
+            console.log(treeNode);
+            console.log(treeNode.pId);
+            $("input[name=name]").val(treeNode.name);
+            if (treeNode.pId == 0) {
+                $("select[name=pId] option[value=0]").attr("selected", "selected");
+            }
+            else {
+                $("select[name=pId] option[value=" + treeNode.pId + "]").attr("selected", "selected");
+            }
+        }
+        function addDiyDom(treeId, treeNode) {
+            var spaceWidth = 5;
+            var switchObj = $("#" + treeNode.tId + "_switch"),
+                icoObj = $("#" + treeNode.tId + "_ico");
+            switchObj.remove();
+            icoObj.before(switchObj);
+
+            if (treeNode.level > 1) {
+                var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
+                switchObj.before(spaceStr);
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div> 
+        <div id="tree">
+            <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#ffffff"></ul>
+        </div>
+        <div id="tab">
+
+        </div>
+    </div>
+</body>
+</html>

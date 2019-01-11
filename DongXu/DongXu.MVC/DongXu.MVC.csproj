@@ -378,6 +378,7 @@
     <Compile Include="Controllers\DongXuController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\RolesMVCController.cs" />
+    <Compile Include="Controllers\TargetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -423,6 +424,7 @@
     <Content Include="Views\DongXu\Permission.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\DongXu\RoleIndex.cshtml" />
+    <Content Include="Views\Target\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
