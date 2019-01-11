@@ -14,7 +14,9 @@
     <script src="~/Scripts/jquery-3.1.1.js"></script>
     <script src="~/Scripts/vue.js"></script>
     <script src="~/Scripts/layer/2.4/layer.js"></script>
-  
+
+    <script src="~/echarts.js"></script>
+
 </head>
 <body>
     <div class="content goal">
@@ -28,16 +30,116 @@
         <iframe src="/DongXu/Backlog"></iframe>
     </div>
     <div class="content integral">
-        <h4>积分排名</h4>
-        <div class="cot"></div>
+        @*<h4>积分排名</h4>
+        <div class="cot"></div>*@
+        <div id="main" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            // 指定图表的配置项和数据
+            var option = {
+                color: ['#3398DB'],
+                title: {
+                    text: '积分排名'
+                },
+               
+              
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '直接访问',
+                        type: 'bar',
+                        barWidth: '60%',
+                        data: [10, 52, 200, 334, 390, 330, 220]
+                    }
+                ]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
     </div>
     <div class="content ight">
         <h4>红绿灯状态</h4>
         <div class="cot"></div>
     </div>
     <div class="content run">
-        <h4>运行情况</h4>
-        <div class="cot"></div>
+        @*<h4>运行情况</h4>
+        <div class="cot"></div>*@
+        <div id="maina" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('maina'));
+
+             //指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '事项运行情况',
+                  
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+                },
+                series: [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '60%'],
+                        data: [
+                            { value: 335, name: '直接访问' },
+                            { value: 310, name: '邮件营销' },
+                            { value: 234, name: '联盟广告' },
+                            { value: 135, name: '视频广告' },
+                            { value: 1548, name: '搜索引擎' }
+                        ],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
     </div>
     <div class="content percentage">
         <h4>目标完成率</h4>

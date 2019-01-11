@@ -14,7 +14,7 @@ namespace DongXu.Entity
         /// <summary>
         /// 主键Id
         /// </summary>
-        public int Id { get; set; }
+        public int Inid { get; set; }
         /// <summary>
         /// 集团Id
         /// </summary>
@@ -27,5 +27,11 @@ namespace DongXu.Entity
         /// 积分
         /// </summary>
         public int IntegralNum { get; set; }
+        /// <summary>
+        /// 集团名字
+        /// </summary>
+        public string name { get; set; }
+        public int id { get; set; }
+ 
     }
 }

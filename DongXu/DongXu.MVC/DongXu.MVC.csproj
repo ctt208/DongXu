@@ -224,6 +224,7 @@
     <Content Include="Content\login1\login\js\rAF.js" />
     <Content Include="Content\login1\login\js\TweenLite.min.js" />
     <Content Include="demo.css" />
+    <Content Include="echarts.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\layui-v2.4.5\layui\css\layui.css" />
     <Content Include="Content\layui-v2.4.5\layui\css\layui.mobile.css" />

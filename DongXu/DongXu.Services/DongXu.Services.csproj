@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BlocServices.cs" />
     <Compile Include="EmployeeServices.cs" />
+    <Compile Include="IntegralServices.cs" />
     <Compile Include="PerMissionServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolePermission.cs" />

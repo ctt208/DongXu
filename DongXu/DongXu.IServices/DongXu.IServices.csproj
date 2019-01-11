@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="IBlocServices.cs" />
     <Compile Include="IEmployeeServices.cs" />
+    <Compile Include="IIntegralServices.cs" />
     <Compile Include="IPerMission.cs" />
     <Compile Include="IRolePermisson.cs" />
     <Compile Include="IRoleService.cs" />

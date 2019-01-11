@@ -10,7 +10,7 @@
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <link href="~/metroStyle/metroStyle.css" rel="stylesheet" />
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
-
+    <link href="~/demo.css" rel="stylesheet" />
     <script src="~/Scripts/jquery.ztree.core.js"></script>
 
     <script src="~/Scripts/axios.js"></script>
@@ -45,7 +45,8 @@
                         type: 'get',
                         success: function (data) {
                             $(data).each(function (index, data) {
-                                $("#s2").append("<option value='"+data.id+"'>" + data.name + "</option>")
+                                $("#s2").append("<option value='" + data.id + "'>" + data.name + "</option>")
+                                
                             })
 
                         }
@@ -171,11 +172,11 @@
 
     </SCRIPT>
     <style>
-        .ztree * {
+        /*.ztree * {
             color: blue;
             font-size: 10pt;
             font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial
-        }
+        }*/
 
             .ztree li {
                 line-height: 20px;

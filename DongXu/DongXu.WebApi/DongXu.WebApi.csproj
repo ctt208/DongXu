@@ -127,6 +127,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BlocAPIController.cs" />
     <Compile Include="Controllers\EmployeeAPIController.cs" />
+    <Compile Include="Controllers\IntegralAPIController.cs" />
     <Compile Include="Controllers\PerMissionAPIController.cs" />
     <Compile Include="Controllers\RolePermissonAPIController.cs" />
     <Compile Include="Controllers\RolesAPIController.cs" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Intergral\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DongXu.Entity\DongXu.Entity.csproj">
