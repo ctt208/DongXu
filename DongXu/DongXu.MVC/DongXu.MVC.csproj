@@ -422,6 +422,7 @@
     <Content Include="Views\Shared\_TestLayout.cshtml" />
     <Content Include="Views\DongXu\Permission.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\DongXu\RoleIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -51,6 +51,7 @@
     <Compile Include="EmployeeServices.cs" />
     <Compile Include="PerMissionServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolePermission.cs" />
     <Compile Include="RoleService.cs" />
   </ItemGroup>
   <ItemGroup>

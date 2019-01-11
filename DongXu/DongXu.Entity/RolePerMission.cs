@@ -18,10 +18,12 @@ namespace DongXu.Entity
         /// <summary>
         /// 权限ID
         /// </summary>
-        public int PerMissionID { get; set; }
+        public string PerMissionID { get; set; }
         /// <summary>
         /// 角色ID
         /// </summary>
         public int RoleID { get; set; }
+        public string RoleName { get; set; }
+       // public string PerMissionName { get; set; }
     }
 }

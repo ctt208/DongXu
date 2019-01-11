@@ -31,5 +31,9 @@ namespace DongXu.Entity
         /// 修改时间
         /// </summary>
         public DateTime RoleUpTime { get; set; }
+        /// <summary>
+        /// 权限ID
+        /// </summary>
+        public int PermissionID { get; set; }
     }
 }

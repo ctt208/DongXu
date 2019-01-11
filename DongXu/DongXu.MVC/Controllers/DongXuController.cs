@@ -41,6 +41,9 @@ namespace DongXu.MVC.Controllers
         {
             return View();
         }
-
+        public ActionResult RoleIndex()
+        {
+            return View();
+        }
     }
 }

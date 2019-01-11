@@ -44,6 +44,7 @@ namespace DongXu.WebApi.App_Start
             container.RegisterType<PerMissionServices>().As<IPerMission>();
             container.RegisterType<RoleService>().As<IRoleService>();
             container.RegisterType<BlocServices>().As<IBlocServices>();
+            container.RegisterType<RolePermission>().As<IRolePermisson>();
         }
     }
 }
