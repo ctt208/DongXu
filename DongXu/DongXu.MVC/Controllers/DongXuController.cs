@@ -6,10 +6,13 @@ using System.Web.Mvc;
 
 namespace DongXu.MVC.Controllers
 {
+    using IServices;
+    using Services;
     using System.Text;
     using System.Security.Cryptography;
     public class DongXuController : Controller
     {
+        IntegralServices IntegralServices = new IntegralServices();
         // GET: DongXu
         public ActionResult Index()
         {
@@ -59,6 +62,12 @@ namespace DongXu.MVC.Controllers
         public ActionResult RoleIndex()
         {
             return View();
+        }
+        [HttpGet]
+        public JsonResult GetIntegral()
+        {
+            //string result =JsonConvert.SerializeObject(bll.GetSchool());
+            return Json(IntegralServices.GetIntegral(),JsonRequestBehavior.AllowGet);
         }
     }
 }

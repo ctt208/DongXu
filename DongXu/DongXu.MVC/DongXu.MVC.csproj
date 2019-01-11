@@ -439,6 +439,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DongXu.Common\DongXu.Common.csproj">
+      <Project>{9cc416ed-c327-469d-92fc-0c1659f190e1}</Project>
+      <Name>DongXu.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DongXu.Entity\DongXu.Entity.csproj">
       <Project>{ee80c784-21ea-439e-991a-ba36c486a6dd}</Project>
       <Name>DongXu.Entity</Name>
@@ -450,6 +454,10 @@
     <ProjectReference Include="..\DongXu.Services\DongXu.Services.csproj">
       <Project>{4ad6bfc3-6e07-4027-b128-0e7f6263911c}</Project>
       <Name>DongXu.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DongXu.WebApi\DongXu.WebApi.csproj">
+      <Project>{aeb9d5e2-a309-4c7a-8b7b-0baa2fe2a802}</Project>
+      <Name>DongXu.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
