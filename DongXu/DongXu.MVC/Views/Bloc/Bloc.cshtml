@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 @{
-    ViewBag.Title = "Goal";
+    ViewBag.Title = "Bloc";
     Layout = "~/Views/Shared/_TestLayout.cshtml";
 }
 <HTML>
@@ -69,6 +69,7 @@
                         }
                         else {
                             alert("修改失败")
+                            alert(data)
                         }
                     }
                 })
@@ -211,6 +212,12 @@
         <h6 style="float:left">您当前的位置:系统管理>>组织管理</h6>
         <form id="FormData" enctype="multipart/form-data" method="post">
             <table style="float:left;margin-left:300px;margin-top:150px;margin-right:60px;border-collapse:separate; border-spacing:0px 50px;" ;>
+                <tr style="display:none">
+                    <td>
+                       <input type="text" name="id" readonly:readonly />
+                    </td>
+
+                </tr>
                 <tr>
                     <td>
                         组织名称:
@@ -245,9 +252,9 @@
 
                 
 
-                    <td>
+                    @*<td>
                         <input type="button" value="修改" id="Xiubtn" style="background-color:#ffffff;border:none;width:80px;height:50px"/>
-                    </td>
+                    </td>*@
                 </tr>
             </table>
         </form>

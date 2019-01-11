@@ -31,5 +31,6 @@ namespace DongXu.Entity
         /// 员工真实姓名
         /// </summary>
         public string EmpNickName { get; set; }
+        public int BlocId { get; set; }
     }
 }

@@ -28,5 +28,6 @@ namespace DongXu.Entity
         /// 是否启用
         /// </summary>
         public int IsOrNo { get; set; }
+        public int EmployeeID { get; set; }
     }
 }
