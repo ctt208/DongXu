@@ -75,10 +75,10 @@ namespace DongXu.WebApi.Controllers
         /// <param name="empPwd"></param>
         /// <returns></returns>
         [Route("LoginEmp")]
-        [HttpPost]
-        public int LoginEmp(object empName, object empPwd)
+        [HttpGet]
+        public int LoginEmp(string empName, string empPwd)
         {
             return EmployeeServices.LoginEmp(empName,empPwd);
-        }
+        }       
     }
 }

@@ -42,6 +42,8 @@ namespace DongXu.IServices
         /// 登录
         /// </summary>
         /// <returns></returns>
-        int LoginEmp(object empName,object empPwd );
+        int LoginEmp(string empName,string empPwd );
+
+        
     }
 }

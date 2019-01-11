@@ -54,7 +54,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select permissionname,establishtime,uptime from PERMISSION where permissionid=:id";
+                string sql = @"select PerMissionID,permissionname,establishtime,uptime from PERMISSION where permissionid=" + id;
                 PerMission perMission= conn.Query<PerMission>(sql, id).FirstOrDefault();
                 return perMission;
             }
