@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 @{
-    ViewBag.Title = "Goal";
+    ViewBag.Title = "Employee";
     Layout = "~/Views/Shared/_TestLayout.cshtml";
 }
 <HTML>
@@ -19,29 +19,9 @@
     <SCRIPT>
 
         $(function () {
-            $.ajax(
-                {
-                    url: 'http://localhost:8098/DongXu/GetEmployee',
-                    type: 'get',
 
-                    success: function (data) {
-
-
-                        $(data).each(function (index, data) {
-
-                            var str = "<tr>"
-                           
-                            str += "<td>" + data.EmpNickName + "</td>"
-                            str += "<td>" + data.EmployeeName + "</td>"
-
-
-                            str += "<td><a href='#'onclick=Delete(" + data.EmployeeID + ",this)>删除</a></td>"
-                            str += "</tr>"
-                            $("#Tab").append(str);
-                        })
-
-                    }
-                })
+        
+          
             $("#AddBtn").click(function () {
                 layer.open({
                     type: 1,
@@ -104,7 +84,7 @@
                     if (data > 0) {
 
                         alert("删除成功");
-                        location.href ='/Employee/GetMd5Str';
+                        location.href ='/Employee/Index';
                     }
                     else {
                         alert("删除失败")
@@ -119,15 +99,36 @@
         //var zTreeObj;
         //var setting = {};        // zTree 的参数配置，后面详解
         function zTreeOnClick(event, treeId, treeNode) {
+            $.ajax(
+                {
+                    url: 'http://localhost:8098/DongXu/GetEmployee',
+                    type: 'get',
 
-            console.log(treeNode);
-            console.log(treeNode.pId);
+                    success: function (data) {
+
+
+                        $(data).each(function (index, data) {
+
+                            var str = "<tr>"
+
+                            str += "<td>" + data.EmpNickName + "</td>"
+                            str += "<td>" + data.EmployeeName + "</td>"
+
+
+                            str += "<td><a href='#'onclick=Delete(" + data.EmployeeID + ",this)>删除</a></td>"
+                            str += "</tr>"
+                            $("#Tab").append(str);
+                        })
+
+                    }
+                })
+            
             $("input[name=name]").val(treeNode.name);
 
             $("input[name=pId]").val(treeNode.name);
 
 
-            // alert(treeNode.tId + ", " + treeNode.name);
+            //alert(treeNode.tId + ", " + treeNode.name);
         };
         var setting = {
             data: {
@@ -158,6 +159,7 @@
                 }
 
             });
+
 
         });
 
