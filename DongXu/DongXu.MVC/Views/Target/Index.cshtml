@@ -50,6 +50,7 @@
             $.ajax({
                 url: "http://localhost:8098/DongXu/GetTargets",
                 success: function (data) {
+                    console.log(data);
                     zNodes = data;
                     zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes); //初始化zTree，三个参数一次分别是容器(zTree 的容器 className 别忘了设置为 "ztree")、参数配置、数据源
 
