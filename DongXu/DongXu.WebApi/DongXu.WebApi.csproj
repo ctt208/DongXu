@@ -129,8 +129,7 @@
     <Compile Include="Controllers\EmployeeAPIController.cs" />
     <Compile Include="Controllers\IntegralAPIController.cs" />
     <Compile Include="Controllers\PerMissionAPIController.cs" />
-    <Compile Include="Controllers\RolePermissonAPIController.cs" />
-    <Compile Include="Controllers\RolesAPIController.cs" />
+    <Compile Include="Controllers\RoleAPIController.cs" />
     <Compile Include="Controllers\TargetAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

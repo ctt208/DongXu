@@ -378,7 +378,7 @@
     <Compile Include="Controllers\BlocController.cs" />
     <Compile Include="Controllers\DongXuController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\RolesMVCController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TargetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -426,6 +426,9 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\DongXu\RoleIndex.cshtml" />
     <Content Include="Views\Target\Index.cshtml" />
+    <Content Include="Views\Role\AddRole.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\UpDate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
