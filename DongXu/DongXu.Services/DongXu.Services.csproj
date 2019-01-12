@@ -52,7 +52,6 @@
     <Compile Include="IntegralServices.cs" />
     <Compile Include="PerMissionServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RolePermission.cs" />
     <Compile Include="RoleService.cs" />
     <Compile Include="TargetServices.cs" />
   </ItemGroup>

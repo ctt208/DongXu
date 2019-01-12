@@ -21,7 +21,7 @@ namespace DongXu.IServices
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        int DelteRole(int id);
+        int DelRoles(int id);
         /// <summary>
         /// 角色添加
         /// </summary>
@@ -33,6 +33,8 @@ namespace DongXu.IServices
         /// </summary>
         /// <param name="roles"></param>
         /// <returns></returns>
-        int UpdateRole(Roles roles);
+        int UpdateRoles(Roles role);
+        List<ShowRoles> RolesByID(int id);
+
     }
 }
