@@ -25,6 +25,9 @@
                 <td>
                     <input id="Button1" type="button" value="查询" onclick="Show()" />
                 </td>
+                <td>
+                    <a href="http://localhost:51281/Role/AddRole">添加</a>
+                </td>
             </tr>
         </table>
         <table id="tab">
@@ -52,6 +55,7 @@
                     if (data > 0) {
                         alert("删除成功!");
                         Show();
+                        
                     }
                     else {
                         alert("删除失败!")
