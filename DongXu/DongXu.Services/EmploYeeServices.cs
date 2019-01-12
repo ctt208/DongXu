@@ -53,7 +53,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select EmployeeName,EmployeePwd,EmpNickName from employee";
+                string sql = @"select EmployeeID,EmployeeName,EmployeePwd,EmpNickName from employee";
                 var result = conn.Query<Employee>(sql, null);
                 return result.ToList();
             }

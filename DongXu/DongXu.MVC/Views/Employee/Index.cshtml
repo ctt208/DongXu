@@ -58,7 +58,7 @@
                                     },
                                 success: function (data) {
                                     if (data > 0) {
-                                        confirm("添加成功");
+                               
                                         location.href = '/employee/Index';
                                     }
                                     else {
@@ -82,11 +82,11 @@
                 success: function (data) {
                     if (data > 0) {
 
-                        confirm("删除成功");
+                     
                         location.href ='/Employee/Index';
                     }
                     else {
-                        alert("删除失败")
+                      
                         alert(EmployeeID);
                     }
                 }
@@ -104,8 +104,8 @@
                     type: 'get',
 
                     success: function (data) {
-
-                        $("#Tab").children().children().remove();
+                        $("#Tab").not(":first").remove();
+                        //$("#Tab").children().children().remove();
                         $(data).each(function (index, data) {
 
                             var str = "<tr>"
