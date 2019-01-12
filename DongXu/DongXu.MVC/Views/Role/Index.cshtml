@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
+
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <input type="text" name="RoleName" value="" />
+                </td>
+                <td>
+                    <input id="Button1" type="button" value="查询" onclick="Show()" />
+                </td>
+            </tr>
+        </table>
+        <table id="tab">
+            <tr>
+                <td>角色ID</td>
+                <td>角色名称</td>
+                <td>角色描述</td>
+                <td>操作</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+        Show();
+    });
+    function Delete(id) {
+        
+        if (confirm("确定要删除吗?")) {
+            $.ajax({
+                url: 'http://localhost:8098/Role/DelRoles?id='+id,
+                type: 'get',
+                success: function (data) {
+                    if (data > 0) {
+                        alert("删除成功!");
+                        Show();
+                    }
+                    else {
+                        alert("删除失败!")
+                    }
+                }
+            })
+        }
+    }
+    function Show() {
+        //alert(1);
+        $.ajax({
+            url: 'http://localhost:8098/Role/GetRoles?name=' + $("input[name=RoleName]").val(),
+            type: 'get',
+            success: function (data) {
+                $("#tab").children().children().remove();
+                $(data).each(function (index, data) {
+                    var str = "<tr>";
+                    str += "<td>" + data.RoleID + "</td>";
+                    str += "<td>" + data.RoleName + "</td>";
+                    str += "<td>" + data.RoleDescribe + "</td>";
+                    str += "<td><a href='/Role/Update?id=" + data.RoleID + "'>修改</a></td>";
+                    str += "<td><a onclick='Delete(" + data.RoleID+")'>删除</a></td>";
+                    str += "</tr>";
+                    $("#tab").append(str);
+
+                })
+
+            }
+        })
+}
+    
+</script>
+

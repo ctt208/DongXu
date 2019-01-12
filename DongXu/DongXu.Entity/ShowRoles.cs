@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace DongXu.Entity
 {
-    /// <summary>
-    /// 角色表
-    /// </summary>
-    public class Roles
+    public class ShowRoles
     {
         /// <summary>
         /// 角色ID
@@ -20,13 +17,13 @@ namespace DongXu.Entity
         /// </summary>
         public string RoleName { get; set; }
         /// <summary>
-        /// 角色描述
+        /// 描述
         /// </summary>
         public string RoleDescribe { get; set; }
         /// <summary>
         /// 权限ID
         /// </summary>
         public string PerMissionID { get; set; }
-        
+
     }
 }

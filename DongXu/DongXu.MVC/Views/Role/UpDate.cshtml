@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "UpDate";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddRole</title>
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
+
+</head>
+<body>
+    <div>
+        <table id="tab">
+            <tr>
+                <td>
+                    <span>角色名称:</span>
+                </td>
+                <td>
+                    <input type="text" name="RoleName" id="RoleName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>角色描述</span>
+                </td>
+                <td>
+                    <input type="text" name="RoleDescribe" id="RoleDescribe" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>权限:</span>
+                </td>
+                <td id="check"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="Button1" type="button" value="保存" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+        Show();
+        backfill();
+        $("#Button1").click(function () {
+            var ids = [];
+            $("input[name=PerMissionID]:checked").each(function () {
+                ids.push($(this).val())
+            })
+            $.ajax({
+                url: 'http://localhost:8098/Role/UpdateRoles',
+                type: 'post',
+                data: {
+
+                    'RoleName': $("[name=RoleName]").val(),
+                    'RoleDescribe': $("[name=RoleDescribe]").val(),
+                    'PerMissionID': ids.join(','),
+                    'RoleID': @Request.QueryString["id"],
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data > 0) {
+                        alert("修改成功");
+                    }
+                    else {
+                        alert("修改失败");
+                    }
+                }
+            })
+        })
+    })
+    function backfill() {
+        alert(@Request.QueryString["id"]);
+        $.ajax({
+            url: 'http://localhost:8098/Role/RolesByID?id=' + @Request.QueryString["id"],
+            type: 'get',
+            success: function (data) {
+                console.log(data)
+                //$("input[name=RoleID]").val(data[0].RoleID);
+                $("input[name=RoleName]").val(data[0].RoleName);
+                $("input[name=RoleDescribe]").val(data[0].RoleDescribe);
+                $(data).each(function (index, data) {
+                    $("input[name=PerMissionID][value=" + data.PerMissionID + "]").prop("checked", true)
+                })
+            }
+        })
+
+    }
+
+    function Show() {
+        $.ajax({
+            url: 'http://localhost:8098/DongXu/GetPerMissions',
+            type: 'get',
+            success: function (data) {
+                $(":checkbox").remove();
+                $(".span").remove();
+                $(data).each(function (index, data) {
+                    var str = '<input type="checkbox"  name="PerMissionID" value="' + data.PerMissionID + '" /><span class="span">' + data.PerMissionName + '</span>'
+                    $("#check").append(str);
+                })
+            }
+        })
+    }
+
+
+
+
+</script>
+

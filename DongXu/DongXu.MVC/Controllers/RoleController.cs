@@ -6,14 +6,18 @@ using System.Web.Mvc;
 
 namespace DongXu.MVC.Controllers
 {
-    public class RolesMVCController : Controller
+    public class RoleController : Controller
     {
-        // GET: RolesMVC
+        // GET: Role
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Add()
+        public ActionResult AddRole()
+        {
+            return View();
+        }
+        public ActionResult UpDate()
         {
             return View();
         }

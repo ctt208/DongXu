@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "AddRole";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddRole</title>
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
+
+</head>
+<body>
+    <div>
+        <table id="tab">
+            <tr>
+                <td>
+                    <span>角色名称:</span>
+                </td>
+                <td>
+                    <input type="text" name="RoleName" id="RoleName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>角色描述</span>
+                </td>
+                <td>
+                    <input type="text" name="RoleDescribe" id="RoleDescribe" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>权限:</span>
+                </td>
+                <td id="check">
+
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="Button1" type="button" value="保存" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+        Show();
+        $("#Button1").click(function () {
+            //角色名称非空验证
+            if ($("input[name=RoleName]").val().trim().length <= 0) {
+                alert("角色名称不能为空");
+                return;
+            }
+            //角色描述非空验证
+            if ($("input[name=RoleDescribe]").val().trim().length <= 0) {
+                alert("角色描述不能为空");
+                return;
+            }
+            //权限非空验证
+            var textbox = document.getElementsByName("PerMissionID");
+            for (i = 0; i < textbox.length; i++) {
+                if (!textbox[i].checked) {
+                    if (i == textbox.length - 1) {
+                        return alert('请选择一个!');
+                    }
+                }
+                else {
+                    break;
+                }
+            }
+
+
+            var ids = [];
+            $("input[name=PerMissionID]:checked").each(function () {
+                ids.push($(this).val())
+            })
+            $.ajax({
+                url: 'http://localhost:8098/Role/AddRoles',
+                type: 'post',
+                data: {
+                    'RoleName': $("[name=RoleName]").val(),
+                    'RoleDescribe': $("[name=RoleDescribe]").val(),
+                    'PerMissionID': ids.join(','),
+                },
+                success: function (data) {
+                    if (data > 0) {
+                        alert("添加成功");
+                    }
+                    else {
+                        alert("添加失败");
+                    }
+                }
+            })
+        })
+    })
+
+    function Show() {
+        $.ajax({
+            url: 'http://localhost:8098/DongXu/GetPerMissions',
+            type: 'get',
+            success: function (data) {
+                $(":checkbox").remove();
+                $(".span").remove();
+                $(data).each(function (index, data) {
+                    var str = '<input type="checkbox"  name="PerMissionID" value="' + data.PerMissionID + '" /><span class="span">' + data.PerMissionName + '</span>'
+                    $("#check").append(str);
+                })
+            }
+        })
+    }
+</script>
+
+

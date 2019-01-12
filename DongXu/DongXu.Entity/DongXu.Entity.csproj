@@ -61,6 +61,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolePerMission.cs" />
     <Compile Include="Roles.cs" />
+    <Compile Include="ShowRoles.cs" />
     <Compile Include="Target.cs" />
     <Compile Include="TargetDetails.cs" />
     <Compile Include="TarGetType.cs" />
