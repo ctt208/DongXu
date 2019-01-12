@@ -20,7 +20,7 @@ namespace DongXu.IServices
         /// </summary>
         /// <param name="emploYeeId"></param>
         /// <returns></returns>
-        int DeleteEmployee(int employeeId);
+        int DeleteEmployee(int EmployeeID);
         /// <summary>
         /// 获取所有员工
         /// </summary>

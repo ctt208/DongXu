@@ -39,7 +39,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"delete from employee where employeeId=:employeeId";
+                string sql = @"delete from employee where employeeID=:employeeID";
                 int result = conn.Execute(sql, new { employeeId = employeeId });
                 return result;
             }

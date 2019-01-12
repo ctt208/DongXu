@@ -58,7 +58,7 @@
                                     },
                                 success: function (data) {
                                     if (data > 0) {
-                                        alert("添加成功")
+                                        confirm("添加成功");
                                         location.href = '/employee/Index';
                                     }
                                     else {
@@ -76,13 +76,13 @@
         {
         
             $.ajax({
-                url: 'http://localhost:8098/DongXu/DeleteEmployee',
+                url: 'http://localhost:8098/DongXu/DeleteEmployee?EmployeeID=' + EmployeeID,
                 type: 'get',
-                data: { EmployeeID: EmployeeID },
+                
                 success: function (data) {
                     if (data > 0) {
 
-                        alert("删除成功");
+                        confirm("删除成功");
                         location.href ='/Employee/Index';
                     }
                     else {
@@ -105,7 +105,7 @@
 
                     success: function (data) {
 
-
+                        $("#Tab").children().children().remove();
                         $(data).each(function (index, data) {
 
                             var str = "<tr>"
@@ -117,6 +117,7 @@
                             str += "<td><a href='#'onclick=Delete(" + data.EmployeeID + ",this)>删除</a></td>"
                             str += "</tr>"
                             $("#Tab").append(str);
+                            
                         })
 
                     }
