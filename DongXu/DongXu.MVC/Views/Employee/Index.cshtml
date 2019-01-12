@@ -82,12 +82,12 @@
                 success: function (data) {
                     if (data > 0) {
 
-                     
+                      
                         location.href ='/Employee/Index';
                     }
                     else {
                       
-                        alert(EmployeeID);
+                     
                     }
                 }
             })
@@ -104,8 +104,8 @@
                     type: 'get',
 
                     success: function (data) {
-                        $("#Tab").not(":first").remove();
-                        //$("#Tab").children().children().remove();
+                     
+                        $("#Tab").children().children().remove();
                         $(data).each(function (index, data) {
 
                             var str = "<tr>"
