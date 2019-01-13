@@ -12,37 +12,27 @@
     <script src="~/Scripts/axios.js"></script>
     <script>
         $(function () {
-            $("#update").click(function () {
-                $.ajax({
-                    url: "http://localhost:8098/DongXu/UpdatePerMission",
-                    type: "post",
-                    data: {
-                        PerMissionID: $("input[name=PerMissionID]").val(),
-                        PerMissionName: $("input[name=PerMissionName]").val(),
-                        EstablishTime: $("input[name=EstablishTime]").val(),
-                        UpTime: $("input[name=UpTime]").val(),
-                    },
-                    success: function (data) {
-                        if (data > 0) {
-                            alert("修改成功");
-                        }
-                    }
-                })
-            })
+            //$("#update").click(function () {
+            //    $.ajax({
+            //        url: "http://localhost:8098/DongXu/UpdatePerMission",
+            //        type: "post",
+            //        data: {
+            //            PerMissionID: $("input[name=PerMissionID]").val(),
+            //            PerMissionName: $("input[name=PerMissionName]").val(),
+            //            EstablishTime: $("input[name=EstablishTime]").val(),
+            //            UpTime: $("input[name=UpTime]").val(),
+            //        },
+            //        success: function (data) {
+            //            if (data > 0) {
+            //                alert("修改成功");
+
+            //            }
+            //        }
+            //    })
+            //})
         })
         function ModalWindow() {
-            var permissionId = localStorage.Id;
-            $.ajax({
-                url: "http://localhost:8098/DongXu/GetPerMissionById?id=" + permissionId,
-                type: "get",
-                success: function (data)
-                {
-                    $("input[name=PerMissionName]").val(data.PerMissionName);
-                    $("input[name=PerMissionID]").val(data.PerMissionID);
-                    $("input[name=EstablishTime]").val(data.EstablishTime);
-                    $("input[name=UpTime]").val(data.UpTime);
-                }
-            })
+           
             layer.open({
                 type: 1,
                 area: ['600px', '400px'],
@@ -88,7 +78,7 @@
                 <td>{{item.UpTime.substring(0,10)}}</td>
                 <td>
                     <div v-if="item.PerMissionID!=''">
-                        <a href="#"  v-on:click="GetPermissionId(item.PerMissionID)" onclick="ModalWindow()">修改</a>
+                        <a href="#" onclick="ModalWindow()" v-on:click="GetPermissionId(item.PerMissionID)" >修改</a>
                         <a href="#" v-on:click="DeletePerMission(item.PerMissionID)">删除</a>
                     </div>
 
@@ -100,24 +90,24 @@
         <table id="model" style="display:none;" class="layui-table">
             <tr>
                 <td>Id</td>
-                <td><input type="text" name="PerMissionID" disabled="disabled" /></td>
+                <td><input type="text" name="PerMissionID" disabled="disabled" v-model="PerMissionID"/></td>
             </tr>
             <tr>
                 <td>权限名称</td>
-                <td><input type="text" name="PerMissionName" /></td>
+                <td><input type="text" name="PerMissionName" v-model="PerMissionName"/></td>
             </tr>
             <tr>
                 <td>创建时间</td>
-                <td><input type="text" name="EstablishTime" /></td>
+                <td><input type="text" name="EstablishTime" v-model="EstablishTime"/></td>
             </tr>
             <tr>
                 <td>修改时间</td>
-                <td><input type="text" name="UpTime" /></td>
+                <td><input type="text" name="UpTime" v-model="UpTime"/></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <input type="button" id="update" value="修改" />
+                    <input type="button" id="update" v-on:click="UpdatePerMission(PerMissionID,PerMissionName,EstablishTime,UpTime)"  value="修改" />
                     <input type="button" id="cancle" value="返回" />
                 </td>
             </tr>
@@ -134,7 +124,18 @@
             },
             methods: {
                 GetPermissionId: function (data) {
-                    localStorage.Id = data;
+                    axios({
+                        method: 'get',
+                        url: 'http://localhost:8098/DongXu/GetPerMissionById?id=' + data
+                    }).then(function (resp) {
+                        console.log(resp.data);
+                        $("input[name=PerMissionName]").val(resp.data.PerMissionName);
+                        $("input[name=PerMissionID]").val(resp.data.PerMissionID);
+                        $("input[name=EstablishTime]").val(resp.data.EstablishTime);
+                        $("input[name=UpTime]").val(resp.data.UpTime);
+                    }).catch(resp => {
+                        console.log('请求失败：' + resp.status + ',' + resp.statusText);
+                    });
                 },
                 //加载权限信息
                 GetPerMissions: function () {
@@ -218,6 +219,40 @@
                         }
                     ).catch(function () {
                         alert(response);
+                    });
+                }
+            }
+        });
+        var ve3 = new Vue({
+            el: "#model",
+            data: {
+                PerMissionID: $("input[name=PerMissionID]").val(),
+                PerMissionName: $("input[name=PerMissionName]").val(),
+                EstablishTime: $("input[name=PerMissionName]").val(),
+                UpTime: $("input[name=PerMissionName]").val()
+            },
+            mounted() {
+
+            },
+            methods: {
+                //修改权限信息
+          
+                UpdatePerMission: function (PerMissionName, EstablishTime, UpTime, PerMissionID) {
+                    var params = new URLSearchParams();
+                    params.append("PerMissionName", PerMissionName);
+                    params.append("EstablishTime", EstablishTime);
+                    params.append("UpTime", UpTime);
+                    params.append("PerMissionID", PerMissionID);
+                    axios.post('http://localhost:8098/DongXu/UpdatePerMission', params).then(
+                        (response) => {
+                            alert("修改成功")
+                            ve.GetPerMissions()
+                        },
+                        (response) => {
+                            alert(response.status)
+                        }
+                    ).catch(function () {
+                        alert(response)
                     });
                 }
             }
