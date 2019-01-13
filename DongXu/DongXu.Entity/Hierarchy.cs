@@ -19,5 +19,9 @@ namespace DongXu.Entity
         /// 层级名称
         /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// 角色ID
+        /// </summary>
+        public int RoleId { get; set; }
     }
 }

@@ -51,6 +51,8 @@
     <Compile Include="EmployeeRoles.cs" />
     <Compile Include="Feedback.cs" />
     <Compile Include="FeedbackNum.cs" />
+    <Compile Include="Hierarchy.cs" />
+    <Compile Include="HierarchyRole.cs" />
     <Compile Include="IndexDecomposition.cs" />
     <Compile Include="IndexLevel.cs" />
     <Compile Include="Integral.cs" />
