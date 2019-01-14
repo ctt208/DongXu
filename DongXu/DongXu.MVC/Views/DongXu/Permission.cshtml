@@ -12,24 +12,24 @@
     <script src="~/Scripts/axios.js"></script>
     <script>
         $(function () {
-            //$("#update").click(function () {
-            //    $.ajax({
-            //        url: "http://localhost:8098/DongXu/UpdatePerMission",
-            //        type: "post",
-            //        data: {
-            //            PerMissionID: $("input[name=PerMissionID]").val(),
-            //            PerMissionName: $("input[name=PerMissionName]").val(),
-            //            EstablishTime: $("input[name=EstablishTime]").val(),
-            //            UpTime: $("input[name=UpTime]").val(),
-            //        },
-            //        success: function (data) {
-            //            if (data > 0) {
-            //                alert("修改成功");
-
-            //            }
-            //        }
-            //    })
-            //})
+            $("#update").click(function () {
+                $.ajax({
+                    url: "http://localhost:8098/DongXu/UpdatePerMission",
+                    type: "post",
+                    data: {
+                        PerMissionID: $("input[name=PerMissionID]").val(),
+                        PerMissionName: $("input[name=PerMissionName]").val(),
+                        EstablishTime: $("input[name=EstablishTime]").val(),
+                        UpTime: $("input[name=UpTime]").val(),
+                    },
+                    success: function (data) {
+                        if (data > 0) {
+                            alert("修改成功");
+                            location.href = "/DongXu/Permission";
+                        }
+                    }
+                })
+            })
         })
         function ModalWindow() {
            
@@ -223,40 +223,40 @@
                 }
             }
         });
-        var ve3 = new Vue({
-            el: "#model",
-            data: {
-                PerMissionID: $("input[name=PerMissionID]").val(),
-                PerMissionName: $("input[name=PerMissionName]").val(),
-                EstablishTime: $("input[name=PerMissionName]").val(),
-                UpTime: $("input[name=PerMissionName]").val()
-            },
-            mounted() {
+        //var ve3 = new Vue({
+        //    el: "#model",
+        //    data: {
+        //        PerMissionID: $("input[name=PerMissionID]").val(),
+        //        PerMissionName: $("input[name=PerMissionName]").val(),
+        //        EstablishTime: $("input[name=PerMissionName]").val(),
+        //        UpTime: $("input[name=PerMissionName]").val()
+        //    },
+        //    mounted() {
 
-            },
-            methods: {
-                //修改权限信息
+        //    },
+        //    methods: {
+        //        //修改权限信息
           
-                UpdatePerMission: function (PerMissionName, EstablishTime, UpTime, PerMissionID) {
-                    var params = new URLSearchParams();
-                    params.append("PerMissionName", PerMissionName);
-                    params.append("EstablishTime", EstablishTime);
-                    params.append("UpTime", UpTime);
-                    params.append("PerMissionID", PerMissionID);
-                    axios.post('http://localhost:8098/DongXu/UpdatePerMission', params).then(
-                        (response) => {
-                            alert("修改成功")
-                            ve.GetPerMissions()
-                        },
-                        (response) => {
-                            alert(response.status)
-                        }
-                    ).catch(function () {
-                        alert(response)
-                    });
-                }
-            }
-        })
+        //        UpdatePerMission: function (PerMissionName, EstablishTime, UpTime, PerMissionID) {
+        //            var params = new URLSearchParams();
+        //            params.append("PerMissionName", PerMissionName);
+        //            params.append("EstablishTime", EstablishTime);
+        //            params.append("UpTime", UpTime);
+        //            params.append("PerMissionID", PerMissionID);
+        //            axios.post('http://localhost:8098/DongXu/UpdatePerMission', params).then(
+        //                (response) => {
+        //                    alert("修改成功")
+        //                    ve.GetPerMissions()
+        //                },
+        //                (response) => {
+        //                    alert(response.status)
+        //                }
+        //            ).catch(function () {
+        //                alert(response)
+        //            });
+        //        }
+        //    }
+        //})
     </script>
 </body>
 </html>

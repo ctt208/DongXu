@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "Week";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/axios.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        h6 {
+            padding: 0 30px;
+            font-size: 12px;
+            height: 24px;
+            line-height: 24px;
+        }
+
+        h5 {
+            margin: 0 30px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            height: 24px;
+            line-height: 24px;
+        }
+
+        #tab {
+            width: 96%;
+            margin: 0 30px;
+            border: 1px solid #ccc;
+        }
+
+        input, select {
+            width: 200px;
+            height: 30px;
+        }
+
+        td {
+            border-bottom: 1px dashed #ccc;
+            height: 36px;
+        }
+
+        #derive {
+            margin-left: 80%;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        #search {
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        #showdata {
+            width: 96%;
+            margin: 0 30px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h6>您当前的位置:进度查询>>周报查询</h6>
+    <table id="tab">
+        <tr>
+            <td>
+                目标名称:<input type="text" name="name" value="" />
+                目标类别:
+                <select>
+                    <option value="value">--全部--</option>
+                </select>
+                目标级别:
+                <select>
+                    <option value="">全部</option>
+                    <option value="AAA">AAA</option>
+                    <option value="AA">AA</option>
+                    <option value="A">A</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>                
+                目标状态:
+                <select>
+                    <option value="value">--全部--</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                责任部门:
+                <input type="text" name="name" value="" />
+                责任人:
+                <input type="text" name="name" value="" />
+                年份:
+                <select>
+                    <option value="value"></option>
+                </select>
+                周次:
+                <select>
+                    <option value="value">--请选择--</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                提报状态:
+                <select>
+                    <option value="value">全部</option>
+                </select>
+                提报日期:
+                <input type="date" name="name" value="" />
+                --至--
+                <input type="date" name="name" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="derive" class="layui-btn layui-btn-warm" name="name" value="导出" />
+                <input type="button" id="search" class="layui-btn layui-btn-danger" name="name" value="查询" />
+            </td>
+        </tr>
+    </table>
+    <h5>周报列表</h5>
+    <table class="layui-table" id="showdata">
+        <tr>
+            <th>序号</th>
+            <th>目标名称</th>
+            <th>级别</th>
+            <th>类别</th>
+            <th>责任部门</th>
+            <th>责任人</th>
+            <td>年份</td>
+            <td>周次</td>
+            <td>提报状态</td>
+            <td>提报日期</td>
+            <th>当周进展</th>
+            <th>状态</th>
+        </tr>
+    </table>
+</body>
+</html>
+

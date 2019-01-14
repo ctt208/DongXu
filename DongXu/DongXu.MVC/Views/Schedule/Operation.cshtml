@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewBag.Title = "Operation";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Content/layui-v2.4.5/layui/lay/modules/laypage.js"></script>
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/axios.js"></script>
+    
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        h6 {
+            padding: 0 30px;
+            font-size: 12px;
+            height: 24px;
+            line-height: 24px;
+        }
+
+        h5 {
+            margin: 0 30px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            height: 24px;
+            line-height: 24px;
+        }
+        #tab {
+            width: 96%;
+            margin: 0 30px;
+            border: 1px solid #ccc;
+            
+        }
+        input, select {
+            width: 200px;
+            height: 30px;
+        }
+
+        td {
+            border-bottom: 1px dashed #ccc;
+            height: 36px;
+        }
+
+        #derive {
+            margin-left: 80%;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        #search {
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 20px;
+        }
+        .echarbox{
+            padding:0 30px;
+        }
+        .echart {
+            float: left;
+            width: 50%;
+            border: 1px solid red;
+            height: 300px;
+        }
+        #showdata {
+            float: left;
+            width: 49%;
+            border: 1px solid #ccc;
+        }
+        .searchbtn {
+            padding: 0 30px;
+        }
+            .searchbtn li {
+                float: left;
+            }
+                .searchbtn li a {
+                    display: block;
+                    width: 100px;
+                    height: 40px;
+                    line-height: 40px;
+                    background-color: #fff;
+                    text-align: center;
+                }
+                    .searchbtn li a:hover {
+                        color: #fff;
+                        background-color: #4694dc;
+                    }
+    </style>
+</head>
+<body>
+    <h6>您当前的位置:进度查询>>运行情况</h6>
+    <h5>查询条件</h5>
+    <table id="tab">
+        <tr>
+            <td>
+
+                目标类别:
+                <select>
+                    <option value="value"></option>
+                </select>
+                目标级别:
+                <select>
+                    <option value="">全部</option>
+                    <option value="AAA">AAA</option>
+                    <option value="AA">AA</option>
+                    <option value="A">A</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                责任部门:
+                <input type="text" name="name" value="" />
+                责任人:
+                <input type="text" name="name" value="" />
+                完成时间:
+                <input type="date" name="name" value="" />
+                -至-
+                <input type="date" name="name" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="derive" class="layui-btn layui-btn-warm" name="name" value="导出" />
+                <input type="button" id="search" class="layui-btn layui-btn-danger" name="name" value="查询" />
+            </td>
+        </tr>
+    </table>
+    <h5>运行情况</h5>
+    <div class="echarbox">
+        <div class="echart"></div>
+        <table class="layui-table" id="showdata">
+            <tr>
+                <th>目标状态</th>
+                <th>数量</th>
+                <th>比例</th>
+                <th>说明</th>
+            </tr>
+        </table>
+        <div style="clear:both;"></div>
+    </div>
+    <ul class="searchbtn">
+        <li> <a href="#">未完成(到期)</a></li>
+        <li> <a href="#">预计延期</a></li>
+        <li> <a href="#">已完成(延期)</a></li>
+        <li> <a href="#">未启动</a></li>
+        <li> <a href="#">已完成(按期)</a></li>
+        <li> <a href="#">正常推进</a></li>
+        <li class="lastli"> <a href="#">导出</a></li>
+    </ul>
+    <table class="layui-table" style="width:96%;margin-left:30px;text-align:center;">
+        <tr>
+            <th>序号</th>
+            <th>目标名称</th>
+            <th>责任部门</th>
+            <th>责任人</th>
+            <th>计划完成时间</th>
+            <th>进度</th>
+            <th>状态</th>
+        </tr>
+    </table>
+    <div id="demo7"></div>
+
+    
+</body>
+</html>
+<script src="~/Content/layui-v2.4.5/layui/layui.js"></script>
+<script>
+    layui.use(['laypage', 'layer'], function () {
+        var laypage = layui.laypage
+            , layer = layui.layer;
+        laypage.render({
+            elem: 'demo7'
+            , count: 100
+            , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+            , jump: function (obj) {
+                console.log(obj)
+            }
+        });
+    });
+</script>
+
