@@ -64,9 +64,9 @@ namespace DongXu.WebApi.Controllers
         /// <returns></returns>
         [Route("GetEmloyeeById")]
         [HttpGet]
-        public List<Employee> GetEmployeeById(int EmployeeID)
+        public List<Employee> GetEmployeeById(int BlocId)
         {
-            return EmployeeServices.GetEmployeeById(EmployeeID);
+            return EmployeeServices.GetEmployeeById(BlocId);
         }
         /// <summary>
         /// 登陆

@@ -35,5 +35,7 @@ namespace DongXu.Entity
         /// 集团Id
         /// </summary>
         public int BlocId { get; set; }
+      
+
     }
 }

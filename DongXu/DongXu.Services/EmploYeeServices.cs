@@ -24,9 +24,17 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"insert into employee(employeename,employeepwd,empnickname) values(:employeename,:employeepwd,:empnickname)";
-                int result = conn.Execute(sql, emploYee);
-                return result;
+                string sql1 = @"select EmployeeName from employee where EmployeeName=:EmployeeName";
+                var result1 = conn.Query<Employee>(sql1, emploYee);
+                int i = -1;
+                if (result1.Count()==0)
+                {
+                    string sql = @"insert into employee(employeename,employeepwd,empnickname,BlocId) values(:employeename,:employeepwd,:empnickname,:BlocId)";
+                    int result = conn.Execute(sql, emploYee);
+                    return result;
+                }
+               
+                return i;
             }
         }
         /// <summary>
@@ -53,11 +61,13 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select EmployeeID,EmployeeName,EmployeePwd,EmpNickName from employee";
+                string sql = @"select EmployeeName  from employee";
                 var result = conn.Query<Employee>(sql, null);
+               
                 return result.ToList();
             }
         }
+
         /// <summary>
         /// 修改
         /// </summary>
@@ -78,14 +88,13 @@ namespace DongXu.Services
         /// </summary>
         /// <param name="EmployeeID"></param>
         /// <returns></returns>
-        public List<Employee> GetEmployeeById(int EmployeeID)
+        public List<Employee> GetEmployeeById(int BlocId)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select  EmployeeName,EmployeePwd,EmpNickName from Employee where EmployeeID=:EmployeeID";
-                var Collectlist = new { EmployeeID = EmployeeID };
-                var result = conn.Query<Employee>(sql, Collectlist);
+                string sql = @"select e.employeeid,e.employeename,e.empnickname,b.id as BlocId from employee e inner join bloc b on e.blocid=b.id where b.id="+BlocId;
+                var result = conn.Query<Employee>(sql, null);
                 return result.ToList();
             }
         }

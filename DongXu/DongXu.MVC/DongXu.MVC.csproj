@@ -330,6 +330,7 @@
     <Content Include="Content\layui-v2.4.5\layui\lay\modules\tree.js" />
     <Content Include="Content\layui-v2.4.5\layui\lay\modules\upload.js" />
     <Content Include="Content\layui-v2.4.5\layui\lay\modules\util.js" />
+    <Content Include="image\img-set1.png" />
     <Content Include="metroStyle\img\line_conn.png" />
     <Content Include="metroStyle\img\loading.gif" />
     <Content Include="metroStyle\img\metro.gif" />

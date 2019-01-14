@@ -17,60 +17,28 @@
 
     <SCRIPT>
 
+        var bloc = 0;
         $(function () {
 
         
           
-            $("#AddBtn").click(function () {
-                layer.open({
-                    type: 1,
-                    area: ['700px', '500px'],
+            //$("#AddBtn").click(function () {
+            //    alert(0);
+            //    layer.open({
+            //        type: 1,
+            //        area: ['700px', '500px0'],
 
 
-                    fix: false, //不固定
-                    maxmin: true,
-                    shade: 0.7,
+            //        fix: false, //不固定
+            //        maxmin: true,
+            //        shade: 0.7,
 
-                    title: '添加用户',
-                    content: $('#AddUser')
-                });
-            })
-            $("#addu").click(function () {
-                //var str = "";
-                var ps = $("input[name=EmployeePwd]").val();
-                $.ajax(
-                    {
-                        url: '/Employee/GetMd5Str',
-                        data: {
-                            EmployeePwd: ps
-                        },
-                        type: 'post',
-                        success: function (data) {
-                           
-                            $.ajax({
-                                url: 'http://localhost:8098/DongXu/AddEmployee',
-                                type: 'post',
-                                data: {
-                                 
-                                    EmpNickName: $("input[name=EmpNickName]").val(),
-                                    EmployeeName: $("input[name=EmployeeName]").val(),
-                                    EmployeePwd: data,
-                                    },
-                                success: function (data) {
-                                    if (data > 0) {
-                               
-                                        location.href = '/employee/Index';
-                                    }
-                                    else {
-                                        alert("添加失败")
-                                    }
-                                }
-                            })
-                        }
-                    })
+            //        title: '添加用户',
+            //        content: $('#AddUser')
+            //    });
+            //})
 
-
-            })
+           
         })
         function Delete(EmployeeID, obj)
         {
@@ -92,20 +60,53 @@
                 }
             })
         }
+        function Get() {
+            $.ajax({
+            url: 'http://localhost:8098/DongXu/GetEmployee',
+                    type: 'get',
+
+                    })
+                 
+        }
+        //页头下拉提示框
+        
+        function abc() {
+            layer.open({
+                type: 1,
+                area: ['700px', '500px'],
 
 
+                fix: false, //不固定
+                maxmin: true,
+                shade: 0.1,
+
+                title: '添加用户',
+                content: $('#AddUser')
+
+            });
+           
+        }
 
         //var zTreeObj;
         //var setting = {};        // zTree 的参数配置，后面详解
         function zTreeOnClick(event, treeId, treeNode) {
+            if (treeNode.level == 4) {
+                $("#btn").append("<input onclick='abc()' type=\"button\" value=\"添加用户\" id='AddBtn' style=\"background - color: #f7f7f7; width: 60px; height: 30px; border - color: black; border - width: 1px;\" />");
+                $("#btn").children().not(":first").remove();
+            }
+            else {
+                $("#btn").empty();
+            }
+            bloc = treeNode.id;
+            
             $.ajax(
                 {
-                    url: 'http://localhost:8098/DongXu/GetEmployee',
+                    url: 'http://localhost:8098/DongXu/GetEmloyeeById?BlocId=' + treeNode.id,
                     type: 'get',
 
                     success: function (data) {
-                     
-                        $("#Tab").children().children().remove();
+
+                        $("#Tab").children().children().next().remove();
                         $(data).each(function (index, data) {
 
                             var str = "<tr>"
@@ -176,11 +177,84 @@
             }
         }
 
+        function Adduser() {
+            //if (result) {
+            //    $(".messageBox").removeClass("messageError").text(msg).css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+            //} else {
+            //    $(".messageBox").addClass("messageError").text(msg).css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+            //}
+
+            //var str = "";
+            var ps = $("input[name=EmployeePwd]").val();
+
+            $.ajax(
+                {
+                    url: '/Employee/GetMd5Str',
+                    data: {
+                        EmployeePwd: ps
+                    },
+                    type: 'post',
+                    success: function (data) {
+
+                        $.ajax({
+                            url: 'http://localhost:8098/DongXu/AddEmployee',
+                            type: 'post',
+                            data: {
+                                BlocId:bloc,
+                                EmpNickName: $("input[name=EmpNickName]").val(),
+                                EmployeeName: $("input[name=EmployeeName]").val(),
+                                EmployeePwd: data,
+                            },
+
+                            success: function (data) {
+
+                                if (data > 0) {
+
+                                    $(".messageBox").removeClass("messageError").text("添加成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                                    location.href = "/Employee/Index";
+
+
+
+                                    // location.href = '/employee/Index';
+                                }
+                                else {
+                                    $(".messageBox").addClass("messageError").text("该用户已存在").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+
+                                    // alert("该用户已存在");
+                                }
+
+                            }
+                        })
+                    }
+                })
+
+
+        }
 
     </SCRIPT>
     <style>
 
+        /*顶部下拉信息提示框*/
+        .messageBox {
+            height: 52px;
+            padding: 0 53px 0 78px;
+            line-height: 52px;
+            background: url(../../image/img-set1.png) -441px -613px #ffffe7 no-repeat;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: fixed;
+            top: -60px;
+            left: 50%;
+            border: 5px solid #ddd;
+            border-top: 0;
+            color: #444;
+            font-size: 18px;
+            z-index: 9999;
+        }
 
+        .messageError {
+            background-position: -441px -673px;
+        }
 
         .ztree * {
             /*color: blue;*/
@@ -242,14 +316,17 @@
         </table>
         <table style="margin-top:70px;border-collapse:separate;border-spacing:0px 100px;width:40px;">
             <tr>
-                <td>
-                    <input type="button" value="添加用户" id="AddBtn" style="background-color:#f7f7f7;width:60px;height:30px ;border-color:black;border-width:1px;" />
+                <td id="btn" style="height:30px">
+                    @*<input type="button" value="添加用户" id="AddBtn" style="background-color:#f7f7f7;width:60px;height:30px ;border-color:black;border-width:1px;" />*@
                 </td>
             </tr>
         </table>
+
+       
         <table style="margin-left:60px;margin-top:-60px; border-collapse:separate;border-spacing:150px 10px;width:1000px;background-color:darkgray" id="Tab">
+
             <tr>
-            
+
                 <td>
                     用户姓名
                 </td>
@@ -265,7 +342,9 @@
     </div>
 
     <div id="AddUser" style="display:none">
+        <input type="hidden" name="BlocId" />
         <table id="Tab" style=" margin-right:80px;border-collapse:separate; border-spacing:110px 50px;">
+
 
             <tr>
                 <td>
@@ -289,17 +368,18 @@
                     员工密码
                 </td>
                 <td>
-                    <input type="text" name="EmployeePwd" />
+                    <input type="password" name="EmployeePwd" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="button" id="addu" value="添加用户" style="background-color:#f7f7f7;width:60px;height:30px ;border-color:black;border-width:1px;margin-left:150px;" />
+                    <input type="button" id="addu" value="添加用户" onclick="Adduser()"  style="background-color:#f7f7f7;width:60px;height:30px ;border-color:black;border-width:1px;margin-left:150px;" />
                 </td>
             </tr>
         </table>
 
     </div>
-
+    <!-- 通用提示框 -->
+    <div class="messageBox"></div>
 </BODY>
 </HTML>

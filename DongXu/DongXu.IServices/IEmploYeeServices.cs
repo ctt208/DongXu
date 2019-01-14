@@ -37,7 +37,7 @@ namespace DongXu.IServices
         /// </summary>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-         List<Employee> GetEmployeeById(int employeeId);
+         List<Employee> GetEmployeeById(int BlocId);
         /// <summary>
         /// 登录
         /// </summary>
