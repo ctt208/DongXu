@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "integral";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
+
+    <script src="~/echarts.js"></script>
+
+</head>
+<body>
+    <div class="content integral">
+        <h4>积分排名</h4>
+        @*<div class="cot"></div>*@
+        <div id="main" style="width: 600px;height:400px; border:1px solid red; ">
+            <script type="text/javascript">
+                var Names = [];
+                var Nums = [];
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main'));
+                $(function () {
+                    loadData();
+                })
+                function loadData() {
+                    $.ajax({
+                        url: "http://localhost:8098/Integral/GetIntegral",
+                        type: "get",
+                        success: function (data) {
+                            console.log(data);
+                            for (var i = 0; i < data.length; i++) {
+                                Names[i] = data[i].name;
+                                Nums[i] = data[i].IntegralNum;
+                            }
+                            // 指定图表的配置项和数据
+                            var option = {
+
+                                title: {
+                                    text: '积分排名'
+                                },
+                                tooltip: {},
+                                legend: {
+                                    data: ['积分']
+                                },
+                                xAxis: {
+                                    data: Names
+                                },
+                                yAxis: {},
+                                series: [{
+                                    name: '积分',
+                                    type: 'bar',
+                                    data: Nums
+                                }]
+                            };
+                            // 使用刚指定的配置项和数据显示图表。
+                            myChart.setOption(option);
+                        }
+                    });
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -69,5 +69,6 @@ namespace DongXu.MVC.Controllers
             //string result =JsonConvert.SerializeObject(bll.GetSchool());
             return Json(IntegralServices.GetIntegral(),JsonRequestBehavior.AllowGet);
         }
+        
     }
 }
