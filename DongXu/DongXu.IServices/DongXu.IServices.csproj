@@ -46,6 +46,7 @@
     <Compile Include="IIntegralServices.cs" />
     <Compile Include="IPerMission.cs" />
     <Compile Include="IRoleService.cs" />
+    <Compile Include="IStateService.cs" />
     <Compile Include="ITargetDetailsServices.cs" />
     <Compile Include="ITargetServices.cs" />
     <Compile Include="ITarGetTypeServices.cs" />
