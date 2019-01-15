@@ -9,6 +9,9 @@ namespace DongXu.MVC.Controllers
     using DongXu.Services;
     using DongXu.Entity;
     using DongXu.IServices;
+    /// <summary>
+    /// 集团层级控制器
+    /// </summary>
     public class BlocController : Controller
     {
         // GET: Bloc
