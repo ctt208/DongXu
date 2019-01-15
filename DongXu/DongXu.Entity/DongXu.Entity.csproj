@@ -46,23 +46,29 @@
     <Compile Include="BtnPerMission.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="ConfigurationActivites.cs" />
+    <Compile Include="DutyUnit.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeRoles.cs" />
     <Compile Include="Feedback.cs" />
     <Compile Include="FeedbackNum.cs" />
     <Compile Include="Hierarchy.cs" />
     <Compile Include="HierarchyRole.cs" />
+    <Compile Include="IndexDecomposition.cs" />
+    <Compile Include="IndexLevel.cs" />
     <Compile Include="Integral.cs" />
+    <Compile Include="Levels.cs" />
     <Compile Include="LOAP.cs" />
     <Compile Include="PageBox.cs" />
     <Compile Include="PerMission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolePerMission.cs" />
     <Compile Include="Roles.cs" />
-    <Compile Include="Status.cs" />
+    <Compile Include="ShowRoles.cs" />
     <Compile Include="Target.cs" />
     <Compile Include="TargetDetails.cs" />
     <Compile Include="TarGetType.cs" />
+    <Compile Include="TargetUnit.cs" />
+    <Compile Include="TarGetuntType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
