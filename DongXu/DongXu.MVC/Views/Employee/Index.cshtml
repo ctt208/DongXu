@@ -49,6 +49,8 @@
                 
                 success: function (data) {
                     if (data > 0) {
+                        $(".messageBox").removeClass("messageError").text("删除成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                        location.href = "/Employee/Index";
 
                       
                         location.href ='/Employee/Index';

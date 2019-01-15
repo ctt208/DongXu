@@ -54,6 +54,6 @@ namespace DongXu.Entity
         /// <summary>
         /// 审批时间
         /// </summary>
-        public string SPTime { get; set; }
+        public DateTime SPTime { get; set; }
     }
 }

@@ -28,11 +28,11 @@
                     data: $("#FormData").serialize(),
                     success: function (data) {
                         if (data > 0) {
-                            $(".messageBox").removeClass("messageError").text("添加成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                          
                             location.href='/Bloc/Bloc';
                         }
                         else {
-                            $(".messageBox").addClass("messageError").text("该层级已存在").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                            alert("添加失败")
                         }
                     }
                 })

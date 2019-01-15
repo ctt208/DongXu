@@ -50,7 +50,7 @@ namespace DongXu.Entity
         /// <summary>
         /// 审批意见
         /// </summary>
-        public string Option { get; set; }
+        public string Options { get; set; }
         /// <summary>
         /// 审批时间
         /// </summary>
