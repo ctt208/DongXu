@@ -16,6 +16,10 @@ namespace DongXu.MVC.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 集团层级树显示页面
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Bloc()
         {
             return View();

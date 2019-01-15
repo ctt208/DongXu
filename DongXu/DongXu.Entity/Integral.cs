@@ -31,6 +31,7 @@ namespace DongXu.Entity
         /// 集团名字
         /// </summary>
         public string name { get; set; }
+        
         public int id { get; set; }
  
     }

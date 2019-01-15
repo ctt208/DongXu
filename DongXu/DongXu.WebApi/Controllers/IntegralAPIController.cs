@@ -14,6 +14,10 @@ namespace DongXu.WebApi.Controllers
     public class IntegralAPIController : ApiController
     {
         public IIntegralServices IntegralServices { get; set; }
+        /// <summary>
+        /// 积分显示
+        /// </summary>
+        /// <returns></returns>
         [Route("GetIntegral")]
         [HttpGet]
         public List<Integral> GetIntegral()

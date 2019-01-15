@@ -22,10 +22,19 @@ namespace DongXu.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
+               
                 conn.Open();
-                string sql = @"insert into bloc(name,pId)values(:name,:Pid)";
-                int result = conn.Execute(sql, blocs);
-                return result;
+                string sql1 = "select name from bloc where name=:name";
+                var result1 = conn.Query<Bloc>(sql1, blocs);
+                int z = -1;
+                if (result1.Count() == 0)
+                {
+                    string sql = @"insert into bloc(name,pId)values(:name,:Pid)";
+                    int result = conn.Execute(sql, blocs);
+                    return result;
+                }
+                return z;
+               
             }
         }
     /// <summary>

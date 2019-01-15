@@ -28,10 +28,11 @@
                     data: $("#FormData").serialize(),
                     success: function (data) {
                         if (data > 0) {
+                            $(".messageBox").removeClass("messageError").text("添加成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
                             location.href='/Bloc/Bloc';
                         }
                         else {
-                            alert("添加失败")
+                            $(".messageBox").addClass("messageError").text("该层级已存在").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
                         }
                     }
                 })
@@ -178,6 +179,27 @@
             font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial
         }*/
 
+        /*顶部下拉信息提示框*/
+        .messageBox {
+            height: 52px;
+            padding: 0 53px 0 78px;
+            line-height: 52px;
+            background: url(../../image/img-set1.png) -441px -613px #ffffe7 no-repeat;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: fixed;
+            top: -60px;
+            left: 50%;
+            border: 5px solid #ddd;
+            border-top: 0;
+            color: #444;
+            font-size: 18px;
+            z-index: 9999;
+        }
+
+        .messageError {
+            background-position: -441px -673px;
+        }
             .ztree li {
                 line-height: 20px;
             }
@@ -248,7 +270,7 @@
             <table style="float:left;margin-left:40px;margin-top:300px;margin-right:20px;border-collapse:separate; border-spacing:0px 50px;" ;>
                 <tr>
                     <td>
-                        <input type="button" value="新增" id="Addbtn" style="background-color:#ffffff;border:none;width:80px;height:50px" />
+                        <input type="button" value="新增" id="Addbtn" style="background-color:#ffffff;border:none;width:80px;height:50px"  onclick="Adduser()"/>
                     </td>
 
                 
