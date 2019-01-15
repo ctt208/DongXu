@@ -9,12 +9,35 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link href="~/Content/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
     <link href="~/Content/css/index.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.1.1.js"></script>
     <script src="~/Scripts/vue.js"></script>
     <script src="~/Scripts/layer/2.4/layer.js"></script>
 
     <script src="~/echarts.js"></script>
+    <script>
+        function Show() {
+            //alert(1);
+            $.ajax({
+                url: 'http://localhost:8098/Role/GetRoles?name=' + $("input[name=RoleName]").val(),
+                type: 'get',
+                success: function (data) {
+                    $("#tab").children().children().remove();
+                    $(data).each(function (index, data) {
+                        var str = "<tr>";
+                        str += "<td>" + data.RoleID + "</td>";
+                        str += "<td>" + data.RoleName + "</td>";
+                        str += "<td>" + data.RoleDescribe + "</td>";
+                        str += "</tr>";
+                        $("#tab").append(str);
+
+                    })
+
+                }
+            })
+        }
+    </script>
 
 </head>
 <body>
@@ -67,6 +90,37 @@
                 }
             </script>
         </div>
+    </div>
+    <div>
+        <table class="layui-table">
+            <tr>
+                <td rowspan="2">排名</td>
+                <td rowspan="2">部门名称</td>
+                <td colspan="4">AAA</td>
+
+                @*<td colspan="4">AA</td>
+
+                <td colspan="4">A</td>*@
+               
+            </tr>
+            <tr>
+                <td style="display:none">AA</td>
+                <td style="display:none">AA</td>
+                <td>绿</td>
+                <td>黄</td>
+                <td>红</td>
+                <td>积分</td>
+                @*<td>绿</td>
+                <td>黄</td>
+                <td>红</td>
+                <td>积分</td>
+                <td>绿</td>
+                <td>黄</td>
+                <td>红</td>
+                <td>积分</td>*@
+
+            </tr>
+        </table>
     </div>
 </body>
 </html>
