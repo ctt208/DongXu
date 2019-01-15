@@ -380,6 +380,7 @@
     <Compile Include="Controllers\DongXuController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\TargetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -431,6 +432,9 @@
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\UpDate.cshtml" />
     <Content Include="Views\Target\integral.cshtml" />
+    <Content Include="Views\Schedule\Operation.cshtml" />
+    <Content Include="Views\Schedule\Target.cshtml" />
+    <Content Include="Views\Schedule\Week.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

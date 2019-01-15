@@ -28,10 +28,6 @@ namespace DongXu.Entity
         /// </summary>
         public int TargetUnitId { get; set; }
         /// <summary>
-        /// 主指标
-        /// </summary>
-        public string MainIndex { get; set; }
-        /// <summary>
         /// 指标等级Id
         /// </summary>
         public int IndexLevelId { get; set; }

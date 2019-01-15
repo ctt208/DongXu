@@ -91,7 +91,7 @@
             </td>
         </tr>
         <tr>
-            <td>                
+            <td>
                 目标状态:
                 <select>
                     <option value="value">--全部--</option>
@@ -150,6 +150,23 @@
             <th>状态</th>
         </tr>
     </table>
+    <div id="demo7">
+
+    </div>
 </body>
 </html>
-
+<script src="~/Content/layui-v2.4.5/layui/layui.js"></script>
+<script>
+    layui.use(['laypage', 'layer'], function () {
+        var laypage = layui.laypage
+            , layer = layui.layer;
+        laypage.render({
+            elem: 'demo7'
+            , count: 100
+            , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+            , jump: function (obj) {
+                console.log(obj)
+            }
+        });
+    });
+</script>

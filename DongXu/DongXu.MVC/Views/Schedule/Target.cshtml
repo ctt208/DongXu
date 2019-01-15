@@ -10,52 +10,60 @@
     <link href="~/Content/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
     <script src="~/Scripts/layer/2.4/layer.js"></script>
     <script src="~/Scripts/vue.js"></script>
-    <script src="~/Scripts/axios.js"></script>    
+    <script src="~/Scripts/axios.js"></script>
     <style>
-        *{
-            padding:0;
-            margin:0;
+        * {
+            padding: 0;
+            margin: 0;
         }
-        h6{
-            padding:0 30px;
+
+        h6 {
+            padding: 0 30px;
             font-size: 12px;
             height: 24px;
             line-height: 24px;
         }
+
         h5 {
-            margin:0 30px;
-            margin-top:20px;
+            margin: 0 30px;
+            margin-top: 20px;
             border: 1px solid #ccc;
             font-size: 14px;
             height: 24px;
             line-height: 24px;
         }
-        #tab{
-            width:96%;
-            margin:0 30px;
-            border:1px solid #ccc;
+
+        #tab {
+            width: 96%;
+            margin: 0 30px;
+            border: 1px solid #ccc;
         }
-        input,select{
-            width:200px;
-            height:30px;
+
+        input, select {
+            width: 200px;
+            height: 30px;
         }
-        td{
-            border-bottom:1px dashed #ccc;
-            height:36px;
+
+        td {
+            border-bottom: 1px dashed #ccc;
+            height: 36px;
         }
-        #derive{
-            margin-left:80%;
-            width:100px;
-            height:30px;
-            text-align:center;
-            line-height:20px;
+
+        #derive {
+            margin-left: 80%;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 20px;
         }
+
         #search {
             width: 100px;
             height: 30px;
             text-align: center;
             line-height: 20px;
         }
+
         #showdata {
             width: 96%;
             margin: 0 30px;
@@ -68,36 +76,23 @@
     <table id="tab">
         <tr>
             <td>
-                目标名称:<input type="text" name="name" value="" />             
+                目标名称:<input type="text" name="name" value="" />
                 目标类别:
                 <select>
                     <option value="value"></option>
-                </select>
-                目标状态:
-                <select>
-                    <option value="value"></option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                目标级别:
+                </select>目标级别:
                 <select>
                     <option value="">全部</option>
-                    <option value="AAA">AAA</option>
-                    <option value="AA">AA</option>
                     <option value="A">A</option>
-                </select>
-                目标情况:
-                <select>
-                    <option value="value"></option>
+                    <option value="AA">AA</option>
+                    <option value="AAA">AAA</option>
                 </select>
             </td>
         </tr>
         <tr>
             <td>
                 责任部门:
-                <input type="text" name="name" value="" />
+                <input type="text" name="DutyUnitId" value="" />
                 责任人:
                 <input type="text" name="name" value="" />
                 完成时间:
@@ -127,5 +122,21 @@
             <th>状态</th>
         </tr>
     </table>
+    <div id="demo7"></div>
 </body>
 </html>
+<script src="~/Content/layui-v2.4.5/layui/layui.js"></script>
+<script>
+    layui.use(['laypage', 'layer'], function () {
+        var laypage = layui.laypage
+            , layer = layui.layer;
+        laypage.render({
+            elem: 'demo7'
+            , count: 100
+            , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+            , jump: function (obj) {
+                console.log(obj)
+            }
+        });
+    });
+</script>
