@@ -23,11 +23,10 @@ namespace DongXu.Entity
         /// 组织名称
         /// </summary>
         public string name { get; set; }
-       
         /// <summary>
-        /// 是否启用
+        /// 用户ID
         /// </summary>
-        public int IsOrNo { get; set; }
+       
         public int EmployeeID { get; set; }
     }
 }

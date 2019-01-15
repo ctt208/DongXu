@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace DongXu.Entity
 {
-    /// <summary>
-    /// 指标分配表
-    /// </summary>
-   public class IndexDecomposition
+    public class Status
     {
+        /// <summary>
+        /// 主键ID
+        /// </summary>
         public int Id { get; set; }
         /// <summary>
-        /// 月份
+        /// 状态名称
         /// </summary>
-        public string Month { get; set; }
+        public string Name { get; set; }
         /// <summary>
-        /// 目标详情Id
+        /// 状态图片
+        /// </summary>
+        public string Image { get; set; }
+        /// <summary>
+        /// 目标详情ID
         /// </summary>
         public int TargetDetailsId { get; set; }
-        /// <summary>
-        /// 月份目标值
-        /// </summary>
-        public string MonthTarget { get; set; }
     }
 }

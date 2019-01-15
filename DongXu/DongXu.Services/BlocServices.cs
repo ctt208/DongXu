@@ -23,7 +23,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"insert into bloc(name,pId,Isorno)values(:name,:Pid,:Isorno)";
+                string sql = @"insert into bloc(name,pId)values(:name,:Pid)";
                 int result = conn.Execute(sql, blocs);
                 return result;
             }
@@ -54,7 +54,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"update bloc set name=:name,pId=:pId,Isorno=:Isorno where id=:id";
+                string sql = @"update bloc set name=:name,pId=:pId where id=:id";
                 int result = conn.Execute(sql, blocs);
                 return result;
             }

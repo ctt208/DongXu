@@ -20,17 +20,21 @@ namespace DongXu.Entity
         /// </summary>
         public int TargetId { get; set; }
         /// <summary>
-        /// 指标类别Id
+        /// 目标类别Id
         /// </summary>
         public int IndexTypeId { get; set; }
         /// <summary>
-        /// 指标单位Id
+        /// 目标状态ID
         /// </summary>
-        public int TargetUnitId { get; set; }
+        public int StatusId { get; set; }
         /// <summary>
-        /// 指标等级Id
+        /// 目标单位Id
         /// </summary>
-        public int IndexLevelId { get; set; }
+        public int BlocId { get; set; }
+        /// <summary>
+        /// 目标等级Id
+        /// </summary>
+        public string IndexLevelId { get; set; }
         /// <summary>
         /// 反馈频次Id
         /// </summary>
@@ -43,14 +47,6 @@ namespace DongXu.Entity
         /// 完成时间
         /// </summary>
         public DateTime FinishTime { get; set; }
-        /// <summary>
-        /// 周期
-        /// </summary>
-        public string Period { get; set; }
-        /// <summary>
-        /// 负责单位Id
-        /// </summary>
-        public int DutyUnitId { get; set; }
         /// <summary>
         /// 责任人
         /// </summary>
@@ -68,21 +64,9 @@ namespace DongXu.Entity
         /// </summary>
         public string Organizer {get;set;}
         /// <summary>
-        /// 计算公式
+        /// 备注
         /// </summary>
-        public string Formula { get; set; }
-        /// <summary>
-        /// 数据来源
-        /// </summary>
-        public string Source { get; set; }
-        /// <summary>
-        /// 指标分解Id
-        /// </summary>
-        public int IndexdeCompositionId { get; set; }
-        /// <summary>
-        /// 支持表格
-        /// </summary>
-        public string Tabulation { get; set; }
+        public string Remark { get; set; }
         /// <summary>
         /// 确认流程
         /// </summary>
