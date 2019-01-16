@@ -23,7 +23,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select b.id,inte.inid,b.name,inte.IntegralNum from bloc b inner join Integral Inte on b.id=Inte.Inid";
+                string sql = @"select b.id,inte.inid,b.name,inte.IntegralNum from bloc b inner join Integral Inte on b.id=inte.blocid";
                 //string sql = @"select * from Integral";
                 IEnumerable<Integral> list = conn.Query<Integral>(sql, null);
                 return list.ToList();
