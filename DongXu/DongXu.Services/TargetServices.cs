@@ -34,7 +34,7 @@ namespace DongXu.Services
             using(OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = "select Id,name,pId from Target";
+                string sql = "select id,name,pId from Target";
                 var targetList = conn.Query<Target>(sql, null);
                 return targetList.ToList();
             }

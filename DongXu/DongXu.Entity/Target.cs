@@ -14,7 +14,7 @@ namespace DongXu.Entity
         /// <summary>
         /// 主键Id
         /// </summary>
-        public int Id { get; set; }
+        public int id { get; set; }
         /// <summary>
         /// 父级Id
         /// </summary>

@@ -12,8 +12,44 @@
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <link href="~/metroStyle/metroStyle.css" rel="stylesheet" />
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <link href="~/demo.css" rel="stylesheet" />
     <script src="~/Scripts/jquery.ztree.core.js"></script>
     <style>
+        #tabb {
+            width: 96%;
+            margin: 0 30px;
+            border: 1px solid #ccc;
+        }
+        .ztree * {
+            /*color: blue;*/
+            font-size: 10pt;
+            font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial
+        }
+
+        .ztree li {
+            line-height: 20px;
+        }
+
+            .ztree li a {
+                width: 200px;
+                height: 30px;
+                padding-top: 0px;
+            }
+
+                .ztree li a:hover {
+                    text-decoration: none;
+                    background-color: #E7E7E7;
+                }
+
+                .ztree li a span.button.switch {
+                    visibility: hidden
+                }
+
+                .ztree li a.curSelectedNode {
+                    background-color: #D4D4D4;
+                    border: 0;
+                    height: 30px;
+                }
 
         * {
             padding: 0;
@@ -27,27 +63,44 @@
             line-height: 24px;
             border: 1px solid #ccc;
         }
+
         #tree {
             padding: 0 30px;
             width: 240px;
-            float:left;
-            border:1px solid #ccc;
+            float: left;
+            border: 1px solid #ccc;
         }
-        #tab{
-            float:left;
-            margin-left:20px;
+
+        #tab {
+            float: left;
+            margin-left: 20px;
         }
-        #tab table{
-            border:1px solid #ccc;
+
+            #tab table {
+                border: 1px solid #ccc;
+            }
+
+        #s1 {
+            float: left;
         }
-        #s1{
-            float:left;
-        }
-        #s2{
-            float:right;
+
+        #s2 {
+            float: right;
         }
     </style>
     <script>
+        function zTreeOnClick(event, treeId, treeNode) {
+
+            console.log(treeNode);
+            console.log(treeNode.pId);
+            $("input[name=name]").val(treeNode.name);
+            if (treeNode.pId == 0) {
+                $("select[name=pId] option[value=0]").attr("selected", "selected");
+            }
+            else {
+                $("select[name=pId] option[value=" + treeNode.pId + "]").attr("selected", "selected");
+            }
+        }
         var setting = {
             data: {
                 simpleData: {
@@ -76,18 +129,7 @@
             });
 
         });
-        function zTreeOnClick(event, treeId, treeNode) {
-
-            console.log(treeNode);
-            console.log(treeNode.pId);
-            $("input[name=name]").val(treeNode.name);
-            if (treeNode.pId == 0) {
-                $("select[name=pId] option[value=0]").attr("selected", "selected");
-            }
-            else {
-                $("select[name=pId] option[value=" + treeNode.pId + "]").attr("selected", "selected");
-            }
-        }
+     
         function addDiyDom(treeId, treeNode) {
             var spaceWidth = 5;
             var switchObj = $("#" + treeNode.tId + "_switch"),
@@ -103,23 +145,63 @@
     </script>
 </head>
 <body>
+
     <h6>您当前的位置:目标管理</h6>
     <div>
         <div id="tree">
             <div style="background-color:#ccc;padding:0 15px;height:30px;line-height:30px;">
-                <span id="s1">目标名称</span>
+                <span id="s1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标名称</span>
                 <span id="s2">状态</span>
                 <div style="clear:both;"></div>
             </div>
+            <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#f7f7f7"></ul>
         </div>
         <div id="tab">
             <table>
                 <tr>
-                    <td>目标详情</td>
-                </tr>                                 
+                    <td> 目标详情</td>
+                </tr>
+               
+                    <tr>
+                        <td>
+                            目标名称:<input type="text" name="name" value="" />
+                            目标类别:
+                            <select v-show="GetTarGetTypesList.length">
+                                <option value="value">--全部--</option>
+                                <option v-for="(item,index) in GetTarGetTypesList">{{item.TarGetTypeName}}</option>
+                            </select>目标级别:
+                            <select>
+                                <option value="0">全部</option>
+                                <option value="1">A</option>
+                                <option value="2">AA</option>
+                                <option value="3">AAA</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            责任部门:
+                            <input type="text" name="DutyUnitId" value="" />
+                            责任人:
+                            <input type="text" name="name" value="" />
+                            完成时间:
+                            <input type="date" name="name" value="" />
+                            -至-
+                            <input type="date" name="name" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" id="derive" class="layui-btn layui-btn-warm" name="name" value="导出" />
+                            <input type="button" id="search" class="layui-btn layui-btn-danger" name="name" value="查询" />
+                        </td>
+                    </tr>
+               
             </table>
         </div>
+    
         <div style="clear:both;"></div>
+
     </div>
 </body>
 </html>
