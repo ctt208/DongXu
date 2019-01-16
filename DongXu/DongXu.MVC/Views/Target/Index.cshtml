@@ -14,20 +14,37 @@
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     <script src="~/Scripts/jquery.ztree.core.js"></script>
     <style>
-        #tree {
-            float: left;
-            background-color: red;
-            width: auto;
-            height: auto;
-            border: 1px gray solid;
+
+        * {
+            padding: 0;
+            margin: 0;
         }
 
-        #tab {
-            float: right;
-            background-color: blue;
-            width: auto;
-            height: auto;
-            border: 1px gray solid;
+        h6 {
+            padding: 0 30px;
+            font-size: 12px;
+            height: 24px;
+            line-height: 24px;
+            border: 1px solid #ccc;
+        }
+        #tree {
+            padding: 0 30px;
+            width: 240px;
+            float:left;
+            border:1px solid #ccc;
+        }
+        #tab{
+            float:left;
+            margin-left:20px;
+        }
+        #tab table{
+            border:1px solid #ccc;
+        }
+        #s1{
+            float:left;
+        }
+        #s2{
+            float:right;
         }
     </style>
     <script>
@@ -77,7 +94,6 @@
                 icoObj = $("#" + treeNode.tId + "_ico");
             switchObj.remove();
             icoObj.before(switchObj);
-
             if (treeNode.level > 1) {
                 var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
                 switchObj.before(spaceStr);
@@ -87,13 +103,23 @@
     </script>
 </head>
 <body>
-    <div> 
+    <h6>您当前的位置:目标管理</h6>
+    <div>
         <div id="tree">
-            <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#ffffff"></ul>
+            <div style="background-color:#ccc;padding:0 15px;height:30px;line-height:30px;">
+                <span id="s1">目标名称</span>
+                <span id="s2">状态</span>
+                <div style="clear:both;"></div>
+            </div>
         </div>
         <div id="tab">
-
+            <table>
+                <tr>
+                    <td>目标详情</td>
+                </tr>                                 
+            </table>
         </div>
+        <div style="clear:both;"></div>
     </div>
 </body>
 </html>

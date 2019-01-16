@@ -21,3 +21,4 @@ namespace DongXu.Entity
         public string TarGetTypeName { get; set; }
     }
 }
+ 

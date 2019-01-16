@@ -28,7 +28,7 @@ namespace DongXu.WebApi.Controllers
         }
         [HttpGet]
         [Route("RolesByID")]
-        public List<ShowRoles> RolesByID(int id)
+        public List<Roles> RolesByID(int id)
         {
             return roleService.RolesByID(id);
         }
