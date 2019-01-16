@@ -19,6 +19,12 @@ namespace DongXu.Entity
         /// 目标Id
         /// </summary>
         public int TargetId { get; set; }
+        public string TargetName { get; set; }
+        public string StatusImage { get; set; }
+        public string StatusName { get; set; }
+        public string BlocName { get; set; }
+        public string feedbackname { get; set; }
+        public string targettypename { get; set; }
         /// <summary>
         /// 目标类别Id
         /// </summary>
