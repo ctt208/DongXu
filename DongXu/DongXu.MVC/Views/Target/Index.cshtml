@@ -9,10 +9,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link href="~/Content/BootstrapSouce/css/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <link href="~/metroStyle/metroStyle.css" rel="stylesheet" />
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
-    <link href="~/demo.css" rel="stylesheet" />
+    @*<link href="~/demo.css" rel="stylesheet" />*@
     <script src="~/Scripts/jquery.ztree.core.js"></script>
     <style>
         #tabb {
@@ -20,6 +21,7 @@
             margin: 0 30px;
             border: 1px solid #ccc;
         }
+
         .ztree * {
             /*color: blue;*/
             font-size: 10pt;
@@ -64,6 +66,7 @@
             border: 1px solid #ccc;
         }
 
+
         #tree {
             padding: 0 30px;
             width: 240px;
@@ -82,9 +85,12 @@
 
         #s1 {
             float: left;
+            margin-top: 10px;
+            margin-left:50px;
         }
 
         #s2 {
+           
             float: right;
         }
     </style>
@@ -129,7 +135,7 @@
             });
 
         });
-     
+
         function addDiyDom(treeId, treeNode) {
             var spaceWidth = 5;
             var switchObj = $("#" + treeNode.tId + "_switch"),
@@ -149,36 +155,36 @@
     <h6>您当前的位置:目标管理</h6>
     <div>
         <div id="tree">
-            <div style="background-color:#ccc;padding:0 15px;height:30px;line-height:30px;">
+            <div style="background-color:#ccc;padding:0px 15px;height:50px;width:230px;line-height:30px;">
                 <span id="s1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标名称</span>
-                <span id="s2">状态</span>
+             
                 <div style="clear:both;"></div>
             </div>
             <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#f7f7f7"></ul>
         </div>
-        <div id="tab" class="table table-bordered">
-            <table>
+        <div id="tab"style="width:1000px;height:100%" >
+            <table class="table ">
                 <tr>
-                    <td> 目标详情</td>
+                    <td style="font-size:x-large"> 目标详情</td>
                 </tr>
                 <tr>
                     <td>
                         指标名称：
                     </td>
                     <td>
-                        <input type="text" name="name">
+                        <input type="text" name="name" style="border:none">
                     </td>
                     <td>
                         主指标：
                     </td>
                     <td>
-                        <input type="text" name="name">
+                       2019年集团经营目标
                     </td>
                     <td>
                         指标类型：
                     </td>
                     <td>
-                        <input type="text" name="TarGetTypeName" />
+                        <input type="text" name="TarGetTypeName"  style="border:none"/>
                     </td>
                 </tr>
                 <tr>
@@ -186,14 +192,14 @@
                         指标等级：
                     </td>
                    <td>
-                       <input type="text"name="IndexLevelId" />
+                       <input type="text"name="IndexLevelId"  style="border:none"/>
                    </td>
                     <tr>
                         <td>
                             反馈频次：
                         </td>
                         <td>
-                            <input type="text" name="FeedbackName" />
+                            <input type="text" name="FeedbackName"  style="border:none"/>
                         </td>
 
                 </tr>
@@ -202,63 +208,63 @@
                         开始时间：
                     </td>
                     <td>
-                        <input type="text" name="StartTime" />
+                        <input type="text" name="StartTime"  style="border:none"/>
                     </td>
                     <td>
-                        完成时间
+                        完成时间:
                     </td>
                     <td>
-                        <input type="text" name="FinishTime" />
+                        <input type="text" name="FinishTime"  style="border:none"/>
                     </td>
                     <td>
-                        责任人
+                        责任人:
                     </td>
                     <td>
-                        <input type="text" name=" DutyMan" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        考核权重
-                    </td>
-                    <td>
-                        <input type="text" name="AssessmentWeight" />
-                    </td>
-                    <td>
-                        填报人
-                    </td>
-                    <td>
-                        <input  name="ReportedMan"/>
-                    </td>
-                    <td>
-                        协办方
-                    </td>
-                    <td>
-                        <input type="text" name="Organizer" />
+                        <input type="text" name=" DutyMan"  style="border:none"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        备注
+                        考核权重:
                     </td>
                     <td>
-                        <input type="text" name="Remark" />
+                        <input type="text" name="AssessmentWeight"  style="border:none"/>
+                    </td>
+                    <td>
+                        填报人:
+                    </td>
+                    <td>
+                        <input  name="ReportedMan" type="text"  style="border:none"/>
+                    </td>
+                    <td>
+                        协办方:
+                    </td>
+                    <td>
+                        <input type="text" name="Organizer" style="border:none" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        年度目标
+                        备注:
                     </td>
                     <td>
-                        <input type="text" name="AnnualTarget" />
+                        <input type="text" name="Remark" style="border:none" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        确认流程
+                        年度目标:
                     </td>
                     <td>
-                        <input type="text" name="Affirmflow" width:50px;heigh:100px;/>
+                        <input type="text" name="AnnualTarget"  style="border:none"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        确认流程:
+                    </td>
+                    <td>
+                        <input type="text" name="Affirmflow" height="50" width="100" style="border:none"/>
                     </td>
                 </tr>
             </table>
