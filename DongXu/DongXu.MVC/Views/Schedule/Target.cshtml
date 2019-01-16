@@ -21,11 +21,17 @@
                 success: function (data) {
                     var i = 1;
                     $(data).each(function (index, data) {
-                        $("#showdata").append("<tr><td>" + i + "</td><td>" + data.TargetName + "</td><td>" + data.IndexLevelId + "</td><td>" + data.targettypename + "</td><td>" + data.BlocName + "</td><td>" + data.DutyMan + "</td><td>" + data.FinishTime.substring(0, 10) + "</td><td><div class=\"layui-progress\" lay-showpercent=\"true\"><div class=\"layui-progress-bar\" lay-percent='" + data.AnnualTarget + "' ></div ></div ></td><td><img src=\"~/image/" + data.StatusImage + "\" /></td></tr>");
+                        $("#showdata").append("<tr><td>" + i + "</td><td>" + data.TargetName + "</td><td>" + data.IndexLevelId + "</td><td>" + data.targettypename + "</td><td>" + data.BlocName + "</td><td>" + data.DutyMan + "</td><td>" + data.FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div class='layui-progress-bar' lay-percent='20%'></div></div></td><td><img src=\"/image/" + data.StatusImage + "\" /></td></tr>");
                         i++;
                     })
 
                 }
+            })
+            $("#search").click(function () {
+                
+            })
+            $("#derive").click(function () {
+
             })
         })
     </script>
@@ -105,9 +111,9 @@
                 </select>目标级别:
                 <select>
                     <option value="0">全部</option>
-                    <option value="1">A</option>
-                    <option value="2">AA</option>
-                    <option value="3">AAA</option>
+                    <option value="A">A</option>
+                    <option value="AA">AA</option>
+                    <option value="AAA">AAA</option>
                 </select>
             </td>
         </tr>
@@ -127,6 +133,7 @@
             <td>
                 <input type="button" id="derive" class="layui-btn layui-btn-warm" name="name" value="导出" />
                 <input type="button" id="search" class="layui-btn layui-btn-danger" name="name" value="查询" />
+             
             </td>
         </tr>
     </table>
@@ -143,23 +150,7 @@
             <th>进度</th>
             <th>状态</th>
         </tr>
-        @*<tr v-for="(item,index) in GetTargetDetailsList">
-            <td>{{item.Id}}</td>
-            <td>{{item.TargetName}}</td>
-            <td>{{item.IndexLevelId}}</td>
-            <td>{{item.targettypename}}</td>
-            <td>{{item.BlocName}}</td>
-            <td>{{item.DutyMan}}</td>
-            <td>{{item.FinishTime.substring(0,10)}}</td>
-            <td>
-            <div class="layui-progress" lay-showpercent="true">
-                    <div class="layui-progress-bar" lay-percent="30%"></div>
-            </div>
-            </td>
-            <td>
-                <img src="~/image/green.png" />
-            </td>
-        </tr>*@
+       
     </table>
     <div id="demo7"></div>
 </body>
@@ -228,7 +219,6 @@
                         for (var i = 0; i < response.data.length; i++) {
                             this.GetTarGetTypesList.push(response.data[i]);
                         }
-                        console.log(this.GetTarGetTypesList);
                     },
                     (response) => {
                         alert(response.status);
@@ -238,33 +228,5 @@
                 });
             }
         }
-    });
-    //var ve2 = new Vue({
-    //    el: "#showdata",
-    //    data: {
-    //        GetTargetDetailsList: []
-    //    },
-    //    mounted() {
-    //        this.GetTargetDetails();
-    //    },
-    //    methods: {
-    //        //加载目标
-    //        GetTargetDetails: function () {
-    //            axios.get('http://localhost:8098/DongXu/GetTargetDetails').then(
-    //                (response) => {
-    //                    this.GetTargetDetailsList = [];
-    //                    for (var i = 0; i < response.data.length; i++) {
-    //                        this.GetTargetDetailsList.push(response.data[i]);
-    //                    }
-    //                    console.log(this.GetTargetDetailsList);
-    //                },
-    //                (response) => {
-    //                    alert(response.status);
-    //                }
-    //            ).catch(function (response) {
-    //                alert(response);
-    //            });
-    //        }
-    //    }
-    //});
+    });   
 </script>
