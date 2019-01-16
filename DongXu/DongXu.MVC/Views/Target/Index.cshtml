@@ -156,47 +156,111 @@
             </div>
             <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#f7f7f7"></ul>
         </div>
-        <div id="tab">
+        <div id="tab" class="table table-bordered">
             <table>
                 <tr>
                     <td> 目标详情</td>
                 </tr>
-               
+                <tr>
+                    <td>
+                        指标名称：
+                    </td>
+                    <td>
+                        <input type="text" name="name">
+                    </td>
+                    <td>
+                        主指标：
+                    </td>
+                    <td>
+                        <input type="text" name="name">
+                    </td>
+                    <td>
+                        指标类型：
+                    </td>
+                    <td>
+                        <input type="text" name="TarGetTypeName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        指标等级：
+                    </td>
+                   <td>
+                       <input type="text"name="IndexLevelId" />
+                   </td>
                     <tr>
                         <td>
-                            目标名称:<input type="text" name="name" value="" />
-                            目标类别:
-                            <select v-show="GetTarGetTypesList.length">
-                                <option value="value">--全部--</option>
-                                <option v-for="(item,index) in GetTarGetTypesList">{{item.TarGetTypeName}}</option>
-                            </select>目标级别:
-                            <select>
-                                <option value="0">全部</option>
-                                <option value="1">A</option>
-                                <option value="2">AA</option>
-                                <option value="3">AAA</option>
-                            </select>
+                            反馈频次：
                         </td>
-                    </tr>
-                    <tr>
                         <td>
-                            责任部门:
-                            <input type="text" name="DutyUnitId" value="" />
-                            责任人:
-                            <input type="text" name="name" value="" />
-                            完成时间:
-                            <input type="date" name="name" value="" />
-                            -至-
-                            <input type="date" name="name" value="" />
+                            <input type="text" name="FeedbackName" />
                         </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="button" id="derive" class="layui-btn layui-btn-warm" name="name" value="导出" />
-                            <input type="button" id="search" class="layui-btn layui-btn-danger" name="name" value="查询" />
-                        </td>
-                    </tr>
-               
+
+                </tr>
+                <tr>
+                    <td>
+                        开始时间：
+                    </td>
+                    <td>
+                        <input type="text" name="StartTime" />
+                    </td>
+                    <td>
+                        完成时间
+                    </td>
+                    <td>
+                        <input type="text" name="FinishTime" />
+                    </td>
+                    <td>
+                        责任人
+                    </td>
+                    <td>
+                        <input type="text" name=" DutyMan" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        考核权重
+                    </td>
+                    <td>
+                        <input type="text" name="AssessmentWeight" />
+                    </td>
+                    <td>
+                        填报人
+                    </td>
+                    <td>
+                        <input  name="ReportedMan"/>
+                    </td>
+                    <td>
+                        协办方
+                    </td>
+                    <td>
+                        <input type="text" name="Organizer" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        备注
+                    </td>
+                    <td>
+                        <input type="text" name="Remark" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        年度目标
+                    </td>
+                    <td>
+                        <input type="text" name="AnnualTarget" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        确认流程
+                    </td>
+                    <td>
+                        <input type="text" name="Affirmflow" width:50px;heigh:100px;/>
+                    </td>
+                </tr>
             </table>
         </div>
     
