@@ -40,7 +40,7 @@ namespace DongXu.Services
             throw new NotImplementedException();
         }
         /// <summary>
-        /// 显示目标详情信息
+        /// 显示目标信息
         /// </summary>
         /// <returns></returns>
         public List<TargetDetails> GetTargetDetails()
@@ -48,7 +48,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"select a.id,a.targetid, a.indextypeid,a.targetunitid,a.indexlevelid, a.feedbacknumid,a.starttime,a.finishtime,a.period,a.dutyunitid,a.dutyman,a.assessmentweight,a.reportedman,a.organizer,a.formula,a.source,a.indexdecompositionid,a.tabulation,a.affirmflow,a.annualtarget,b.name,c.targettypename,d.targetunitname,e.levelname,f.feedbackname,g.dutyunitname,h.id,h.month,h.targetdetailsid,h.monthtarget from TARGETDETAILS a inner join TARGET b on a.targetid=b.id inner join TARGETTYPE c on a.indextypeid=c.id inner join TARGETUNIT d on a.targetunitid=d.id inner join INDEXLEVEL e on a.indexlevelid = e.id inner join feedbacknum f on a.feedbacknumid = f.id inner join dutyunit g on a.dutyunitid=g.dutyunitid inner join indexdecomposition h on a.indexdecompositionid = h.id";
+                string sql = @"select a.*,b.name,c.targettypename,d.image,d.name,e.name,f.feedbackname from targetdetails a inner join target b on a.targetid = b.id inner join targettype c on a.indextypeid = c.targettypeid inner join status d on a.statusid = d.id inner join bloc e on a.blocid=e.id inner join feedbacknum f on a.feedbacknumid = f.id ";
                 IEnumerable<TargetDetails> targetDetailslist = conn.Query<TargetDetails>(sql, null);
                 return targetDetailslist.ToList();
             }

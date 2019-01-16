@@ -22,7 +22,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = "select TarGetTypeID,TarGetTypeName,PID,IsOrNo from TarGetType";
+                string sql = " select TarGetTypeID,TarGetTypeName from TarGetType";
                 IEnumerable<TarGetType> tarGetTypeList = conn.Query<TarGetType>(sql, null);
                 return tarGetTypeList.ToList();
             }

@@ -57,12 +57,12 @@ namespace DongXu.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<ShowRoles> RolesByID(int id)
+        public List<Roles> RolesByID(int id)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 string sql = string.Format("select * from roles r join rolepermission rp on r.roleid=rp.roleid where r.roleid=:roleid");
-                var rolesbyid = conn.Query<ShowRoles>(sql, new { roleid = id });
+                var rolesbyid = conn.Query<Roles>(sql, new { roleid = id });
                 return rolesbyid.ToList();
             }
         }
