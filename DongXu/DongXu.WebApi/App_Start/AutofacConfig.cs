@@ -48,6 +48,7 @@ namespace DongXu.WebApi.App_Start
             container.RegisterType<TargetServices>().As<ITargetServices>();
             container.RegisterType<TargetDetailsServices>().As<ITargetDetailsServices>();
             container.RegisterType<TarGetTypeServices>().As<ITarGetTypeServices>();
+            container.RegisterType<StateService>().As<IStateService>();
 
         }
     }

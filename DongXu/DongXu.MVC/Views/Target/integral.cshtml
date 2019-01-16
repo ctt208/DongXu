@@ -17,20 +17,73 @@
 
     <script src="~/echarts.js"></script>
     <script>
+        $(function () {
+            Show();
+            Show1();
+            Show2();
+        })
         function Show() {
-            //alert(1);
             $.ajax({
-                url: 'http://localhost:8098/Role/GetRoles?name=' + $("input[name=RoleName]").val(),
+                url: 'http://localhost:8098/State/GetStates',
                 type: 'get',
                 success: function (data) {
-                    $("#tab").children().children().remove();
+                    //$("#tab").children().children().remove();
                     $(data).each(function (index, data) {
                         var str = "<tr>";
-                        str += "<td>" + data.RoleID + "</td>";
-                        str += "<td>" + data.RoleName + "</td>";
-                        str += "<td>" + data.RoleDescribe + "</td>";
+                        str += "<td>" + data.StateID + "</td>";
+                        str += "<td>" + data.StateName + "</td>";
+                        str += "<td>" + data.StateGrenn + "</td>";
+                        str += "<td>" + data.StateYellow + "</td>";
+                        str += "<td>" + data.StateRed + "</td>";
+                        str += "<td>" + data.StateFen + "</td>";
                         str += "</tr>";
                         $("#tab").append(str);
+
+                    })
+
+                }
+            })
+        }
+
+        function Show1() {
+            $.ajax({
+                url: 'http://localhost:8098/State/States',
+                type: 'get',
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        var str = "<tr>";
+                        str += "<td>" + data.StateID + "</td>";
+                        str += "<td>" + data.StateName + "</td>";
+                        str += "<td>" + data.StateGrenn + "</td>";
+                        str += "<td>" + data.StateYellow + "</td>";
+                        str += "<td>" + data.StateRed + "</td>";
+                        str += "<td>" + data.StateFen + "</td>";
+                        str += "</tr>";
+                        $("#tab1").append(str);
+
+                    })
+
+                }
+            })
+        }
+
+
+        function Show2() {
+            $.ajax({
+                url: 'http://localhost:8098/State/State',
+                type: 'get',
+                success: function (data) {
+                    //$("#tab").children().children().remove();
+                    $(data).each(function (index, data) {
+                        var str = "<tr>";
+                        str += "<td>" + data.StateID + "</td>";
+                        str += "<td>" + data.StateName + "</td>";
+                        str += "<td>" + data.StateGrenn + "</td>";
+                        str += "<td>" + data.StateYellow + "</td>";
+                        str += "<td>" + data.StateRed + "</td>";
+                        str += "<td>" + data.StateFen + "</td>";
+                        str += "</tr>";
+                        $("#tab2").append(str);
 
                     })
 
@@ -92,7 +145,7 @@
         </div>
     </div>
     <div>
-        <table class="layui-table">
+        <table id="tab" class="layui-table">
             <tr>
                 <td rowspan="2">排名</td>
                 <td rowspan="2">部门名称</td>
@@ -119,6 +172,62 @@
                 <td>红</td>
                 <td>积分</td>*@
 
+            </tr>
+        </table>
+        <table id="tab1" class="layui-table">
+            <tr>
+                <td rowspan="2">排名</td>
+                <td rowspan="2">部门名称</td>
+                <td colspan="4">AA</td>
+
+                @*<td colspan="4">AA</td>
+
+            <td colspan="4">A</td>*@
+
+            </tr>
+            <tr>
+                <td style="display:none">AA</td>
+                <td style="display:none">AA</td>
+                <td>绿</td>
+                <td>黄</td>
+                <td>红</td>
+                <td>积分</td>
+                @*<td>绿</td>
+            <td>黄</td>
+            <td>红</td>
+            <td>积分</td>
+            <td>绿</td>
+            <td>黄</td>
+            <td>红</td>
+            <td>积分</td>*@
+            </tr>
+        </table>
+        <table id="tab2" class="layui-table">
+            <tr>
+                <td rowspan="2">排名</td>
+                <td rowspan="2">部门名称</td>
+                <td colspan="4">A</td>
+
+                @*<td colspan="4">AA</td>
+
+            <td colspan="4">A</td>*@
+
+            </tr>
+            <tr>
+                <td style="display:none">AA</td>
+                <td style="display:none">AA</td>
+                <td>绿</td>
+                <td>黄</td>
+                <td>红</td>
+                <td>积分</td>
+                @*<td>绿</td>
+            <td>黄</td>
+            <td>红</td>
+            <td>积分</td>
+            <td>绿</td>
+            <td>黄</td>
+            <td>红</td>
+            <td>积分</td>*@
             </tr>
         </table>
     </div>

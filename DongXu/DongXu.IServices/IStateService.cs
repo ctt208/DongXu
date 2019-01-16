@@ -19,5 +19,10 @@ namespace DongXu.IServices
         /// </summary>
         /// <returns></returns>
         List<State> States();
+        /// <summary>
+        /// A
+        /// </summary>
+        /// <returns></returns>
+        List<State> State();
     }
 }

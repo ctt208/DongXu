@@ -21,7 +21,7 @@ namespace DongXu.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
-                string sql = "select * from state where statejb='AAA'";
+                string sql = "select stateID,statename,stategrenn,stateyellow,statered,statefen from state where statejb='AAA'";
                 var getstate = conn.Query<State>(sql, null);
                 return getstate.ToList();
             }
@@ -34,7 +34,20 @@ namespace DongXu.Services
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
-                string sql = "select * from state where statejb='AA'";
+                string sql = "select stateID,statename,stategrenn,stateyellow,statered,statefen from state where statejb='AA'";
+                var states = conn.Query<State>(sql, null);
+                return states.ToList();
+            }
+        }
+        /// <summary>
+        /// 显示A级别的
+        /// </summary>
+        /// <returns></returns>
+        public List<State> State()
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                string sql = "select stateID,statename,stategrenn,stateyellow,statered,statefen from state where statejb='A'";
                 var states = conn.Query<State>(sql, null);
                 return states.ToList();
             }
