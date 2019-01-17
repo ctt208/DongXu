@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>目标管理查询</title>
     <link href="~/Content/BootstrapSouce/css/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <link href="~/metroStyle/metroStyle.css" rel="stylesheet" />
@@ -16,6 +16,26 @@
     @*<link href="~/demo.css" rel="stylesheet" />*@
     <script src="~/Scripts/jquery.ztree.core.js"></script>
     <style>
+        .messageBox {
+            height: 52px;
+            padding: 0 53px 0 78px;
+            line-height: 52px;
+            background: url(../../image/img-set1.png) -441px -613px #ffffe7 no-repeat;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: fixed;
+            top: -60px;
+            left: 50%;
+            border: 5px solid #ddd;
+            border-top: 0;
+            color: #444;
+            font-size: 18px;
+            z-index: 9999;
+        }
+
+        .messageError {
+            background-position: -441px -673px;
+        }
         #tabb {
             width: 96%;
             margin: 0 30px;
@@ -98,8 +118,8 @@
     <script>
         function zTreeOnClick(event, treeId, treeNode) {
 
-            console.log(treeNode);
-            console.log(treeNode.pId);
+            //console.log(treeNode);
+            //console.log(treeNode.pId);
             $("input[name=name]").val(treeNode.name);
             if (treeNode.pId == 0) {
                 $("select[name=pId] option[value=0]").attr("selected", "selected");
@@ -113,12 +133,12 @@
                     type: 'get',
 
                     success: function (data) {
-
+                       
                         $("#Tab").children().children().next().remove();
                         $(data).each(function (index, data) {
                             
                             var str = ""
-                            //str+="<td>"+类型+"</td></td>"
+                            
                             str += "<tr><td>指标类型:" + data.targettypename + "</td></tr>"
                             str += "<tr><td>指标等级:" + data.IndexLevelId + "</td></tr>"
                             str += "<tr></td>反馈频次:" + data.FeedbackName + "</td></tr>"
@@ -134,12 +154,14 @@
                             str+="</tr>"
                             
                             $("#Tab").append(str);
-                            console.log(data)
+                            $("input[name=id]").val(data.Id);
+                            console.log($("input[name=id]").val())
                         })
-
+                      
                     }
                    
                 })
+      
         }
         var setting = {
             data: {
@@ -181,13 +203,38 @@
                 switchObj.before(spaceStr);
             }
         }
+        //var s=
+        function Del() {
+          
+
+            $.ajax({
+                url: 'http://localhost:8098/DongXu/DeleteTarget?id=' + $("input[name=id]").val(),
+                type: 'get',
+
+                success: function (data) {
+                    if (data > 0) {
+                        alert("删除成功")
+                        //$(".messageBox").removeClass("messageError").text("删除成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
+                        location.href = "/Target/Index";
+
+
+                     
+                    }
+                    else {
+                        alert("删除失败")
+
+                    }
+                }
+            })
+        }
 
     </script>
 </head>
 <body>
 
-    <h6>您当前的位置:目标管理</h6>
+    <h6>您当前的位置:目标管理>>目标管理查询</h6>
     <div>
+        <input type="hidden" name="id" />
         <div id="tree">
             <div style="background-color:#ccc;padding:0px 15px;height:50px;width:230px;line-height:30px;">
                 <span id="s1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标名称</span>
@@ -308,7 +355,9 @@
                 </tr>
             </table>
         </div>
-    
+    <div>
+        <input type="button" value="指标删除" onclick="Del()" style="margin-top:460px;background-color:white;color:black;height: 30px; border-color: black; border-width: 1px" />
+    </div>
         <div style="clear:both;"></div>
 
     </div>

@@ -430,6 +430,7 @@
     <Content Include="Views\Schedule\Operation.cshtml" />
     <Content Include="Views\Schedule\Target.cshtml" />
     <Content Include="Views\Schedule\Week.cshtml" />
+    <Content Include="Views\Target\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -441,6 +442,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\login1\.idea\inspectionProfiles\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Roles\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DongXu.Common\DongXu.Common.csproj">

@@ -15,6 +15,7 @@ namespace DongXu.WebApi.Controllers
     {
         public ITargetDetailsServices targetDetailsServices { get; set; }
         public ITarGetTypeServices tarGetTypeServices { get; set; }
+        public ITargetServices TargetServices { get; set; }
         /// <summary>
         /// 显示目标详情信息
         /// </summary>
@@ -47,6 +48,12 @@ namespace DongXu.WebApi.Controllers
         public List<TargetDetails> GetTargetDetailsById(int Id)
         {
             return targetDetailsServices.GetTargetDetailsById(Id);
+        }
+        [Route("DeleteTarget")]
+        [HttpGet]
+        public int DeleteTarget(int Id)
+        {
+            return TargetServices.DeleteTarget(Id);
         }
     }
 }

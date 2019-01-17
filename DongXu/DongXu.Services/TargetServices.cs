@@ -24,10 +24,25 @@ namespace DongXu.Services
             }
         }
 
+        /// <summary>
+        /// 删除子层级
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+
         public int DeleteTarget(int Id)
         {
-            throw new NotImplementedException();
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"delete from target where id="+Id;
+                int i = conn.Execute(sql, Id);
+                return i;
+          
+            }
         }
+            
+        
 
         public List<Target> GetTargets()
         {
