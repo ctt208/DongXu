@@ -15,10 +15,49 @@
     <script src="~/Content/jquery-3.1.1.js"></script>
     <script>
         $(function () {
+            showdata();
+            //加载类别
+            $.ajax({
+                url: "http://localhost:8098/DongXu/GetTarGetTypes",
+                type: "get",              
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        $("select[name=targettypename]").append("<option>" + data.TarGetTypeName + "</option>");
+                    })
+
+                }
+            })
+            //模糊查询
+            $("#search").click(function () {
+                showdata();
+            })
+            $("#derive").click(function () {
+                $.ajax({
+                    url: "http://localhost:8098/Excel/GetUnit",
+                    type: "get",
+                    data: {
+                        fileName: "123123",
+                        tableName:"data",
+                    },
+                    success: function (data) {
+                        alert(data)
+                    }
+                })
+            })
+        })
+        function showdata() {
             $.ajax({
                 url: "http://localhost:8098/DongXu/GetTargetDetails",
                 type: "get",
+                data: {
+                    TargetName: $("input[name=TargetName]").val(),
+                    IndexLevelId: $("select[name=IndexLevelId]").val(),
+                    targettypename: $("select[name=targettypename]").val(),
+                    BlocName: $("input[name=BlocName]").val(),
+                    DutyMan: $("input[name=DutyMan]").val(),
+                },
                 success: function (data) {
+                    $("#showdata tr:not(:first)").empty("");
                     var i = 1;
                     $(data).each(function (index, data) {
                         $("#showdata").append("<tr><td>" + i + "</td><td>" + data.TargetName + "</td><td>" + data.IndexLevelId + "</td><td>" + data.targettypename + "</td><td>" + data.BlocName + "</td><td>" + data.DutyMan + "</td><td>" + data.FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div class='layui-progress-bar' lay-percent='20%'></div></div></td><td><img src=\"/image/" + data.StatusImage + "\" /></td></tr>");
@@ -27,13 +66,7 @@
 
                 }
             })
-            $("#search").click(function () {
-                
-            })
-            $("#derive").click(function () {
-
-            })
-        })
+        }
     </script>
     <style>
         * {
@@ -103,14 +136,13 @@
     <table id="tab">
         <tr>
             <td>
-                目标名称:<input type="text" name="name" value="" />
+                目标名称:<input type="text" name="TargetName" />
                 目标类别:
-                <select v-show="GetTarGetTypesList.length" >
-                    <option value="value">--全部--</option>
-                    <option v-for="(item,index) in GetTarGetTypesList">{{item.TarGetTypeName}}</option>
+                <select v-show="GetTarGetTypesList.length" name="targettypename">
+                    <option value=" ">--全部--</option>
                 </select>目标级别:
-                <select>
-                    <option value="0">全部</option>
+                <select name="IndexLevelId">
+                    <option value=" ">全部</option>
                     <option value="A">A</option>
                     <option value="AA">AA</option>
                     <option value="AAA">AAA</option>
@@ -120,19 +152,19 @@
         <tr>
             <td>
                 责任部门:
-                <input type="text" name="DutyUnitId" value="" />
+                <input type="text" name="BlocName"  />
                 责任人:
-                <input type="text" name="name" value="" />
+                <input type="text" name="DutyMan"  />
                 完成时间:
-                <input type="date" name="name" value="" />
+                <input type="date" name="name" />
                 -至-
-                <input type="date" name="name" value="" />
+                <input type="date" name="name"  />
             </td>
         </tr>
         <tr>
             <td>
                 <input type="button" id="derive" class="layui-btn layui-btn-warm" name="name" value="导出" />
-                <input type="button" id="search" class="layui-btn layui-btn-danger" name="name" value="查询" />
+                <input type="button" id="search" class="layui-btn layui-btn-danger" name="name" value="查询" onclick="showdata()" />
              
             </td>
         </tr>
@@ -202,31 +234,4 @@
             active[type] ? active[type].call(this, othis) : '';
         });
     });
-    var ve = new Vue({
-        el: "#tab",
-        data: {
-            GetTarGetTypesList: []
-        },
-        mounted() {
-            this.GetTarGetTypes();
-        },
-        methods: {
-            //加载目标类别
-            GetTarGetTypes: function () {
-                axios.get('http://localhost:8098/DongXu/GetTarGetTypes').then(
-                    (response) => {
-                        this.GetTarGetTypesList = [];
-                        for (var i = 0; i < response.data.length; i++) {
-                            this.GetTarGetTypesList.push(response.data[i]);
-                        }
-                    },
-                    (response) => {
-                        alert(response.status);
-                    }
-                ).catch(function (response) {
-                    alert(response);
-                });
-            }
-        }
-    });   
 </script>

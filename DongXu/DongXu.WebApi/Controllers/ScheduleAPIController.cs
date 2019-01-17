@@ -22,9 +22,29 @@ namespace DongXu.WebApi.Controllers
         /// <returns></returns>
         [Route("GetTargetDetails")]
         [HttpGet]
-        public List<TargetDetails> GetTargetDetails()
+        public List<TargetDetails> GetTargetDetails(string TargetName,string IndexLevelId,string targettypename,string BlocName,string DutyMan)
         {
             var targetDetailslist = targetDetailsServices.GetTargetDetails();
+            if (!string.IsNullOrEmpty(TargetName))
+            {
+                targetDetailslist = targetDetailslist.Where(r => r.TargetName.Contains(TargetName)).ToList();
+            }
+            if (!string.IsNullOrEmpty(IndexLevelId))
+            {
+                targetDetailslist = targetDetailslist.Where(r => r.IndexLevelId == IndexLevelId).ToList();
+            }
+            if (!string.IsNullOrEmpty(targettypename))
+            {
+                targetDetailslist = targetDetailslist.Where(r => r.targettypename == targettypename).ToList();
+            }
+            if (!string.IsNullOrEmpty(BlocName))
+            {
+                targetDetailslist = targetDetailslist.Where(r => r.BlocName.Contains(BlocName)).ToList();
+            }
+            if (!string.IsNullOrEmpty(DutyMan))
+            {
+                targetDetailslist = targetDetailslist.Where(r => r.DutyMan.Contains(DutyMan)).ToList();
+            }
             return targetDetailslist;
         }
         /// <summary>
