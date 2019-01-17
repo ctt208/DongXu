@@ -22,8 +22,9 @@ namespace DongXu.WebApi.Controllers
         /// <returns></returns>
         [Route("GetTargetDetails")]
         [HttpGet]
-        public List<TargetDetails> GetTargetDetails(string TargetName,string IndexLevelId,string targettypename,string BlocName,string DutyMan)
+        public PageBox GetTargetDetails(string TargetName,string IndexLevelId,string targettypename,string BlocName,string DutyMan,int pageindex=1)
         {
+            PageBox pageBox = new PageBox();
             var targetDetailslist = targetDetailsServices.GetTargetDetails();
             if (!string.IsNullOrEmpty(TargetName))
             {
@@ -45,7 +46,11 @@ namespace DongXu.WebApi.Controllers
             {
                 targetDetailslist = targetDetailslist.Where(r => r.DutyMan.Contains(DutyMan)).ToList();
             }
-            return targetDetailslist;
+            pageBox.PageIndex = pageindex;
+            pageBox.PageSize = 5;
+            pageBox.PageCount = targetDetailslist.Count / pageBox.PageSize + (targetDetailslist.Count % pageBox.PageSize == 0 ? 0 : 1);
+            pageBox.Data = targetDetailslist.Skip((pageBox.PageIndex - 1) * pageBox.PageSize).Take(pageBox.PageSize).ToList();
+            return pageBox;
         }
         /// <summary>
         /// 显示目标类别信息

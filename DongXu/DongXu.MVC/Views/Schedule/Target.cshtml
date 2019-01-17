@@ -14,6 +14,8 @@
     <script src="~/Content/layui-v2.4.5/layui/layui.js"></script>
     <script src="~/Content/jquery-3.1.1.js"></script>
     <script>
+        var pageindex=1;
+        var pagecount;
         $(function () {
             showdata();
             //加载类别
@@ -24,7 +26,6 @@
                     $(data).each(function (index, data) {
                         $("select[name=targettypename]").append("<option>" + data.TarGetTypeName + "</option>");
                     })
-
                 }
             })
             //模糊查询
@@ -50,6 +51,7 @@
                 url: "http://localhost:8098/DongXu/GetTargetDetails",
                 type: "get",
                 data: {
+                    pageindex: pageindex,
                     TargetName: $("input[name=TargetName]").val(),
                     IndexLevelId: $("select[name=IndexLevelId]").val(),
                     targettypename: $("select[name=targettypename]").val(),
@@ -57,15 +59,47 @@
                     DutyMan: $("input[name=DutyMan]").val(),
                 },
                 success: function (data) {
+                    pageindex = data.PageIndex;
+                    pagecount = data.PageCount;
+                    var j = 1;
                     $("#showdata tr:not(:first)").empty("");
-                    var i = 1;
-                    $(data).each(function (index, data) {
-                        $("#showdata").append("<tr><td>" + i + "</td><td><a style='color:skyblue;' href=\"/Schedule/ShowTargetbyID?id=" + data.Id +"\">" + data.TargetName + "</a></td><td>" + data.IndexLevelId + "</td><td>" + data.targettypename + "</td><td>" + data.BlocName + "</td><td>" + data.DutyMan + "</td><td>" + data.FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div class='layui-progress-bar' lay-percent='20%'></div></div></td><td><img src=\"/image/" + data.StatusImage + "\" /></td></tr>");
-                        i++;
-                    })
+                    for (var i = 0; i < data.Data.length; i++) {
+                        $("#showdata").append("<tr><td>" + j + "</td><td><a style='color:skyblue;' href=\"/Schedule/ShowTargetbyID?id=" + data.Data[i].Id + "\">" + data.Data[i].TargetName + "</a></td><td>" + data.Data[i].IndexLevelId + "</td><td>" + data.Data[i].targettypename + "</td><td>" + data.Data[i].BlocName + "</td><td>" + data.Data[i].DutyMan + "</td><td>" + data.Data[i].FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div class='layui-progress-bar' lay-percent='20%'></div></div></td><td><img src=\"/image/" + data.Data[i].StatusImage + "\" /></td></tr>");
+                        j++;
+                    }
 
                 }
             })
+        }
+        //首页
+        function FirstPage() {
+            pageindex = 1;
+            showdata();
+        }
+        //尾页
+        function LastPage() {
+            pageindex = pagecount;
+            showdata();
+        }
+        //上一页
+        function PrevPage() {
+            if (pageindex - 1 <= 0) {
+                alert("已经是第一页了");
+                return;
+            } else {
+                pageindex--;
+                showdata();
+            }
+        }
+        //下一页
+        function NextPage() {
+            if (pageindex + 1 > pagecount) {
+                alert("已经是最后一页了");
+                return;
+            } else {
+                pageindex++;
+                showdata();
+            }
         }
     </script>
     <style>
@@ -126,6 +160,9 @@
             margin: 0 30px;
             border: 1px solid #ccc;
         }
+        .btnbox {
+            margin: 10px 30px;
+        }
     </style>
     <script>
 
@@ -152,20 +189,20 @@
         <tr>
             <td>
                 责任部门:
-                <input type="text" name="BlocName"  />
+                <input type="text" name="BlocName" />
                 责任人:
-                <input type="text" name="DutyMan"  />
+                <input type="text" name="DutyMan" />
                 完成时间:
                 <input type="date" name="name" />
                 -至-
-                <input type="date" name="name"  />
+                <input type="date" name="name" />
             </td>
         </tr>
         <tr>
             <td>
                 <input type="button" id="derive" class="layui-btn layui-btn-warm" name="name" value="导出" />
                 <input type="button" id="search" class="layui-btn layui-btn-danger" name="name" value="查询" onclick="showdata()" />
-             
+
             </td>
         </tr>
     </table>
@@ -182,24 +219,17 @@
             <th>进度</th>
             <th>状态</th>
         </tr>
-       
+
     </table>
-    <div id="demo7"></div>
+    <div class="btnbox">
+        <button class="layui-btn layui-btn-normal" onclick="FirstPage()">首页</button>
+        <button class="layui-btn layui-btn-normal" onclick="PrevPage()">上一页</button>
+        <button class="layui-btn layui-btn-normal" onclick="NextPage()">下一页</button>
+        <button class="layui-btn layui-btn-normal" onclick="LastPage()">尾页</button>
+    </div>
 </body>
 </html>
 <script>
-    layui.use(['laypage', 'layer'], function () {
-        var laypage = layui.laypage
-            , layer = layui.layer;
-        laypage.render({
-            elem: 'demo7'
-            , count: 100
-            , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
-            , jump: function (obj) {
-                console.log(obj)
-            }
-        });
-    });
     layui.use('element', function () {
         var $ = layui.jquery
             , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
