@@ -37,6 +37,6 @@ namespace DongXu.IServices
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        TargetDetails GetTargetDetailById(int id);
+        List<TargetDetails> GetTargetDetailsById(int Id);
     }
 }

@@ -94,6 +94,7 @@
             float: right;
         }
     </style>
+    
     <script>
         function zTreeOnClick(event, treeId, treeNode) {
 
@@ -106,6 +107,39 @@
             else {
                 $("select[name=pId] option[value=" + treeNode.pId + "]").attr("selected", "selected");
             }
+            $.ajax(
+                {
+                    url: 'http://localhost:8098/DongXu/GetTargetDetailsById?Id=' + treeNode.id,
+                    type: 'get',
+
+                    success: function (data) {
+
+                        $("#Tab").children().children().next().remove();
+                        $(data).each(function (index, data) {
+                            
+                            var str = ""
+                            //str+="<td>"+类型+"</td></td>"
+                            str += "<tr><td>指标类型:" + data.targettypename + "</td></tr>"
+                            str += "<tr><td>指标等级:" + data.IndexLevelId + "</td></tr>"
+                            str += "<tr></td>反馈频次:" + data.FeedbackName + "</td></tr>"
+                            str += "<tr><td>开始时间:" + data.StartTime + "</td>"
+                            str += "<td>完成时间:" + data.FinishTime + "</td>"
+                            str += "<td>责任人:" + data.DutyMan + "</td></tr>"
+                            str += "<tr><td>考核权重:" + data.AssessmentWeight + "</td>"
+                            str += "<td>填报人:" + data.ReportedMan + "</td>"
+                            str += "<td>协办方:" + data.Organizer + "</td></tr>"
+                            str += "<tr><td>备注：" + data.Remark + "</td></tr>"
+                            str += "<tr><td>年度目标：" + data.AnnualTarget + "</td></tr>"
+                            str += "<tr><td>确认流程：" + data.Affirmflow + "</td></tr>"
+                            str+="</tr>"
+                            
+                            $("#Tab").append(str);
+                            console.log(data)
+                        })
+
+                    }
+                   
+                })
         }
         var setting = {
             data: {
@@ -163,40 +197,45 @@
             <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#f7f7f7"></ul>
         </div>
         <div id="tab"style="width:1000px;height:100%" >
-            <table class="table ">
+            <table class="table " style="margin-left:100px;">
                 <tr>
                     <td style="font-size:x-large"> 目标详情</td>
                 </tr>
                 <tr>
                     <td>
-                        指标名称：
+                        指标名称
                     </td>
                     <td>
                         <input type="text" name="name" style="border:none">
                     </td>
                     <td>
-                        主指标：
+                        主指标
                     </td>
                     <td>
-                       2019年集团经营目标
-                    </td>
-                    <td>
-                        指标类型：
-                    </td>
-                    <td>
-                        <input type="text" name="TarGetTypeName"  style="border:none"/>
+                        2019年集团经营目标
                     </td>
                 </tr>
+                </table>
+            
+            <table class="table " style="margin-left:100px;" id="Tab">
+                <tr>
+                    @*<td>
+                        指标类型
+                    </td>*@
+                    <td>
+                        <input type="text" name="targettypename"  style="border:none"/>
+                    </td>
+               
                 <tr>
                     <td>
-                        指标等级：
+                        指标等级
                     </td>
                    <td>
                        <input type="text"name="IndexLevelId"  style="border:none"/>
                    </td>
                     <tr>
                         <td>
-                            反馈频次：
+                            反馈频次
                         </td>
                         <td>
                             <input type="text" name="FeedbackName"  style="border:none"/>
@@ -205,19 +244,19 @@
                 </tr>
                 <tr>
                     <td>
-                        开始时间：
+                        开始时间
                     </td>
                     <td>
                         <input type="text" name="StartTime"  style="border:none"/>
                     </td>
                     <td>
-                        完成时间:
+                        完成时间
                     </td>
                     <td>
                         <input type="text" name="FinishTime"  style="border:none"/>
                     </td>
                     <td>
-                        责任人:
+                        责任人
                     </td>
                     <td>
                         <input type="text" name=" DutyMan"  style="border:none"/>
@@ -225,19 +264,19 @@
                 </tr>
                 <tr>
                     <td>
-                        考核权重:
+                        考核权重
                     </td>
                     <td>
                         <input type="text" name="AssessmentWeight"  style="border:none"/>
                     </td>
                     <td>
-                        填报人:
+                        填报人
                     </td>
                     <td>
                         <input  name="ReportedMan" type="text"  style="border:none"/>
                     </td>
                     <td>
-                        协办方:
+                        协办方
                     </td>
                     <td>
                         <input type="text" name="Organizer" style="border:none" />
@@ -245,7 +284,7 @@
                 </tr>
                 <tr>
                     <td>
-                        备注:
+                        备注
                     </td>
                     <td>
                         <input type="text" name="Remark" style="border:none" />
@@ -253,7 +292,7 @@
                 </tr>
                 <tr>
                     <td>
-                        年度目标:
+                        年度目标
                     </td>
                     <td>
                         <input type="text" name="AnnualTarget"  style="border:none"/>
@@ -261,7 +300,7 @@
                 </tr>
                 <tr>
                     <td>
-                        确认流程:
+                        确认流程
                     </td>
                     <td>
                         <input type="text" name="Affirmflow" height="50" width="100" style="border:none"/>

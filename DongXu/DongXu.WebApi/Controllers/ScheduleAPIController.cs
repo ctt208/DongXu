@@ -37,6 +37,17 @@ namespace DongXu.WebApi.Controllers
             var tarGetTypeServiceslist = tarGetTypeServices.GetTarGetTypes();
             return tarGetTypeServiceslist;
         }
+        /// <summary>
+        /// 根据Id显示内容
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [Route("GetTargetDetailsById")]
+        [HttpGet]
+        public List<TargetDetails> GetTargetDetailsById(int Id)
+        {
+            return targetDetailsServices.GetTargetDetailsById(Id);
+        }
     }
 }
  

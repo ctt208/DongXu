@@ -29,10 +29,7 @@ namespace DongXu.Services
             throw new NotImplementedException();
         }
 
-        public TargetDetails GetTargetDetailById(int id)
-        {
-            throw new NotImplementedException();
-        }
+      
         /// <summary>
         /// 显示目标信息
         /// </summary>
@@ -51,6 +48,22 @@ namespace DongXu.Services
         public int UpdateTargetDetails(TargetDetails targetDetail)
         {
             throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 根据ID显示指标内容
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public List<TargetDetails> GetTargetDetailsById(int Id)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"select a.*,b.name as TargetName,c.targettypename as targettypename,d.image as StatusImage,d.name as StatusName,e.name as BlocName,f.feedbackname,c.targettypename  from targetdetails a inner join target b on a.targetid = b.id inner join targettype c on a.indextypeid = c.targettypeid  inner join status d on a.statusid = d.id inner join bloc e on a.blocid=e.id inner join feedbacknum f on a.feedbacknumid = f.id  where b.id= " + Id;
+                var result = conn.Query<TargetDetails>(sql, null);
+                return result.ToList();
+
+            }
         }
     }
 }
