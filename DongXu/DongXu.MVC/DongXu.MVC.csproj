@@ -431,6 +431,7 @@
     <Content Include="Views\Schedule\Target.cshtml" />
     <Content Include="Views\Schedule\Week.cshtml" />
     <Content Include="Views\Target\Add.cshtml" />
+    <Content Include="Views\Schedule\ShowTargetbyID.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

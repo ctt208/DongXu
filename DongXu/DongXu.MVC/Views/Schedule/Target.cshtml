@@ -60,7 +60,7 @@
                     $("#showdata tr:not(:first)").empty("");
                     var i = 1;
                     $(data).each(function (index, data) {
-                        $("#showdata").append("<tr><td>" + i + "</td><td>" + data.TargetName + "</td><td>" + data.IndexLevelId + "</td><td>" + data.targettypename + "</td><td>" + data.BlocName + "</td><td>" + data.DutyMan + "</td><td>" + data.FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div class='layui-progress-bar' lay-percent='20%'></div></div></td><td><img src=\"/image/" + data.StatusImage + "\" /></td></tr>");
+                        $("#showdata").append("<tr><td>" + i + "</td><td><a style='color:skyblue;' href=\"/Schedule/ShowTargetbyID?id=" + data.Id +"\">" + data.TargetName + "</a></td><td>" + data.IndexLevelId + "</td><td>" + data.targettypename + "</td><td>" + data.BlocName + "</td><td>" + data.DutyMan + "</td><td>" + data.FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div class='layui-progress-bar' lay-percent='20%'></div></div></td><td><img src=\"/image/" + data.StatusImage + "\" /></td></tr>");
                         i++;
                     })
 
