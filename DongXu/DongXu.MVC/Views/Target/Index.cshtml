@@ -164,6 +164,22 @@
                 })
       
         }
+        function Add() {
+            $.ajax({
+                url: "http://localhost:8098/DongXu/AddTargetDetails",
+                type: "post",
+                data: $("#form1").serialize(),
+                success: function (data) {
+                    if (data > 0) {
+                        AddTarget();
+                        alert("添加成功！");
+                    }
+                    else {
+                        alert("添加失败！");
+                    }
+                }
+            })
+        }
         function loc() {
           
              
@@ -251,7 +267,25 @@
 <body>
 
     <div id="AddUser" style="display:none">
-        aaa
+        <table class="table ">
+            
+            <tr>
+                <td>
+                    指标名称:
+                </td>
+                <td>
+                    <input type="text" name="name">
+                </td>
+                <td>
+                    主指标:
+                </td>
+                <td>2019年集团经营目标</td>
+                <tr>
+                    <td>
+                        <input type="button"  onclick="Add()"value="添加" />
+                    </td>
+            </tr>
+        </table>
     </div>
     <h6>您当前的位置:目标管理>>目标管理查询</h6>
     <div>
