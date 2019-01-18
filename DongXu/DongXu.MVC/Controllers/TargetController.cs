@@ -21,6 +21,9 @@ namespace DongXu.MVC.Controllers
         {
             return View();
         }
-
+        public ActionResult integral2()
+        {
+            return View();
+        }
     }
 }

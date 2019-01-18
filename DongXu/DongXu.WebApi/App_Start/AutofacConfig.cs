@@ -50,6 +50,7 @@ namespace DongXu.WebApi.App_Start
             container.RegisterType<TarGetTypeServices>().As<ITarGetTypeServices>();
             container.RegisterType<StateService>().As<IStateService>();
             container.RegisterType<RunningServices>().As<IRunning>();
+            container.RegisterType<StatussService>().As<IStatussService>();
         }
     }
 }

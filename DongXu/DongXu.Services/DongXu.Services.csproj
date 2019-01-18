@@ -55,6 +55,7 @@
     <Compile Include="RoleService.cs" />
     <Compile Include="RunningServices.cs" />
     <Compile Include="StateService.cs" />
+    <Compile Include="StatussService.cs" />
     <Compile Include="TargetDetailsServices.cs" />
     <Compile Include="TargetServices.cs" />
     <Compile Include="TarGetTypeServices.cs" />

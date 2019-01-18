@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "integral2";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
+    <link href="~/Content/BootstrapSouce/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/echarts.js"></script>
+    <script>
+        $(function () {
+            Show2();
+        })
+        function Show2() {
+            alert(1);
+            $.ajax({
+                url: 'http://localhost:8098/Statuss/GetStatusses',
+                type: 'get',
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        var str = "<tr>";
+                        str += "<td>" + data.StatussID + "</td>";
+                        str += "<td>" + data.Name + "</td>";
+                        str += "<td>" + data.Red + "</td>";
+                        str += "<td>" + data.RedPercentile + "</td>";
+                        str += "<td>" + data.Yellow + "</td>";
+                        str += "<td>" + data.YELLOWPERCENTILE + "</td>";
+                        str += "<td>" + data.Green + "</td>";
+                        str += "<td>" + data.GREENPERCENTILE + "</td>";
+                        //str += "<td>" + data.Num + "</td>";
+                        str += "</tr>";
+                        $("#tab2").append(str);
+
+                    })
+                }
+            })
+        }
+    </script>
+    
+
+</head>
+<body>
+    <div class="content integral">
+        <h4>红绿灯状态</h4>
+        @*<div class="cot"></div>*@
+        <div id="main" style="width: 2000px;height:600px; border:1px solid red; ">
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    legend: {
+                        data: ['未完成', '延期', '正常推进']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: {
+
+                        type: 'category',
+                        data: ['东旭蓝电', '东旭蓝天', '嘉麟杰', '南地产', '北地产', '园区开发', '东旭资本']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        min: 0,
+                        max: 100
+                    },
+                    series: [
+                        {
+                            name: '未完成',
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'insideRight'
+                                }
+                            },
+                            data: [50, 30, 30, 30, 60, 30, 50]
+                        },
+                        {
+                            name: '延期',
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'insideRight'
+                                }
+                            },
+                            data: [30, 20, 10, 40, 20, 30, 30]
+                        },
+                        {
+                            name: '正常推进',
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'insideRight'
+                                }
+                            },
+                            data: [20, 50, 60, 30, 20, 40, 20]
+                        },
+
+
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>
+
+        </div>
+    </div>
+    <div>
+        <table class="table table-bordered" id="tab2">
+            <tr>
+                <td style="text-align:center">序号</td>
+                <td style="text-align:center">部门名称</td>
+                <td style="text-align:center" colspan="2"><img src="~/image/red.png" alt="红灯" /></td>
+                <td style="text-align:center" colspan="2"><img src="~/image/yellow.png" alt="黄灯" /></td>
+                <td style="text-align:center" colspan="2"><img src="~/image/green.png" alt="绿灯" /></td>
+                @*<td style="text-align:center">总数</td>*@
+            </tr>
+            <tr>
+                <td style="text-align:center"></td>
+                <td style="text-align:center"></td>
+                <td style="text-align:center"></td>
+                <td style="text-align:center"></td>
+                <td style="text-align:center"></td>
+                <td style="text-align:center"></td>
+                <td style="text-align:center"></td>
+                <td style="text-align:center"></td>
+                @*<td style="text-align:center"></td>*@
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
