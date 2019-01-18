@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Target";
     Layout = "~/Views/Shared/_TestLayout.cshtml";
 }
@@ -10,17 +9,21 @@
     <link href="~/Content/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
     <link href="~/Content/css/operation.css" rel="stylesheet" />
 
-    <script src="~/Scripts/layer/2.4/layer.js"></script>
-    <script src="~/Scripts/vue.js"></script>
-    <script src="~/Scripts/axios.js"></script>
-    <script src="~/echarts.js"></script>
     <script src="~/Content/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
     <script src="~/Content/layui-v2.4.5/layui/layui.js"></script>
+    <script src="~/echarts.js"></script>
     <script>
+        
+        var app = {};
+        option = null;
+        var pieData = [];
+        
         var pageindex = 1;
         var pagecount;
         $(function () {
-
+            var dom = document.getElementById("container");
+            var myChart = echarts.init(dom);
             showdata();
             //加载类别
             $.ajax({
@@ -39,98 +42,54 @@
                 success: function (data) {
                     $(data).each(function (index, data) {
                         $("#showrunning").append("<tr><td>" + data.Name + "</td><td>" + data.Numberids + "</td><td>" + data.Per + "%</td></tr>");
+                        pieData.push({ value: data.Numberids, name: data.Name })
+                       
                     })
+                    option = {
+                        title: {
+                            text: '目标运行情况',
+                            x: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            left: 'left',
+                            data: pieData.map(function (item) {
+                                return item.name;
+                            })
+                        },
+                        series: [
+                            {
+                                name: '访问来源',
+                                type: 'pie',
+                                radius: '55%',
+                                center: ['50%', '60%'],
+                                data: pieData,
+                                itemStyle: {
+                                    emphasis: {
+                                        shadowBlur: 10,
+                                        shadowOffsetX: 0,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    if (option && typeof option === "object") {
+                        myChart.setOption(option, true);
+                    }
                 }
             })
             //模糊查询
             $("#search").click(function () {
                 showdata();
             })
-            //echarts图
-            option = {
-                title: {
-                    text: '目标运行情况',
-                    x: 'center'
-                },
-                tooltip: {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b} : {c} ({d}%)"
-                },
-                legend: {
-                    orient: 'vertical',
-                    left: 'left',
-                    data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
-                },
-                series: [
-                    {
-                        name: '访问来源',
-                        type: 'pie',
-                        radius: '55%',
-                        center: ['50%', '60%'],
-                        data: [
-                            { value: 335, name: '直接访问' },
-                            { value: 310, name: '邮件营销' },
-                            { value: 234, name: '联盟广告' },
-                            { value: 135, name: '视频广告' },
-                            { value: 1548, name: '搜索引擎' }
-                        ],
-                        itemStyle: {
-                            emphasis: {
-                                shadowBlur: 10,
-                                shadowOffsetX: 0,
-                                shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            }
-                        }
-                    }
-                ]
-            };
-                var Names = [];
-                var Nums = [];
-                // 基于准备好的dom，初始化echarts实例
-                var myChart = echarts.init(document.getElementById('main'));
-                    $(function () {
-                    loadData();
-                })
-                    function loadData() {
-                    $.ajax({
-                        url: "http://localhost:8098/Integral/GetIntegral",
-                        type: "get",
-                        success: function (data) {
-                            console.log(data);
-                            for (var i = 0; i < data.length; i++) {
-                                Names[i] = data[i].name;
-                                Nums[i] = data[i].IntegralNum;
-                            }
-                            // 指定图表的配置项和数据
-                            var option = {
-
-                                title: {
-                                    text: '积分排名'
-                                },
-                                tooltip: {},
-                                legend: {
-                                    data: ['积分']
-                                },
-                                yAxis: {},
-                                xAxis: {
-                                    data: Names
-                                },
-
-                                series: [{
-                                    name: '积分',
-                                    type: 'bar',
-                                    data: Nums
-                                }]
-                            };
-                            // 使用刚指定的配置项和数据显示图表。
-                            myChart.setOption(option);
-                        }
-                    });
-                }
-            
 
         })
-      
+
         function showdata() {
             $.ajax({
                 url: "http://localhost:8098/DongXu/GetTargetDetails",
@@ -151,8 +110,7 @@
                     var j = 1;
                     $("#showdata tr:not(:first)").empty("");
                     for (var i = 0; i < data.Data.length; i++) {
-                        console.log(data.Data[i].AnnualTarget);
-                        $("#showdata").append("<tr><td>" + data.Data[i].Id + "</td><td><a style='color:skyblue;' href=\"/Schedule/ShowTargetbyID?id=" + data.Data[i].Id + "\">" + data.Data[i].TargetName + "</a></td><td>" + data.Data[i].BlocName + "</td><td>" + data.Data[i].DutyMan + "</td><td>" + data.Data[i].FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div style='width:" + data.Data[i].AnnualTarget + "' class='layui-progress-bar' lay-percent='" + data.Data[i].AnnualTarget + "'><span class='layui-progress-text'>" + data.Data[i].AnnualTarget +"</span></div></div></td><td><img src=\"/image/" + data.Data[i].StatusImage + "\" /></td></tr>");
+                        $("#showdata").append("<tr><td>" + data.Data[i].Id + "</td><td><a style='color:skyblue;' href=\"/Schedule/ShowTargetbyID?id=" + data.Data[i].Id + "\">" + data.Data[i].TargetName + "</a></td><td>" + data.Data[i].BlocName + "</td><td>" + data.Data[i].DutyMan + "</td><td>" + data.Data[i].FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div style='width:" + data.Data[i].AnnualTarget + "' class='layui-progress-bar' lay-percent='" + data.Data[i].AnnualTarget + "'><span class='layui-progress-text'>" + data.Data[i].AnnualTarget + "</span></div></div></td><td><img src=\"/image/" + data.Data[i].StatusImage + "\" /></td></tr>");
                         j++;
                     }
                 }
@@ -230,7 +188,18 @@
     <div class="echart">
         <h4>运行情况</h4>
         <div>
-            <div class="echart_left"></div>
+            <div class="echart_left">
+                <div id="container" style="height: 100%"></div>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+                <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+            </div>
             <div class="echart_right">
                 <table id="showrunning" class="layui-table" style="text-align:center;">
                     <tr style="background-color:#ccc;">
@@ -239,7 +208,7 @@
                         <th>比例</th>
                     </tr>
                 </table>
-            </div>           
+            </div>
             <div style="clear:both"></div>
         </div>
     </div>
@@ -271,7 +240,7 @@
 </html>
 <script>
     layui.use('element', function () {
-       // var $ = layui.jquery, element = layui.element;
+        // var $ = layui.jquery, element = layui.element;
         //Tab的切换功能，切换事件监听等，需要依赖element模块
     });
 </script>

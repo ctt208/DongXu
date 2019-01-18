@@ -98,6 +98,7 @@
     <Content Include="Content\BootstrapSouce\js\npm.js" />
     <Content Include="Content\BootstrapSouce\js\respond.min.js" />
     <Content Include="Content\css\index.css" />
+    <Content Include="Content\css\operation.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\jquery-3.1.1.js" />
     <Content Include="Content\layui.css" />
