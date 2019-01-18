@@ -55,6 +55,13 @@ namespace DongXu.WebApi.Controllers
         {
             return TargetServices.DeleteTarget(Id);
         }
+        [Route("AddTargetDetails")]
+        [HttpPost]
+        public int AddTargetDetails(TargetDetails targetDetails)
+        {
+            return targetDetailsServices.AddTargetDetails(targetDetails);
+        }
+
     }
 }
  

@@ -16,168 +16,139 @@
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     @*<link href="~/demo.css" rel="stylesheet" />*@
     <script src="~/Scripts/jquery.ztree.core.js"></script>
-    <style>
-        #tabb {
-            width: 96%;
-            margin: 0 30px;
-            border: 1px solid #ccc;
-        }
-
-        .ztree * {
-            /*color: blue;*/
-            font-size: 10pt;
-            font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial
-        }
-
-        .ztree li {
-            line-height: 20px;
-        }
-
-            .ztree li a {
-                width: 200px;
-                height: 30px;
-                padding-top: 0px;
-            }
-
-                .ztree li a:hover {
-                    text-decoration: none;
-                    background-color: #E7E7E7;
-                }
-
-                .ztree li a span.button.switch {
-                    visibility: hidden
-                }
-
-                .ztree li a.curSelectedNode {
-                    background-color: #D4D4D4;
-                    border: 0;
-                    height: 30px;
-                }
-
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        h6 {
-            padding: 0 30px;
-            font-size: 12px;
-            height: 24px;
-            line-height: 24px;
-            border: 1px solid #ccc;
-        }
-
-
-        #tree {
-            padding: 0 30px;
-            width: 240px;
-            float: left;
-            border: 1px solid #ccc;
-        }
-
-        #tab {
-            float: left;
-            margin-left: 20px;
-        }
-
-            #tab table {
-                border: 1px solid #ccc;
-            }
-
-        #s1 {
-            float: left;
-            margin-top: 10px;
-            margin-left: 50px;
-        }
-
-        #s2 {
-            float: right;
-        }
-    </style>
+   
     <script>
-        function zTreeOnClick(event, treeId, treeNode) {
+        $(function () {
 
-            console.log(treeNode);
-            console.log(treeNode.pId);
-            $("input[name=name]").val(treeNode.name);
-            if (treeNode.pId == 0) {
-                $("select[name=pId] option[value=0]").attr("selected", "selected");
-            }
-            else {
-                $("select[name=pId] option[value=" + treeNode.pId + "]").attr("selected", "selected");
-            }
-           
-        }
-        var setting = {
-            data: {
-                simpleData: {
-                    enable: true,
-                    idKey: "id",
-                    pIdKey: "pId",
-                    rootPId: 0
-                }
-            },
-            callback: {
-                onClick: zTreeOnClick
-            }
-        };
-        var zNodes = [];
-
-        $(document).ready(function () {
+        })
+        function Add() {
             $.ajax({
-                url: "http://localhost:8098/DongXu/GetTargets",
+                url: "http://localhost:8098/DongXu/AddTargetDetails",
+                type: "post",
+                data: $("#form1").serialize(),
                 success: function (data) {
-                    console.log(data);
-                    zNodes = data;
-                    zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes); //初始化zTree，三个参数一次分别是容器(zTree 的容器 className 别忘了设置为 "ztree")、参数配置、数据源
-
+                    if (data > 0) {
+                        alert("添加成功！");
+                    }
+                    else {
+                        alert("添加失败！");
+                    }
                 }
-
-            });
-
-        });
-        function addDiyDom(treeId, treeNode) {
-            var spaceWidth = 5;
-            var switchObj = $("#" + treeNode.tId + "_switch"),
-                icoObj = $("#" + treeNode.tId + "_ico");
-            switchObj.remove();
-            icoObj.before(switchObj);
-            if (treeNode.level > 1) {
-                var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
-                switchObj.before(spaceStr);
-            }
+            })
         }
     </script>
 </head>
 <body>
-    <div>
-        <div id="tree">
-            <div style="background-color:#ccc;padding:0px 15px;height:50px;width:230px;line-height:30px;">
-                <span id="s1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标名称</span>
+    <h6>您当前的位置:目标管理>>子目标管理</h6>
+    <form id="form1">
+        <table class="table " style="margin-left:100px;">
+            <tr>
+                <td style="font-size:x-large"> 目标详情</td>
+            </tr>
+            <tr>
+                <td>
+                    指标名称
+                </td>
+                <td>
+                    <input type="text" name="name">
+                </td>
+                <td>
+                    主指标
+                </td>
+                <td></td>
+            </tr>
+        </table>
+        <table class="table " style="margin-left:100px;" id="Tab">
+            <tr>
 
-                <div style="clear:both;"></div>
-            </div>
-            <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#f7f7f7"></ul>
-        </div>
-    </div>
-    <table class="table " style="margin-left:100px;">
-        <tr>
-            <td style="font-size:x-large"> 目标详情</td>
-        </tr>
-        <tr>
-            <td>
-                指标名称
-            </td>
-            <td>
-                <input type="text" name="name" style="border:none">
-            </td>
-            <td>
-                主指标
-            </td>
-            <td>
-               
-            </td>
-        </tr>
-    </table>
+                <td>
+                    <input type="text" name="targettypename"/>
+                </td>
+
+            <tr>
+                <td>
+                    指标等级
+                </td>
+                <td>
+                    <input type="text" name="IndexLevelId"/>
+                </td>
+            <tr>
+                <td>
+                    反馈频次
+                </td>
+                <td>
+                    <input type="text" name="FeedbackName" />
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    开始时间
+                </td>
+                <td>
+                    <input type="text" name="StartTime" />
+                </td>
+                <td>
+                    完成时间
+                </td>
+                <td>
+                    <input type="text" name="FinishTime" />
+                </td>
+                <td>
+                    责任人
+                </td>
+                <td>
+                    <input type="text" name=" DutyMan" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    考核权重
+                </td>
+                <td>
+                    <input type="text" name="AssessmentWeight" />
+                </td>
+                <td>
+                    填报人
+                </td>
+                <td>
+                    <input name="ReportedMan" type="text" />
+                </td>
+                <td>
+                    协办方
+                </td>
+                <td>
+                    <input type="text" name="Organizer" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    备注
+                </td>
+                <td>
+                    <input type="text" name="Remark" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    年度目标
+                </td>
+                <td>
+                    <input type="text" name="AnnualTarget"  />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    确认流程
+                </td>
+                <td>
+                    <input type="text" name="Affirmflow" height="50" width="100"/>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" value="保存" onclick="Add()" /></td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>

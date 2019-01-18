@@ -19,9 +19,16 @@ namespace DongXu.Services
         /// </summary>
         /// <param name="targetDetails"></param>
         /// <returns></returns>
+
         public int AddTargetDetails(TargetDetails targetDetails)
         {
-            throw new NotImplementedException();
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"Insert into targetdetails(targetid,indextypeid,statusid,blocid,indexlevelid,feedbacknumid,starttime,finishtime,dutyman,assessmentweight,reporteman,organizer,remark,affirmflow,annualtarget)values(:targetid,:indextypeid,:statusid,:blocid,:indexlevelid,:feedbacknumid,:starttime,:finishtime,:dutyman,:assessmentweight,:reporteman,:organizer,:remark,:affirmflow,:annualtarget)";
+                int i = conn.Execute(sql, targetDetails);
+                return i;
+            }
         }
 
         public int DeleteTargetDetails(int id)
@@ -29,7 +36,7 @@ namespace DongXu.Services
             throw new NotImplementedException();
         }
 
-      
+
         /// <summary>
         /// 显示目标信息
         /// </summary>
@@ -65,5 +72,6 @@ namespace DongXu.Services
 
             }
         }
+
     }
 }
