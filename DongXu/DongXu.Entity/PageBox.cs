@@ -14,14 +14,18 @@ namespace DongXu.Entity
         /// <summary>
         /// 当前页
         /// </summary>
-        public int CurrentPage { get; set; }
+        public int PageIndex { get; set; }
         /// <summary>
-        /// 总页数
+        /// 总条数
         /// </summary>
-        public int TotlePage { get; set; }
+        public int PageCount { get; set; }
         /// <summary>
-        /// 分页数据
+        /// 每页显示条数
         /// </summary>
-        public object PageData { get; set; }
+        public int PageSize { get; set; }
+        /// <summary>
+        /// 数据
+        /// </summary>
+        public object Data { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Operation";
+    ViewBag.Title = "Target";
     Layout = "~/Views/Shared/_TestLayout.cshtml";
 }
 
@@ -8,11 +8,100 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
-    <script src="~/Content/layui-v2.4.5/layui/lay/modules/laypage.js"></script>
     <script src="~/Scripts/layer/2.4/layer.js"></script>
     <script src="~/Scripts/vue.js"></script>
     <script src="~/Scripts/axios.js"></script>
-    
+    <script src="~/Content/layui-v2.4.5/layui/layui.js"></script>
+    <script src="~/Content/jquery-3.1.1.js"></script>
+    <script>
+        var pageindex = 1;
+        var pagecount;
+        $(function () {
+            showdata();
+            //加载类别
+            $.ajax({
+                url: "http://localhost:8098/DongXu/GetTarGetTypes",
+                type: "get",
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        $("select[name=targettypename]").append("<option>" + data.TarGetTypeName + "</option>");
+                    })
+                }
+            })
+            //模糊查询
+            $("#search").click(function () {
+                showdata();
+            })
+            $("#derive").click(function () {
+                $.ajax({
+                    url: "http://localhost:8098/Excel/GetUnit",
+                    type: "get",
+                    data: {
+                        fileName: "123123",
+                        tableName: "data",
+                    },
+                    success: function (data) {
+                        alert(data)
+                    }
+                })
+            })
+        })
+        function showdata() {
+            $.ajax({
+                url: "http://localhost:8098/DongXu/GetTargetDetails",
+                type: "get",
+                data: {
+                    pageindex: pageindex,
+                    TargetName: $("input[name=TargetName]").val(),
+                    IndexLevelId: $("select[name=IndexLevelId]").val(),
+                    targettypename: $("select[name=targettypename]").val(),
+                    BlocName: $("input[name=BlocName]").val(),
+                    DutyMan: $("input[name=DutyMan]").val(),
+                },
+                success: function (data) {
+                    pageindex = data.PageIndex;
+                    pagecount = data.PageCount;
+                    var j = 1;
+                    $("#showdata tr:not(:first)").empty("");
+                    for (var i = 0; i < data.Data.length; i++) {
+                        $("#showdata").append("<tr><td>" + j + "</td><td><a style='color:skyblue;' href=\"/Schedule/ShowTargetbyID?id=" + data.Data[i].Id + "\">" + data.Data[i].TargetName + "</a></td><td>" + data.Data[i].BlocName + "</td><td>" + data.Data[i].DutyMan + "</td><td>" + data.Data[i].FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div class='layui-progress-bar' lay-percent='20%'></div></div></td><td><img src=\"/image/" + data.Data[i].StatusImage + "\" /></td></tr>");
+                        j++;
+                    }
+
+                }
+            })
+        }
+        //首页
+        function FirstPage() {
+            pageindex = 1;
+            showdata();
+        }
+        //尾页
+        function LastPage() {
+            pageindex = pagecount;
+            showdata();
+        }
+        //上一页
+        function PrevPage() {
+            if (pageindex - 1 <= 0) {
+                alert("已经是第一页了");
+                return;
+            } else {
+                pageindex--;
+                showdata();
+            }
+        }
+        //下一页
+        function NextPage() {
+            if (pageindex + 1 > pagecount) {
+                alert("已经是最后一页了");
+                return;
+            } else {
+                pageindex++;
+                showdata();
+            }
+        }
+    </script>
     <style>
         * {
             padding: 0;
@@ -34,12 +123,13 @@
             height: 24px;
             line-height: 24px;
         }
+
         #tab {
             width: 96%;
             margin: 0 30px;
             border: 1px solid #ccc;
-            
         }
+
         input, select {
             width: 200px;
             height: 30px;
@@ -50,7 +140,8 @@
             height: 36px;
         }
 
-        #derive {
+
+        #search {
             margin-left: 80%;
             width: 100px;
             height: 30px;
@@ -58,136 +149,111 @@
             line-height: 20px;
         }
 
-        #search {
-            width: 100px;
-            height: 30px;
-            text-align: center;
-            line-height: 20px;
-        }
-        .echarbox{
-            padding:0 30px;
-        }
-        .echart {
-            float: left;
-            width: 50%;
-            border: 1px solid red;
-            height: 300px;
-        }
         #showdata {
-            float: left;
-            width: 49%;
+            width: 96%;
+            margin: 0 30px;
             border: 1px solid #ccc;
         }
-        .searchbtn {
-            padding: 0 30px;
+
+        .btnbox {
+            margin: 10px 30px;
         }
-            .searchbtn li {
-                float: left;
-            }
-                .searchbtn li a {
-                    display: block;
-                    width: 100px;
-                    height: 40px;
-                    line-height: 40px;
-                    background-color: #fff;
-                    text-align: center;
-                }
-                    .searchbtn li a:hover {
-                        color: #fff;
-                        background-color: #4694dc;
-                    }
     </style>
+    <script>
+
+    </script>
 </head>
 <body>
-    <h6>您当前的位置:进度查询>>运行情况</h6>
-    <h5>查询条件</h5>
+    <h6>您当前的位置:进度查询>>目标查询</h6>
     <table id="tab">
         <tr>
             <td>
-
+                目标名称:<input type="text" name="TargetName" />
                 目标类别:
-                <select>
-                    <option value="value"></option>
-                </select>
-                目标级别:
-                <select>
-                    <option value="">全部</option>
-                    <option value="AAA">AAA</option>
-                    <option value="AA">AA</option>
+                <select v-show="GetTarGetTypesList.length" name="targettypename">
+                    <option value=" ">--全部--</option>
+                </select>目标级别:
+                <select name="IndexLevelId">
+                    <option value=" ">全部</option>
                     <option value="A">A</option>
+                    <option value="AA">AA</option>
+                    <option value="AAA">AAA</option>
                 </select>
             </td>
         </tr>
         <tr>
             <td>
                 责任部门:
-                <input type="text" name="name" value="" />
+                <input type="text" name="BlocName" />
                 责任人:
-                <input type="text" name="name" value="" />
+                <input type="text" name="DutyMan" />
                 完成时间:
-                <input type="date" name="name" value="" />
+                <input type="date" name="name" />
                 -至-
-                <input type="date" name="name" value="" />
+                <input type="date" name="name" />
             </td>
         </tr>
         <tr>
             <td>
-                <input type="button" id="derive" class="layui-btn layui-btn-warm" name="name" value="导出" />
-                <input type="button" id="search" class="layui-btn layui-btn-danger" name="name" value="查询" />
+                <input type="button" id="search" class="layui-btn layui-btn-danger" name="name" value="查询" onclick="showdata()" />
+
             </td>
         </tr>
     </table>
-    <h5>运行情况</h5>
-    <div class="echarbox">
-        <div class="echart"></div>
-        <table class="layui-table" id="showdata">
-            <tr>
-                <th>目标状态</th>
-                <th>数量</th>
-                <th>比例</th>
-                <th>说明</th>
-            </tr>
-        </table>
-        <div style="clear:both;"></div>
-    </div>
-    <ul class="searchbtn">
-        <li> <a href="#">未完成(到期)</a></li>
-        <li> <a href="#">预计延期</a></li>
-        <li> <a href="#">已完成(延期)</a></li>
-        <li> <a href="#">未启动</a></li>
-        <li> <a href="#">已完成(按期)</a></li>
-        <li> <a href="#">正常推进</a></li>
-        <li class="lastli"> <a href="#">导出</a></li>
-    </ul>
-    <table class="layui-table" style="width:96%;margin-left:30px;text-align:center;">
+    <h5>目标列表</h5>
+    <table class="layui-table" id="showdata" v-show="GetTargetDetailsList.length" style="text-align:center;">
         <tr>
             <th>序号</th>
             <th>目标名称</th>
             <th>责任部门</th>
             <th>责任人</th>
-            <th>计划完成时间</th>
+            <th>完成时间</th>
             <th>进度</th>
             <th>状态</th>
         </tr>
-    </table>
-    <div id="demo7"></div>
 
-    
+    </table>
+    <div class="btnbox">
+        <button class="layui-btn layui-btn-normal" onclick="FirstPage()">首页</button>
+        <button class="layui-btn layui-btn-normal" onclick="PrevPage()">上一页</button>
+        <button class="layui-btn layui-btn-normal" onclick="NextPage()">下一页</button>
+        <button class="layui-btn layui-btn-normal" onclick="LastPage()">尾页</button>
+    </div>
 </body>
 </html>
-<script src="~/Content/layui-v2.4.5/layui/layui.js"></script>
 <script>
-    layui.use(['laypage', 'layer'], function () {
-        var laypage = layui.laypage
-            , layer = layui.layer;
-        laypage.render({
-            elem: 'demo7'
-            , count: 100
-            , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
-            , jump: function (obj) {
-                console.log(obj)
+    layui.use('element', function () {
+        var $ = layui.jquery
+            , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        //触发事件
+        var active = {
+            setPercent: function () {
+                //设置50%进度
+                element.progress('demo', '50%')
             }
+            , loading: function (othis) {
+                var DISABLED = 'layui-btn-disabled';
+                if (othis.hasClass(DISABLED)) return;
+
+                //模拟loading
+                var n = 0, timer = setInterval(function () {
+                    n = n + Math.random() * 10 | 0;
+                    if (n > 100) {
+                        n = 100;
+                        clearInterval(timer);
+                        othis.removeClass(DISABLED);
+                    }
+                    element.progress('demo', n + '%');
+                }, 300 + Math.random() * 1000);
+
+                othis.addClass(DISABLED);
+            }
+        };
+
+        $('.site-demo-active').on('click', function () {
+            var othis = $(this), type = $(this).data('type');
+            active[type] ? active[type].call(this, othis) : '';
         });
     });
 </script>
-

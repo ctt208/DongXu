@@ -25,5 +25,9 @@ namespace DongXu.MVC.Controllers
         {
             return View();
         }
+        public ActionResult ShowTargetbyID()
+        {
+            return View();
+        }
     }
 }

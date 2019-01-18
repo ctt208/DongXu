@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "ShowTargetbyID";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/layui-v2.4.5/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Scripts/layer/2.4/layer.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/axios.js"></script>
+    <script src="~/Content/layui-v2.4.5/layui/layui.js"></script>
+    <script src="~/Content/jquery-3.1.1.js"></script>
+    <script>
+        $(function () {
+            showdata();
+        })
+
+        function showdata() {
+            $.ajax(
+                {
+                    url: 'http://localhost:8098/DongXu/GetTargetDetailsById?Id=' + @Request.QueryString["id"],
+                    type: 'get',
+                    success: function (data) {
+                        $(data).each(function (index, data) {
+                            var str = ""
+                            str += "<tr><td>指标类型:" + data.targettypename + "</td></tr>"
+                            str += "<tr><td>指标等级:" + data.IndexLevelId + "</td></tr>"
+                            str += "<tr></td>反馈频次:" + data.FeedbackName + "</td></tr>"
+                            str += "<tr><td>开始时间:" + data.StartTime.substring(0,10) + "</td></tr>"
+                            str += "<tr><td>完成时间:" + data.FinishTime.substring(0, 10) + "</td></tr>"
+                            str += "<tr><td>责任人:" + data.DutyMan + "</td></tr>"
+                            str += "<tr><td>考核权重:" + data.AssessmentWeight + "</td></tr>"
+                            str += "<tr><td>填报人:" + data.ReportedMan + "</td></tr>"
+                            str += "<tr><td>协办方:" + data.Organizer + "</td></tr>"
+                            str += "<tr><td>备注：" + data.Remark + "</td></tr>"
+                            str += "<tr><td>年度目标：" + data.AnnualTarget + "</td></tr>"
+                            str += "<tr><td>确认流程：" + data.Affirmflow + "</td></tr>"
+                            str += "</tr>"
+                            $("#showdata").append(str);
+                            console.log($("input[name=id]").val())
+                        })
+                    }
+                })
+        }
+    </script>
+    <style>
+        h2{
+            margin-left:30px;
+        }
+        #box{
+            width:800px;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<h2>目标详情信息</h2>
+<div id="box">
+    <table class="layui-table" id="showdata"></table>
+</div>
+
+

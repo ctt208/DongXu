@@ -22,10 +22,35 @@ namespace DongXu.WebApi.Controllers
         /// <returns></returns>
         [Route("GetTargetDetails")]
         [HttpGet]
-        public List<TargetDetails> GetTargetDetails()
+        public PageBox GetTargetDetails(string TargetName,string IndexLevelId,string targettypename,string BlocName,string DutyMan,int pageindex=1)
         {
+            PageBox pageBox = new PageBox();
             var targetDetailslist = targetDetailsServices.GetTargetDetails();
-            return targetDetailslist;
+            if (!string.IsNullOrEmpty(TargetName))
+            {
+                targetDetailslist = targetDetailslist.Where(r => r.TargetName.Contains(TargetName)).ToList();
+            }
+            if (!string.IsNullOrEmpty(IndexLevelId))
+            {
+                targetDetailslist = targetDetailslist.Where(r => r.IndexLevelId == IndexLevelId).ToList();
+            }
+            if (!string.IsNullOrEmpty(targettypename))
+            {
+                targetDetailslist = targetDetailslist.Where(r => r.targettypename == targettypename).ToList();
+            }
+            if (!string.IsNullOrEmpty(BlocName))
+            {
+                targetDetailslist = targetDetailslist.Where(r => r.BlocName.Contains(BlocName)).ToList();
+            }
+            if (!string.IsNullOrEmpty(DutyMan))
+            {
+                targetDetailslist = targetDetailslist.Where(r => r.DutyMan.Contains(DutyMan)).ToList();
+            }
+            pageBox.PageIndex = pageindex;
+            pageBox.PageSize = 5;
+            pageBox.PageCount = targetDetailslist.Count / pageBox.PageSize + (targetDetailslist.Count % pageBox.PageSize == 0 ? 0 : 1);
+            pageBox.Data = targetDetailslist.Skip((pageBox.PageIndex - 1) * pageBox.PageSize).Take(pageBox.PageSize).ToList();
+            return pageBox;
         }
         /// <summary>
         /// 显示目标类别信息
