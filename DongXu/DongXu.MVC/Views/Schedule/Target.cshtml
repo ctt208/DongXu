@@ -50,6 +50,7 @@
             $.ajax({
                 url: "http://localhost:8098/DongXu/GetTargetDetails",
                 type: "get",
+                async:false,
                 data: {
                     pageindex: pageindex,
                     TargetName: $("input[name=TargetName]").val(),
@@ -64,10 +65,10 @@
                     var j = 1;
                     $("#showdata tr:not(:first)").empty("");
                     for (var i = 0; i < data.Data.length; i++) {
-                        $("#showdata").append("<tr><td>" + j + "</td><td><a style='color:skyblue;' href=\"/Schedule/ShowTargetbyID?id=" + data.Data[i].Id + "\">" + data.Data[i].TargetName + "</a></td><td>" + data.Data[i].IndexLevelId + "</td><td>" + data.Data[i].targettypename + "</td><td>" + data.Data[i].BlocName + "</td><td>" + data.Data[i].DutyMan + "</td><td>" + data.Data[i].FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div class='layui-progress-bar' lay-percent='20%'></div></div></td><td><img src=\"/image/" + data.Data[i].StatusImage + "\" /></td></tr>");
+                        $("#showdata").append("<tr><td>" + j + "</td><td><a style='color:skyblue;' href=\"/Schedule/ShowTargetbyID?id=" + data.Data[i].Id + "\">" + data.Data[i].TargetName + "</a></td><td>" + data.Data[i].IndexLevelId + "</td><td>" + data.Data[i].targettypename + "</td><td>" + data.Data[i].BlocName + "</td><td>" + data.Data[i].DutyMan + "</td><td>" + data.Data[i].FinishTime.substring(0, 10) + "</td><td><div class='layui-progress' lay-showpercent='true'><div class='layui-progress-bar' lay-percent='" + data.Data[i].AnnualTarget + "'></div></div></td><td><img src=\"/image/" + data.Data[i].StatusImage + "\" /></td></tr>");
                         j++;
                     }
-
+                   
                 }
             })
         }

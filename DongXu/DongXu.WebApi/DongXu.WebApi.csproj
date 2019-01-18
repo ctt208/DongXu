@@ -154,6 +154,10 @@
     <Folder Include="Views\Intergral\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DongXu.Common\DongXu.Common.csproj">
+      <Project>{9cc416ed-c327-469d-92fc-0c1659f190e1}</Project>
+      <Name>DongXu.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DongXu.Entity\DongXu.Entity.csproj">
       <Project>{ee80c784-21ea-439e-991a-ba36c486a6dd}</Project>
       <Name>DongXu.Entity</Name>

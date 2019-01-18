@@ -98,6 +98,9 @@
     <Content Include="Content\BootstrapSouce\js\npm.js" />
     <Content Include="Content\BootstrapSouce\js\respond.min.js" />
     <Content Include="Content\css\index.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\jquery-3.1.1.js" />
+    <Content Include="Content\layui.css" />
     <Content Include="Content\login1\.idea\misc.xml" />
     <Content Include="Content\login1\.idea\modules.xml" />
     <Content Include="Content\login1\.idea\workspace.xml" />
@@ -220,6 +223,7 @@
     <Content Include="Content\login1\login\js\html5.js" />
     <Content Include="Content\login1\login\js\rAF.js" />
     <Content Include="Content\login1\login\js\TweenLite.min.js" />
+    <Content Include="Content\VueHelper.css" />
     <Content Include="demo.css" />
     <Content Include="echarts.js" />
     <Content Include="Global.asax" />
@@ -356,7 +360,14 @@
     <Content Include="Scripts\layer\2.4\skin\default\loading-1.gif" />
     <Content Include="Scripts\layer\2.4\skin\default\loading-2.gif" />
     <Content Include="Scripts\layer\2.4\skin\layer.css" />
+    <Content Include="Scripts\MessageBox.js" />
     <Content Include="Scripts\vue.js" />
+    <Content Include="Scripts\vue.min.js" />
+    <Content Include="Scripts\VueHelper\accounting.umd.js" />
+    <Content Include="Scripts\VueHelper\vue-numeric.min.js" />
+    <Content Include="Scripts\VueHelper\vue-select.js" />
+    <Content Include="Scripts\VueHelper\VueHelper.js" />
+    <Content Include="Scripts\VueHelper\vuejs-datepicker.min.js" />
     <Content Include="Web.config" />
     <Content Include="zTreeStyle\img\diy\1_close.png" />
     <Content Include="zTreeStyle\img\diy\1_open.png" />
