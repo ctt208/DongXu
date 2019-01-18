@@ -43,7 +43,12 @@ namespace DongXu.IServices
         /// </summary>
         /// <returns></returns>
         int LoginEmp(string empName,string empPwd );
+        /// <summary>
+        /// 角色显示
+        /// </summary>
+        /// <returns></returns>
+        List<Roles> GetRoles();
 
-        
+
     }
 }

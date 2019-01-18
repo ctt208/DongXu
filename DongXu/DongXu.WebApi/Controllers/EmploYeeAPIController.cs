@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using DongXu.Common;
+
 namespace DongXu.WebApi.Controllers
 {
     using DongXu.Entity;
@@ -23,6 +25,7 @@ namespace DongXu.WebApi.Controllers
         [HttpPost]
         public int AddEmployee(Employee employee)
         {
+            employee.EmployeePwd = EncryHelper.GetMd5Str(employee.EmployeePwd);
             return EmployeeServices.AddEmployee(employee);
         }
         /// <summary>
@@ -79,6 +82,16 @@ namespace DongXu.WebApi.Controllers
         public int LoginEmp(string empName, string empPwd)
         {
             return EmployeeServices.LoginEmp(empName,empPwd);
-        }       
+        }
+        /// <summary>
+        /// 角色显示
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetRoles")]
+        public List<Roles> GetRoles()
+        {
+            return EmployeeServices.GetRoles();
+        }
     }
 }

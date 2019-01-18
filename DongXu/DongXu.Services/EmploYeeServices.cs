@@ -31,9 +31,20 @@ namespace DongXu.Services
                 {
                     string sql = @"insert into employee(employeename,employeepwd,empnickname,BlocId) values(:employeename,:employeepwd,:empnickname,:BlocId)";
                     int result = conn.Execute(sql, emploYee);
-                    return result;
+                    string sql2 = string.Format("select EmployeeID from Employee where EmployeeName=:EmployeeName");
+                    var id = conn.Query<int>(sql2, emploYee).FirstOrDefault();
+                    var employees = emploYee.RoleID.Split(',');
+                    for (int j = 0; j< employees.Length; j++)
+                    {
+                        EmployeeRoles employeeRoles = new EmployeeRoles();
+                        employeeRoles.EmployeeID = id;
+                        employeeRoles.RoleID = Convert.ToInt32(employees[j]);
+                        string sql3 = string.Format("insert into EmployeeRoles(EmployeeID,RoleID) values(:EmployeeID,:RoleID)");
+                        var add = conn.Execute(sql3, employeeRoles);
+                    }
+                        return result;
                 }
-               
+
                 return i;
             }
         }
@@ -49,6 +60,12 @@ namespace DongXu.Services
                 conn.Open();
                 string sql = @"delete from employee where employeeID=:employeeID";
                 int result = conn.Execute(sql, new { employeeId = employeeId });
+                if (result > 0)
+                {
+                    string sql1 = "delete from EmployeeRoles where EmployeeID=:employeeId";
+                    var del = conn.Execute(sql1, new { employeeId = employeeId });
+                    return del;
+                }
                 return result;
             }
         }
@@ -80,7 +97,27 @@ namespace DongXu.Services
                 conn.Open();
                 string sql = @"update Employee set EmployeeName=:EmployeeName,EmployeePwd=:EmployeePwd,EmpNickName=:EmpNickName where EMPLOYEEID=:EMPLOYEEID";
                 int result = conn.Execute(sql, emploYee);
+                var employees = emploYee.RoleID.Split(',');
+                string sql1 = string.Format("delete from EmployeeRoles where EmployeeID=:EmployeeID");
+                var id = conn.Query<int>(sql1,new { EmployeeID =emploYee.EmployeeID});
+                for (int j = 0; j < employees.Length; j++)
+                {
+                    EmployeeRoles employeeRoles = new EmployeeRoles();
+                    employeeRoles.EmployeeID = emploYee.EmployeeID;
+                    employeeRoles.RoleID = Convert.ToInt32(employees[j]);
+                    string sql3 = string.Format("insert into EmployeeRoles(EmployeeID,RoleID) values(:EmployeeID,:RoleID)");
+                    var add = conn.Execute(sql3, employeeRoles);
+                }
                 return result;
+            }
+        }
+        public List<Employee> EmployeesByID(int id)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                string sql = string.Format("select * from employee e join employeeroles ep on e.employeeid=ep.employeeid where e.employeeid=:employeeid");
+                var employeeid = conn.Query<Employee>(sql, new { employeeid = id });
+                return employeeid.ToList();
             }
         }
         /// <summary>
@@ -112,7 +149,18 @@ namespace DongXu.Services
                 return result.Count();
             }
         }
-
-    
+        /// <summary>
+        /// 角色显示
+        /// </summary>
+        /// <returns></returns>
+        public List<Roles> GetRoles()
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                string sql = "select * from roles";
+                var getrole = conn.Query<Roles>(sql, null);
+                return getrole.ToList();
+            }
+        }
     }
 }
