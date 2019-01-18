@@ -59,16 +59,15 @@ td {
     }
 
     .echart .echart_left {
-        width: 50%;
         float: left;
-        border: 1px solid red;
-        height: 100%;
+        width: 50%;
+        height:268px;
     }
 
     .echart .echart_right {
         width: 48%;
+        margin-top:20px;
         float: left;
-        border: 1px solid red;
     }
 
 #showdata {
