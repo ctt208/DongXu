@@ -110,6 +110,12 @@ namespace DongXu.WebApi.Controllers
         {
             return targetDetailsServices.GetStatuses();
         }
+        [Route("GetNum")]
+        [HttpGet]
+        public List<FeedbackNum> GetFeedbackNums()
+        {
+            return targetDetailsServices.GetFeedbackNums();
+        }
 
     }
 }
