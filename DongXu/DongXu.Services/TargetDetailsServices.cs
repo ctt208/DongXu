@@ -96,5 +96,19 @@ namespace DongXu.Services
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// 显示反馈频次
+        /// </summary>
+        /// <returns></returns>
+        public List<FeedbackNum> GetFeedbackNums()
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"select * from FeedbackNum";
+                var result = conn.Query<FeedbackNum>(sql, null);
+                return result.ToList();
+            }
+        }
     }
 }

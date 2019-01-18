@@ -40,5 +40,6 @@ namespace DongXu.IServices
         /// <returns></returns>
         List<TargetDetails> GetTargetDetailsById(int Id);
         List<Status> GetStatuses();
+        List<FeedbackNum> GetFeedbackNums();
     }
 }

@@ -16,10 +16,13 @@
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     @*<link href="~/demo.css" rel="stylesheet" />*@
     <script src="~/Scripts/jquery.ztree.core.js"></script>
-   
+
+    <link href="~/Scripts/layer/2.4/skin/layer.css" rel="stylesheet" />
     <script>
         $(function () {
-
+            GetNum();
+            Getbloc();
+            GetType();
         })
         function Add() {
             $.ajax({
@@ -36,6 +39,40 @@
                     }
                 }
             })
+        }
+        function GetNum() {
+            $.ajax({
+                url: 'http://localhost:8098/Dongxu/GetNum',
+                type: 'get',
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        $("#s2").append("<option value='"+data.Id+"'>" + data.FeedbackName + "</option>")
+                    })
+                }
+            })
+        }
+        function Getbloc() {
+            $.ajax({
+                url: 'http://localhost:8098/Bloc/GetBloc',
+                type: 'get',
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        $("#b1").append("<option  value='" + data.id +"'>" + data.name + "</option>")
+                    })
+                }
+            })
+        }
+        function GetType() {
+            $.ajax(
+                {
+                    url: 'http://localhost:8098/DongXu/GetTarGetTypes',
+                    type: 'get',
+                    success: function (data) {
+                        $(data).each(function (index, data) {
+                            $("#t1").append("<option  value='" + data.TarGetTypeID + "'>" + data.TarGetTypeName + "</option>")
+                        })
+                    }
+                })
         }
         function AddTarget() {
             $.ajax({
@@ -87,60 +124,68 @@
 
             <tr>
                 <td>
-                    指标等级:
+                    指标类别:
                 </td>
                 <td>
-                    <input type="text" name="statusid" />
+                    <select type="text" name="TarGetTypeID" id="t1">
+                        <option value="0">请选择</option>
+                    </select>
                 </td>
             <tr>
                 <td>
                     反馈频次:
                 </td>
                 <td>
-                    <input type="text" name="blocid" />
+                    <select name="feedbacknumid" id="s2">
+                        <option value=" ">清选择</option>
+                     
+                    </select>
                 </td>
 
             </tr>
             <tr>
                 <td>
-                    开始时间:
+                    指标等级:
                 </td>
                 <td>
                     <select name="IndexLevelId">
-                        <option value=" ">全部</option>
+                        <option value=" ">请选择</option>
                         <option value="A">A</option>
                         <option value="AA">AA</option>
                         <option value="AAA">AAA</option>
                     </select>
                 </td>
                 <td>
-                    完成时间:
+                    所属部门:
                 </td>
                 <td>
-                    <input type="text" name="feedbacknumid" />
+                    <select name="blocId" id="b1">
+                    <option value=" 0">请选择</option>
+                    </select>
+                </td>
+
+                <td>
+                    开始时间:
                 </td>
                 <td>
-                    责任人:
-                </td>
-                <td>
-                    <input type="text" name=" starttime" />
+                    <input type="datetime" name=" starttime" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    考核权重:
+                    完成时间:
                 </td>
                 <td>
-                    <input type="text" name="finishtime" />
+                    <input type="datetime" name="finishtime" />
                 </td>
                 <td>
-                    填报人:
+                    负责人:
                 </td>
                 <td>
                     <input name="dutyman" type="text" />
                 </td>
                 <td>
-                    协办方:
+                    考核权重:
                 </td>
                 <td>
                     <input type="text" name="assessmentweight" />
@@ -148,7 +193,7 @@
             </tr>
             <tr>
                 <td>
-                    备注:
+                    填报人:
                 </td>
                 <td>
                     <input type="text" name="reportedman" />
@@ -156,7 +201,7 @@
             </tr>
             <tr>
                 <td>
-                    年度目标:
+                    协办方:
                 </td>
                 <td>
                     <input type="text" name="organizer" />
@@ -164,32 +209,33 @@
             </tr>
             <tr>
                 <td>
+                    备注:
+                </td>
+                <td>
+                    <input type="text" name="remark" style="height:50px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     确认流程:
                 </td>
                 <td>
-                    <input type="text" name="remark" height="50" width="100" />
+                    <input type="text" name="affirmflow"style="height:70px" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    年度目标:
-                </td>
-                <td>
-                    <input type="text" name="affirmflow" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    年度目标:
+                    年度目标(%):
                 </td>
                 <td>
                     <input type="text" name="annualtarget" />
                 </td>
             </tr>
-            <tr>
-                <td><input type="button" value="保存" onclick="Add()" /></td>
-            </tr>
+           
         </table>
+        <div>
+            <input type="button" value="保存" onclick="Add()"style="margin-top:70px;margin-left:800px;width:50px;height:25px"/>
+        </div>
     </form>
 </body>
 </html>
