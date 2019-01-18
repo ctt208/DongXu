@@ -16,6 +16,7 @@ namespace DongXu.WebApi.Controllers
         public ITargetDetailsServices targetDetailsServices { get; set; }
         public ITarGetTypeServices tarGetTypeServices { get; set; }
         public ITargetServices TargetServices { get; set; }
+        public IRunning runningservices { get; set; }
         /// <summary>
         /// 显示目标详情信息
         /// </summary>
@@ -108,6 +109,12 @@ namespace DongXu.WebApi.Controllers
         public List<Status> GetStatuses()
         {
             return targetDetailsServices.GetStatuses();
+        }
+           [Route("GetNum")]
+        [HttpGet]
+        public List<FeedbackNum> GetFeedbackNums()
+        {
+            return targetDetailsServices.GetFeedbackNums();
         }
 
     }
