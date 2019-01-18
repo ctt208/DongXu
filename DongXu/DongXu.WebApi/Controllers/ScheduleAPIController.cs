@@ -86,6 +86,18 @@ namespace DongXu.WebApi.Controllers
         {
             return targetDetailsServices.AddTargetDetails(targetDetails);
         }
+        [Route("AddTarget1")]
+        [HttpPost]
+        public int AddTarget(Target t)
+        {
+            return targetDetailsServices.AddTarget(t);
+        }
+        [Route("GetStatuses")]
+        [HttpGet]
+        public List<Status> GetStatuses()
+        {
+            return targetDetailsServices.GetStatuses();
+        }
 
     }
 }

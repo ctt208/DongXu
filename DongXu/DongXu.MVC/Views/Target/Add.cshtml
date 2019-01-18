@@ -28,6 +28,22 @@
                 data: $("#form1").serialize(),
                 success: function (data) {
                     if (data > 0) {
+                        AddTarget();
+                        alert("添加成功！");
+                    }
+                    else {
+                        alert("添加失败！");
+                    }
+                }
+            })
+        }
+        function AddTarget() {
+            $.ajax({
+                url: "http://localhost:8098/DongXu/AddTarget1",
+                type: "post",
+                data: $("#form2").serialize(),
+                success: function (data) {
+                    if (data > 0) {
                         alert("添加成功！");
                     }
                     else {
@@ -40,109 +56,134 @@
 </head>
 <body>
     <h6>您当前的位置:目标管理>>子目标管理</h6>
-    <form id="form1">
+    <form id="form2">
+
+
         <table class="table " style="margin-left:100px;">
             <tr>
                 <td style="font-size:x-large"> 目标详情</td>
             </tr>
             <tr>
                 <td>
-                    指标名称
+                    指标名称:
                 </td>
                 <td>
                     <input type="text" name="name">
                 </td>
                 <td>
-                    主指标
+                    主指标:
                 </td>
-                <td></td>
+                <td>2019年集团经营目标</td>
             </tr>
         </table>
+    </form>
+    <form id="form1">
         <table class="table " style="margin-left:100px;" id="Tab">
             <tr>
 
-                <td>
-                    <input type="text" name="targettypename"/>
-                </td>
+                @*<td>
+                    <input type="text" name="indextypeid" />
+                </td>*@
 
             <tr>
                 <td>
-                    指标等级
+                    指标等级:
                 </td>
                 <td>
-                    <input type="text" name="IndexLevelId"/>
+                    <input type="text" name="statusid" />
                 </td>
             <tr>
                 <td>
-                    反馈频次
+                    反馈频次:
                 </td>
                 <td>
-                    <input type="text" name="FeedbackName" />
+                    <input type="text" name="blocid" />
                 </td>
 
             </tr>
             <tr>
                 <td>
-                    开始时间
+                    开始时间:
                 </td>
                 <td>
-                    <input type="text" name="StartTime" />
+                    <select name="IndexLevelId">
+                        <option value=" ">全部</option>
+                        <option value="A">A</option>
+                        <option value="AA">AA</option>
+                        <option value="AAA">AAA</option>
+                    </select>
                 </td>
                 <td>
-                    完成时间
+                    完成时间:
                 </td>
                 <td>
-                    <input type="text" name="FinishTime" />
+                    <input type="text" name="feedbacknumid" />
                 </td>
                 <td>
-                    责任人
+                    责任人:
                 </td>
                 <td>
-                    <input type="text" name=" DutyMan" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    考核权重
-                </td>
-                <td>
-                    <input type="text" name="AssessmentWeight" />
-                </td>
-                <td>
-                    填报人
-                </td>
-                <td>
-                    <input name="ReportedMan" type="text" />
-                </td>
-                <td>
-                    协办方
-                </td>
-                <td>
-                    <input type="text" name="Organizer" />
+                    <input type="text" name=" starttime" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    备注
+                    考核权重:
                 </td>
                 <td>
-                    <input type="text" name="Remark" />
+                    <input type="text" name="finishtime" />
+                </td>
+                <td>
+                    填报人:
+                </td>
+                <td>
+                    <input name="dutyman" type="text" />
+                </td>
+                <td>
+                    协办方:
+                </td>
+                <td>
+                    <input type="text" name="assessmentweight" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    年度目标
+                    备注:
                 </td>
                 <td>
-                    <input type="text" name="AnnualTarget"  />
+                    <input type="text" name="reportedman" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    确认流程
+                    年度目标:
                 </td>
                 <td>
-                    <input type="text" name="Affirmflow" height="50" width="100"/>
+                    <input type="text" name="organizer" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    确认流程:
+                </td>
+                <td>
+                    <input type="text" name="remark" height="50" width="100" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    年度目标:
+                </td>
+                <td>
+                    <input type="text" name="affirmflow" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    年度目标:
+                </td>
+                <td>
+                    <input type="text" name="annualtarget" />
                 </td>
             </tr>
             <tr>

@@ -15,6 +15,7 @@ namespace DongXu.IServices
         /// <param name="perMission"></param>
         /// <returns></returns>
         int AddTargetDetails(TargetDetails targetDetails);
+        int AddTarget(Target t);
         /// <summary>
         /// 显示权限
         /// </summary>
@@ -38,5 +39,6 @@ namespace DongXu.IServices
         /// <param name="id"></param>
         /// <returns></returns>
         List<TargetDetails> GetTargetDetailsById(int Id);
+        List<Status> GetStatuses();
     }
 }

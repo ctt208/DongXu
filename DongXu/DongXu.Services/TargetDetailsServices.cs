@@ -25,7 +25,7 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"Insert into targetdetails(targetid,indextypeid,statusid,blocid,indexlevelid,feedbacknumid,starttime,finishtime,dutyman,assessmentweight,reporteman,organizer,remark,affirmflow,annualtarget)values(:targetid,:indextypeid,:statusid,:blocid,:indexlevelid,:feedbacknumid,:starttime,:finishtime,:dutyman,:assessmentweight,:reporteman,:organizer,:remark,:affirmflow,:annualtarget)";
+                string sql = @"Insert into targetdetails(targetId,indextypeid,statusid,blocid,indexlevelid,feedbacknumid,starttime,finishtime,dutyman,assessmentweight,reportedman,organizer,remark,affirmflow,annualtarget)values(:targetId,:indextypeid,:statusid,:blocid,:indexlevelid,:feedbacknumid,:starttime,:finishtime,:dutyman,:assessmentweight,:reportedman,:organizer,:remark,:affirmflow,:annualtarget)";
                 int i = conn.Execute(sql, targetDetails);
                 return i;
             }
@@ -73,5 +73,16 @@ namespace DongXu.Services
             }
         }
 
+        public int AddTarget(Target t)
+        {
+            using (OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = @"Insert into Target(pId,name)values(:pId,:name)";
+                t.pId = 2;
+                int i = conn.Execute(sql, t);
+                return i;
+            }
+        }
     }
 }
