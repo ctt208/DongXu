@@ -72,7 +72,11 @@ namespace DongXu.Services
 
             }
         }
-
+        /// <summary>
+        /// 添加子目标
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public int AddTarget(Target t)
         {
             using (OracleConnection conn = DapperHelper.GetConnectionString())
@@ -83,6 +87,14 @@ namespace DongXu.Services
                 int i = conn.Execute(sql, t);
                 return i;
             }
+        }
+        /// <summary>
+        /// 获取目标状态
+        /// </summary>
+        /// <returns></returns>
+        public List<Status> GetStatuses()
+        {
+            throw new NotImplementedException();
         }
     }
 }
