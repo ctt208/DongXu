@@ -49,7 +49,7 @@ namespace DongXu.WebApi.App_Start
             container.RegisterType<TargetDetailsServices>().As<ITargetDetailsServices>();
             container.RegisterType<TarGetTypeServices>().As<ITarGetTypeServices>();
             container.RegisterType<StateService>().As<IStateService>();
-
+            container.RegisterType<RunningServices>().As<IRunning>();
         }
     }
 }

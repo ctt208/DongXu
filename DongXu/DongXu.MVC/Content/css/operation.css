@@ -1,0 +1,104 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+}
+
+h6 {
+    padding: 0 30px;
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+}
+
+h5 {
+    margin: 0 30px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+}
+
+#tab {
+    width: 96%;
+    margin: 0 30px;
+    border: 1px solid #ccc;
+}
+
+input, select {
+    width: 200px;
+    height: 30px;
+}
+
+td {
+    border-bottom: 1px dashed #ccc;
+    height: 36px;
+}
+
+
+#search {
+    margin-left: 80%;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.echart {
+    height: 300px;
+    margin: 10px 30px;
+    border: 1px solid #ccc;
+}
+
+    .echart h4 {
+        font-size: 16px;
+        height: 32px;
+        line-height: 32px;
+        background-color: #fff;
+        padding-left: 10px;
+    }
+
+    .echart .echart_left {
+        width: 50%;
+        float: left;
+        border: 1px solid red;
+        height: 100%;
+    }
+
+    .echart .echart_right {
+        width: 48%;
+        float: left;
+        border: 1px solid red;
+    }
+
+#showdata {
+    width: 96%;
+    margin: 0 30px;
+    border: 1px solid #ccc;
+}
+
+.btnbox2 {
+    margin: 10px 30px;
+}
+
+    .btnbox2 li {
+        float: left;
+    }
+
+        .btnbox2 li a {
+            display: block;
+            text-align: center;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            background-color: #fff;
+        }
+
+            .btnbox2 li a:hover {
+                background-color: #80cbdc;
+                color: #fff;
+            }
+
+.btnbox {
+    margin: 10px 30px;
+}

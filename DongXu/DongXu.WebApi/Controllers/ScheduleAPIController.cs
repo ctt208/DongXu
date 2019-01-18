@@ -64,6 +64,17 @@ namespace DongXu.WebApi.Controllers
             return tarGetTypeServiceslist;
         }
         /// <summary>
+        /// 显示运行情况
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetRunnings")]
+        [HttpGet]
+        public List<TargetDetails> GetRunnings()
+        {
+            var runningserviceslist = runningservices.GetRunnings();
+            return runningserviceslist;
+        }
+        /// <summary>
         /// 根据Id显示内容
         /// </summary>
         /// <param name="Id"></param>

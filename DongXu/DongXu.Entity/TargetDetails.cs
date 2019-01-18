@@ -25,6 +25,9 @@ namespace DongXu.Entity
         public string BlocName { get; set; }
         public string feedbackname { get; set; }
         public string targettypename { get; set; }
+        public string Name { get; set; }
+        public int Numberids { get; set; }
+        public double Per { get; set; }
         /// <summary>
         /// 目标类别Id
         /// </summary>
