@@ -116,6 +116,7 @@
     </style>
     
     <script>
+       
         function zTreeOnClick(event, treeId, treeNode) {
 
             //console.log(treeNode);
@@ -164,7 +165,21 @@
       
         }
         function loc() {
-            location.href="/Target/Add"
+          
+             
+                layer.open({
+                    type: 1,
+                    area: ['700px', '500px'],
+
+
+                    fix: false, //不固定
+                    maxmin: true,
+                    shade: 0.7,
+
+                    title: '添加子目标',
+                    content: $('#AddUser')
+                });
+           
         }
         var setting = {
             data: {
@@ -235,13 +250,16 @@
 </head>
 <body>
 
+    <div id="AddUser" style="display:none">
+        aaa
+    </div>
     <h6>您当前的位置:目标管理>>目标管理查询</h6>
     <div>
         <input type="hidden" name="id" />
         <div id="tree">
             <div style="background-color:#ccc;padding:0px 15px;height:50px;width:230px;line-height:30px;">
                 <span id="s1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标名称</span>
-             <input type="button" id="addtar" value="添加子目标" style="margin-top:460px;background-color:white;color:black;height: 30px; border-color: black; border-width: 1px" onclick="loc()" />
+             <input type="button" id="AddBtn" value="添加子目标" style="margin-top:460px;background-color:white;color:black;height: 30px; border-color: black; border-width: 1px" onclick="loc()" />
                 <div style="clear:both;"></div>
             </div>
             <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#f7f7f7"></ul>
