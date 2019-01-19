@@ -61,27 +61,18 @@
                 var empName = $(" input[ name='empName' ] ").val();
                 var empPwd = $(" input[ name='empPwd' ] ").val();
                 $.ajax({
-                    url:"/Employee/GetMd5Str",
+                    url: "http://localhost:8098/DongXu/LoginEmp",
                     data: {
-                        EmployeePwd: empPwd
+                        empName: empName,
+                        empPwd: empPwd
                     },
-                    type: 'post',
+                    type: "get",
                     success: function (data) {
-                        $.ajax({
-                            url: "http://localhost:8098/DongXu/LoginEmp",
-                            data: {
-                                empName: empName,
-                                empPwd: data
-                            },
-                            type: "get",
-                            success: function (data) {
-                                if (data>0) {
-                                    location.href = "/DongXu/Index";
-                                } else {
-                                    layer.msg(data.msg);
-                                }
-                            }
-                        })
+                        if (data > 0) {
+                            location.href = "/DongXu/Index";
+                        } else {
+                            layer.msg(data.msg);
+                        }
                     }
                 })
                

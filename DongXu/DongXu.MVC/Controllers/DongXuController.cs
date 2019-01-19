@@ -31,14 +31,14 @@ namespace DongXu.MVC.Controllers
             /// </summary>
             /// <param name="ConvertString"></param>
             /// <returns></returns>
-        [HttpPost]
-        public string GetMd5Str(string EmployeePwd)
-        {
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            string t2 = BitConverter.ToString(md5.ComputeHash(UTF8Encoding.Default.GetBytes(EmployeePwd)), 4, 8);
-            t2 = t2.Replace("-", "");
-            return t2;
-        }
+        //[HttpPost]
+        //public string GetMd5Str(string EmployeePwd)
+        //{
+        //    MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+        //    string t2 = BitConverter.ToString(md5.ComputeHash(UTF8Encoding.Default.GetBytes(EmployeePwd)), 4, 8);
+        //    t2 = t2.Replace("-", "");
+        //    return t2;
+        //}
         public ActionResult Backlog()
         {
             return View();

@@ -12,6 +12,7 @@ namespace DongXu.WebApi.Controllers
     using DongXu.Entity;
     using DongXu.IServices;
     using DongXu.Services;
+    using DongXu.Common;
     [RoutePrefix("DongXu")]
     public class EmployeeAPIController : ApiController
     {
@@ -81,6 +82,7 @@ namespace DongXu.WebApi.Controllers
         [HttpGet]
         public int LoginEmp(string empName, string empPwd)
         {
+            empPwd = EncryHelper.GetMd5Str(empPwd);
             return EmployeeServices.LoginEmp(empName,empPwd);
         }
         /// <summary>
