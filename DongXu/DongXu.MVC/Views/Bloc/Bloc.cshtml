@@ -12,7 +12,7 @@
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     <link href="~/demo.css" rel="stylesheet" />
     <script src="~/Scripts/jquery.ztree.core.js"></script>
-
+    <script src="~/Scripts/MessageBox.js"></script>
     <script src="~/Scripts/axios.js"></script>
     <script src="~/Scripts/vue.js"></script>
 
@@ -28,11 +28,12 @@
                     data: $("#FormData").serialize(),
                     success: function (data) {
                         if (data > 0) {
-                          
+                           
                             location.href='/Bloc/Bloc';
                         }
                         else {
-                            alert("添加失败")
+                          
+                            alert("该层级已存在");
                         }
                     }
                 })
