@@ -26,6 +26,7 @@ namespace DongXu.Services
             {
                 conn.Open();
                 string sql = @"Insert into targetdetails(targetId,indextypeid,statusid,blocid,indexlevelid,feedbacknumid,starttime,finishtime,dutyman,assessmentweight,reportedman,organizer,remark,affirmflow,annualtarget)values(:targetId,:indextypeid,:statusid,:blocid,:indexlevelid,:feedbacknumid,:starttime,:finishtime,:dutyman,:assessmentweight,:reportedman,:organizer,:remark,:affirmflow,:annualtarget)";
+                targetDetails.TargetId = 6;
                 int i = conn.Execute(sql, targetDetails);
                 return i;
             }

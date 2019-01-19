@@ -28,12 +28,12 @@
                     data: $("#FormData").serialize(),
                     success: function (data) {
                         if (data > 0) {
-                           
-                            location.href='/Bloc/Bloc';
+                            showmessagebox(true, "添加成功")
+                            setTimeout("window.location.href=''/bloc/bloc'", 1500);
                         }
                         else {
-                          
-                            alert("该层级已存在");
+
+                            showmessagebox(false, "该层级已存在");
                         }
                     }
                 })
@@ -57,28 +57,28 @@
 
 
         })
-        $(function () {
-            $("#Xiubtn").click(function () {
+        //$(function () {
+        //    $("#Xiubtn").click(function () {
 
-                $.ajax({
+        //        $.ajax({
 
-                    url: 'http://localhost:8098/Bloc/UpdateBloc',
-                    type: 'post',
-                    data: $("#FormData").serialize(),
-                    success: function (data) {
+        //            url: 'http://localhost:8098/Bloc/UpdateBloc',
+        //            type: 'post',
+        //            data: $("#FormData").serialize(),
+        //            success: function (data) {
                    
-                        if (data > 0) {
+        //                if (data > 0) {
                            
-                        }
-                        else {
+        //                }
+        //                else {
                           
                          
-                        }
-                    }
-                })
+        //                }
+        //            }
+        //        })
 
-            })
-        })
+        //    })
+        //})
         //var zTreeObj;
         //var setting = {};        // zTree 的参数配置，后面详解
         function zTreeOnClick(event, treeId, treeNode) {

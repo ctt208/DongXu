@@ -13,6 +13,7 @@
     <script src="~/Scripts/jquery-1.4.4.min.js"></script>
     <link href="~/metroStyle/metroStyle.css" rel="stylesheet" />
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/MessageBox.js"></script>
     @*<link href="~/demo.css" rel="stylesheet" />*@
     <script src="~/Scripts/jquery.ztree.core.js"></script>
     <style>
@@ -36,6 +37,7 @@
         .messageError {
             background-position: -441px -673px;
         }
+
         #tabb {
             width: 96%;
             margin: 0 30px;
@@ -106,17 +108,16 @@
         #s1 {
             float: left;
             margin-top: 10px;
-            margin-left:50px;
+            margin-left: 50px;
         }
 
         #s2 {
-           
             float: right;
         }
     </style>
-    
+
     <script>
-       
+
         function zTreeOnClick(event, treeId, treeNode) {
 
             //console.log(treeNode);
@@ -136,12 +137,12 @@
                     type: 'get',
 
                     success: function (data) {
-                       
+
                         $("#Tab").children().children().next().remove();
                         $(data).each(function (index, data) {
-                            
+
                             var str = ""
-                            
+
                             str += "<tr><td>指标类型:" + data.targettypename + "</td></tr>"
                             str += "<tr><td>指标等级:" + data.IndexLevelId + "</td></tr>"
                             str += "<tr></td>反馈频次:" + data.FeedbackName + "</td></tr>"
@@ -154,17 +155,17 @@
                             str += "<tr><td>备注：" + data.Remark + "</td></tr>"
                             str += "<tr><td>年度目标：" + data.AnnualTarget + "</td></tr>"
                             str += "<tr><td>确认流程：" + data.Affirmflow + "</td></tr>"
-                            str+="</tr>"
-                            
+                            str += "</tr>"
+
                             $("#Tab").append(str);
                             $("input[name=id]").val(data.Id);
                             console.log($("input[name=id]").val())
                         })
-                      
+
                     }
-                   
+
                 })
-      
+
         }
         function Add() {
             $.ajax({
@@ -183,21 +184,21 @@
             })
         }
         function loc() {
-          
-             
-                layer.open({
-                    type: 1,
-                    area: ['700px', '500px'],
 
 
-                    fix: false, //不固定
-                    maxmin: true,
-                    shade: 0.7,
+            layer.open({
+                type: 1,
+                area: ['700px', '500px'],
 
-                    title: '添加子目标',
-                    content: $('#AddUser')
-                });
-           
+
+                fix: false, //不固定
+                maxmin: true,
+                shade: 0.7,
+
+                title: '添加子目标',
+                content: $('#AddUser')
+            });
+
         }
         var setting = {
             data: {
@@ -241,7 +242,7 @@
         }
         //var s=
         function Del() {
-          
+
 
             $.ajax({
                 url: 'http://localhost:8098/DongXu/DeleteTarget?id=' + $("input[name=id]").val(),
@@ -249,12 +250,13 @@
 
                 success: function (data) {
                     if (data > 0) {
-                        alert("删除成功")
+                        showmessagebox(true, "删除成功")
+                        setTimeout("window.location.href='/Target/Index'", 1500);
                         //$(".messageBox").removeClass("messageError").text("删除成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
-                        location.href = "/Target/Index";
+                        //location.href = "/Target/Index";
 
 
-                     
+
                     }
                     else {
                         alert("删除失败")
@@ -281,10 +283,10 @@
     </script>
 </head>
 <body>
-    
+    <div class="messageBox"></div>
     <div id="AddUser" style="display:none">
         <form id="form1">
-            <input id="targetid" type="hidden" name="id"/>
+            <input id="targetid" type="hidden" name="id" />
             <table class="table ">
 
                 <tr>
@@ -303,7 +305,7 @@
                         <input type="button" onclick="Add()" value="添加" />
                     </td>
                     <td>
-                        <input type="button" onclick="Update()" value="修改"/>
+                        <input type="button" onclick="Update()" value="修改" />
                     </td>
                 </tr>
             </table>
@@ -315,12 +317,12 @@
         <div id="tree">
             <div style="background-color:#ccc;padding:0px 15px;height:50px;width:230px;line-height:30px;">
                 <span id="s1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目标名称</span>
-             <input type="button" id="AddBtn" value="添加子目标" style="margin-top:460px;background-color:white;color:black;height: 30px; border-color: black; border-width: 1px" onclick="loc()" />
+                <input type="button" id="AddBtn" value="添加子目标" style="margin-top:460px;background-color:white;color:black;height: 30px; border-color: black; border-width: 1px" onclick="loc()" />
                 <div style="clear:both;"></div>
             </div>
             <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#f7f7f7"></ul>
         </div>
-        <div id="tab"style="width:1000px;height:100%" >
+        <div id="tab" style="width:1000px;height:100%">
             <table class="table " style="margin-left:100px;">
                 <tr>
                     <td style="font-size:x-large"> 目标详情</td>
@@ -339,29 +341,29 @@
                         2019年集团经营目标
                     </td>
                 </tr>
-                </table>
-            
+            </table>
+
             <table class="table " style="margin-left:100px;" id="Tab">
                 <tr>
-                   
+
                     <td>
-                        <input type="text" name="targettypename"  style="border:none"/>
+                        <input type="text" name="targettypename" style="border:none" />
                     </td>
-               
+
                 <tr>
                     <td>
                         指标等级
                     </td>
-                   <td>
-                       <input type="text"name="IndexLevelId"  style="border:none"/>
-                   </td>
-                    <tr>
-                        <td>
-                            反馈频次
-                        </td>
-                        <td>
-                            <input type="text" name="FeedbackName"  style="border:none"/>
-                        </td>
+                    <td>
+                        <input type="text" name="IndexLevelId" style="border:none" />
+                    </td>
+                <tr>
+                    <td>
+                        反馈频次
+                    </td>
+                    <td>
+                        <input type="text" name="FeedbackName" style="border:none" />
+                    </td>
 
                 </tr>
                 <tr>
@@ -369,19 +371,19 @@
                         开始时间
                     </td>
                     <td>
-                        <input type="text" name="StartTime"  style="border:none"/>
+                        <input type="text" name="StartTime" style="border:none" />
                     </td>
                     <td>
                         完成时间
                     </td>
                     <td>
-                        <input type="text" name="FinishTime"  style="border:none"/>
+                        <input type="text" name="FinishTime" style="border:none" />
                     </td>
                     <td>
                         责任人
                     </td>
                     <td>
-                        <input type="text" name=" DutyMan"  style="border:none"/>
+                        <input type="text" name=" DutyMan" style="border:none" />
                     </td>
                 </tr>
                 <tr>
@@ -389,13 +391,13 @@
                         考核权重
                     </td>
                     <td>
-                        <input type="text" name="AssessmentWeight"  style="border:none"/>
+                        <input type="text" name="AssessmentWeight" style="border:none" />
                     </td>
                     <td>
                         填报人
                     </td>
                     <td>
-                        <input  name="ReportedMan" type="text"  style="border:none"/>
+                        <input name="ReportedMan" type="text" style="border:none" />
                     </td>
                     <td>
                         协办方
@@ -417,7 +419,7 @@
                         年度目标
                     </td>
                     <td>
-                        <input type="text" name="AnnualTarget"  style="border:none"/>
+                        <input type="text" name="AnnualTarget" style="border:none" />
                     </td>
                 </tr>
                 <tr>
@@ -425,14 +427,14 @@
                         确认流程
                     </td>
                     <td>
-                        <input type="text" name="Affirmflow" height="50" width="100" style="border:none"/>
+                        <input type="text" name="Affirmflow" height="50" width="100" style="border:none" />
                     </td>
                 </tr>
             </table>
         </div>
-    <div>
-        <input type="button" value="指标删除" onclick="Del()" style="margin-top:460px;background-color:white;color:black;height: 30px; border-color: black; border-width: 1px" />
-    </div>
+        <div>
+            <input type="button" value="指标删除" onclick="Del()" style="margin-top:460px;background-color:white;color:black;height: 30px; border-color: black; border-width: 1px" />
+        </div>
         <div style="clear:both;"></div>
 
     </div>

@@ -16,7 +16,7 @@
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     @*<link href="~/demo.css" rel="stylesheet" />*@
     <script src="~/Scripts/jquery.ztree.core.js"></script>
-
+    <script src="~/Scripts/MessageBox.js"></script>
     <link href="~/Scripts/layer/2.4/skin/layer.css" rel="stylesheet" />
     <script>
         $(function () {
@@ -32,10 +32,10 @@
                 success: function (data) {
                     if (data > 0) {
                         AddTarget();
-                        alert("添加成功！");
+                   
                     }
                     else {
-                        alert("添加失败！");
+                       
                     }
                 }
             })
@@ -81,10 +81,10 @@
                 data: $("#form2").serialize(),
                 success: function (data) {
                     if (data > 0) {
-                        alert("添加成功！");
+                        showmessagebox(true, "添加成功");
                     }
                     else {
-                        alert("添加失败！");
+                        showmessagebox(false, "添加失败咯");
                     }
                 }
             })
@@ -92,11 +92,13 @@
     </script>
 </head>
 <body>
+    <div class="messageBox"></div>
     <h6>您当前的位置:目标管理>>子目标管理</h6>
     <form id="form2">
 
-
+        
         <table class="table " style="margin-left:100px;">
+     
             <tr>
                 <td style="font-size:x-large"> 目标详情</td>
             </tr>
@@ -119,8 +121,8 @@
             <tr>
 
                 @*<td>
-                    <input type="text" name="indextypeid" />
-                </td>*@
+                        <input type="text" name="indextypeid" />
+                    </td>*@
 
             <tr>
                 <td>
@@ -138,7 +140,7 @@
                 <td>
                     <select name="feedbacknumid" id="s2">
                         <option value=" ">清选择</option>
-                     
+
                     </select>
                 </td>
 
@@ -160,7 +162,7 @@
                 </td>
                 <td>
                     <select name="blocId" id="b1">
-                    <option value=" 0">请选择</option>
+                        <option value=" 0">请选择</option>
                     </select>
                 </td>
 
@@ -212,7 +214,7 @@
                     备注:
                 </td>
                 <td>
-                    <input type="text" name="remark" style="height:50px"/>
+                    <input type="text" name="remark" style="height:50px" />
                 </td>
             </tr>
             <tr>
@@ -220,7 +222,7 @@
                     确认流程:
                 </td>
                 <td>
-                    <input type="text" name="affirmflow"style="height:70px" />
+                    <input type="text" name="affirmflow" style="height:70px" />
                 </td>
             </tr>
             <tr>
@@ -231,10 +233,10 @@
                     <input type="text" name="annualtarget" />
                 </td>
             </tr>
-           
+
         </table>
         <div>
-            <input type="button" value="保存" onclick="Add()"style="margin-top:70px;margin-left:800px;width:50px;height:25px"/>
+            <input type="button" value="保存" onclick="Add()" style="margin-top:70px;margin-left:800px;width:50px;height:25px" />
         </div>
     </form>
 </body>
