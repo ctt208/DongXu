@@ -54,10 +54,20 @@ namespace DongXu.Services
                 return targetList.ToList();
             }
         }
-
+        /// <summary>
+        /// 修改目标
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public int UpdateTarget(Target target)
         {
-            throw new NotImplementedException();
+           using(OracleConnection conn = DapperHelper.GetConnectionString())
+            {
+                conn.Open();
+                string sql = "update target set pId=:pId,name=:name where id=:id";
+                var result = conn.Execute(sql, target);
+                return result;
+            }
         }
     }
 }

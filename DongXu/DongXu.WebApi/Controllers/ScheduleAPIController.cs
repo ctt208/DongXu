@@ -116,7 +116,12 @@ namespace DongXu.WebApi.Controllers
         {
             return targetDetailsServices.GetFeedbackNums();
         }
-
+        [HttpPost]
+        [Route("UpdateTarget")]
+        public int UpdateTarget(Target target)
+        {
+            return TargetServices.UpdateTarget(target);
+        }
     }
 }
  
