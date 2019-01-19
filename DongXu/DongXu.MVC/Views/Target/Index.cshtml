@@ -259,27 +259,27 @@
 
                     }
                     else {
-                        alert("删除失败")
+                        showmessagebox(false, "删除失败")
 
                     }
                 }
             })
         }
-        function Update() {
-            $.ajax({
-                url: 'http://localhost:8098/DongXu/UpdateTarget',
-                type: 'post',
-                data: $("#form1").serialize(),
-                success: function (data) {
-                    if (data > 0) {
-                        alert("修改成功！");
-                    }
-                    else {
+        //function Update() {
+        //    $.ajax({
+        //        url: 'http://localhost:8098/DongXu/UpdateTarget',
+        //        type: 'post',
+        //        data: $("#form1").serialize(),
+        //        success: function (data) {
+        //            if (data > 0) {
+        //                alert("修改成功！");
+        //            }
+        //            else {
 
-                    }
-                }
-            })
-        }
+        //            }
+        //        }
+        //    })
+        //}
     </script>
 </head>
 <body>
