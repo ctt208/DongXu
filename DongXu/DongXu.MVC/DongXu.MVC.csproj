@@ -333,6 +333,7 @@
     <Content Include="Content\layui-v2.4.5\layui\lay\modules\upload.js" />
     <Content Include="Content\layui-v2.4.5\layui\lay\modules\util.js" />
     <Content Include="image\green.png" />
+    <Content Include="image\iconfont_up.png" />
     <Content Include="image\img-set1.png" />
     <Content Include="image\red.png" />
     <Content Include="image\yellow.png" />
