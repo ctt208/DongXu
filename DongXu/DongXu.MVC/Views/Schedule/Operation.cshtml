@@ -42,8 +42,8 @@
                 success: function (data) {
                     $(data).each(function (index, data) {
                         $("#showrunning").append("<tr><td>" + data.Name + "</td><td>" + data.Numberids + "</td><td>" + data.Per + "%</td></tr>");
-                        pieData.push({ value: data.Numberids, name: data.Name })
-                       
+                        pieData.push({ value: data.Numberids, name: data.Name });
+                        console.log(pieData.length);                       
                     })
                     option = {
                         title: {
@@ -63,7 +63,7 @@
                         },
                         series: [
                             {
-                                name: '访问来源',
+                                name: '目标情况',
                                 type: 'pie',
                                 radius: '55%',
                                 center: ['50%', '60%'],

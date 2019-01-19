@@ -48,6 +48,7 @@
     <Compile Include="IRoleService.cs" />
     <Compile Include="IRunning.cs" />
     <Compile Include="IStateService.cs" />
+    <Compile Include="IStatussService.cs" />
     <Compile Include="ITargetDetailsServices.cs" />
     <Compile Include="ITargetServices.cs" />
     <Compile Include="ITarGetTypeServices.cs" />

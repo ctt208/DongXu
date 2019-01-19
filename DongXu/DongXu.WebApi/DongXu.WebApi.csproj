@@ -133,6 +133,7 @@
     <Compile Include="Controllers\RoleAPIController.cs" />
     <Compile Include="Controllers\ScheduleAPIController.cs" />
     <Compile Include="Controllers\StateAPIController.cs" />
+    <Compile Include="Controllers\StatussAPIController.cs" />
     <Compile Include="Controllers\TargetAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
