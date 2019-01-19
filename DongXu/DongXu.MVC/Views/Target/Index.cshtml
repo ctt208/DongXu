@@ -121,7 +121,9 @@
 
             //console.log(treeNode);
             //console.log(treeNode.pId);
+            console.log(treeNode.id)
             $("input[name=name]").val(treeNode.name);
+            $("input[name=id]").val(treeNode.id);
             if (treeNode.pId == 0) {
                 $("select[name=pId] option[value=0]").attr("selected", "selected");
             }
@@ -166,7 +168,7 @@
         }
         function Add() {
             $.ajax({
-                url: "http://localhost:8098/DongXu/AddTargetDetails",
+                url: "http://localhost:8098/DongXu/AddTarget1",
                 type: "post",
                 data: $("#form1").serialize(),
                 success: function (data) {
@@ -261,31 +263,51 @@
                 }
             })
         }
+        function Update() {
+            $.ajax({
+                url: 'http://localhost:8098/DongXu/UpdateTarget',
+                type: 'post',
+                data: $("#form1").serialize(),
+                success: function (data) {
+                    if (data > 0) {
+                        alert("修改成功！");
+                    }
+                    else {
 
+                    }
+                }
+            })
+        }
     </script>
 </head>
 <body>
-
+    
     <div id="AddUser" style="display:none">
-        <table class="table ">
-            
-            <tr>
-                <td>
-                    指标名称:
-                </td>
-                <td>
-                    <input type="text" name="name">
-                </td>
-                <td>
-                    主指标:
-                </td>
-                <td>2019年集团经营目标</td>
+        <form id="form1">
+            <input id="targetid" type="hidden" name="id"/>
+            <table class="table ">
+
                 <tr>
                     <td>
-                        <input type="button"  onclick="Add()"value="添加" />
+                        指标名称:
                     </td>
-            </tr>
-        </table>
+                    <td>
+                        <input type="text" name="name">
+                    </td>
+                    <td>
+                        主指标:
+                    </td>
+                    <td>2019年集团经营目标</td>
+                <tr>
+                    <td>
+                        <input type="button" onclick="Add()" value="添加" />
+                    </td>
+                    <td>
+                        <input type="button" onclick="Update()" value="修改"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
     <h6>您当前的位置:目标管理>>目标管理查询</h6>
     <div>
