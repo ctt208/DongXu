@@ -54,6 +54,23 @@ namespace DongXu.WebApi.Controllers
             return pageBox;
         }
         /// <summary>
+        /// 根据状态ID显示目标信息
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetTargetDetailsByStatuId")]
+        [HttpGet]
+        public PageBox GetTargetDetailsByStatuId(int stateid=0,int pageindex=1)
+        {
+            PageBox pageBox = new PageBox();
+            var targetDetailslist = targetDetailsServices.GetTargetDetails();
+            targetDetailslist = targetDetailslist.Where(r => r.StatusId == stateid).ToList();
+            pageBox.PageIndex = pageindex;
+            pageBox.PageSize = 5;
+            pageBox.PageCount = targetDetailslist.Count / pageBox.PageSize + (targetDetailslist.Count % pageBox.PageSize == 0 ? 0 : 1);
+            pageBox.Data = targetDetailslist.Skip((pageBox.PageIndex - 1) * pageBox.PageSize).Take(pageBox.PageSize).ToList();
+            return pageBox;
+        }
+        /// <summary>
         /// 显示目标类别信息
         /// </summary>
         /// <returns></returns>
