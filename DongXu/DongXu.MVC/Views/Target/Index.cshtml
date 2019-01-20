@@ -117,7 +117,64 @@
     </style>
 
     <script>
+        $(function () {
+            GetNum();
+            GetType();
+            Getbloc();
 
+        })
+        //页头下拉提示框
+        function GetNum() {
+            $.ajax({
+                url: 'http://localhost:8098/Dongxu/GetNum',
+                type: 'get',
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        $("#s2").append("<option value='" + data.Id + "'>" + data.FeedbackName + "</option>")
+                    })
+                }
+            })
+        }
+        function Getbloc() {
+            $.ajax({
+                url: 'http://localhost:8098/Bloc/GetBloc',
+                type: 'get',
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        $("#b1").append("<option  value='" + data.id + "'>" + data.name + "</option>")
+                    })
+                }
+            })
+        }
+        function GetType() {
+            $.ajax(
+                {
+                    url: 'http://localhost:8098/DongXu/GetTarGetTypes',
+                    type: 'get',
+                    success: function (data) {
+                        $(data).each(function (index, data) {
+                            $("#t1").append("<option  value='" + data.IndexTypeId + "'>" + data.TarGetTypeName + "</option>")
+                        })
+                    }
+                })
+        }
+        function abc() {
+            //Show();
+            layer.open({
+                type: 1,
+                area: ['1200px', '700px'],
+
+
+                fix: false, //不固定
+                maxmin: true,
+                shade: 0.1,
+
+                title: '指标详情',
+                content: $('#aaa')
+
+            });
+
+        }
         function zTreeOnClick(event, treeId, treeNode) {
 
             //console.log(treeNode);
@@ -175,10 +232,10 @@
                 success: function (data) {
                     if (data > 0) {
                         AddTarget();
-                        alert("添加成功！");
+                        showmessagebox(true,"添加成功")
                     }
                     else {
-                        alert("添加失败！");
+                        showmessagebox(false,"添加失败")
                     }
                 }
             })
@@ -222,7 +279,6 @@
                     console.log(data);
                     zNodes = data;
                     zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes); //初始化zTree，三个参数一次分别是容器(zTree 的容器 className 别忘了设置为 "ztree")、参数配置、数据源
-
                 }
 
             });
@@ -265,21 +321,7 @@
                 }
             })
         }
-        //function Update() {
-        //    $.ajax({
-        //        url: 'http://localhost:8098/DongXu/UpdateTarget',
-        //        type: 'post',
-        //        data: $("#form1").serialize(),
-        //        success: function (data) {
-        //            if (data > 0) {
-        //                alert("修改成功！");
-        //            }
-        //            else {
-
-        //            }
-        //        }
-        //    })
-        //}
+       
     </script>
 </head>
 <body>
@@ -434,9 +476,135 @@
         </div>
         <div>
             <input type="button" value="指标删除" onclick="Del()" style="margin-top:460px;background-color:white;color:black;height: 30px; border-color: black; border-width: 1px" />
+            <input type="button" value="指标添加" onclick="abc()" style="margin-top:460px;background-color:white;color:black;height: 30px; border-color: black; border-width: 1px" />
         </div>
         <div style="clear:both;"></div>
 
+    </div>
+    <div id="aaa" style="display:none">
+        <form id="form1">
+            <table class="table " style="margin-left:100px;" id="zz">
+                <tr>
+
+                    @*<td>
+                        <input type="text" name="indextypeid" />
+                    </td>*@
+
+                <tr>
+                    <td>
+                        指标类别:
+                    </td>
+                    <td>
+                        <select type="text" name="IndexTypeId" id="t1">
+                            <option>请选择</option>
+                        </select>
+                    </td>
+                <tr>
+                    <td>
+                        反馈频次:
+                    </td>
+                    <td>
+                        <select name="feedbacknumid" id="s2">
+                            <option>清选择</option>
+
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        指标等级:
+                    </td>
+                    <td>
+                        <select name="IndexLevelId">
+                            <option value=" ">请选择</option>
+                            <option value="A">A</option>
+                            <option value="AA">AA</option>
+                            <option value="AAA">AAA</option>
+                        </select>
+                    </td>
+                    <td>
+                        所属部门:
+                    </td>
+                    <td>
+                        <select name="blocId" id="b1">
+                            <option>请选择</option>
+                        </select>
+                    </td>
+
+                    <td>
+                        开始时间:
+                    </td>
+                    <td>
+                        <input type="datetime" name="starttime" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        完成时间:
+                    </td>
+                    <td>
+                        <input type="datetime" name="finishtime" />
+                    </td>
+                    <td>
+                        负责人:
+                    </td>
+                    <td>
+                        <input name="dutyman" type="text" />
+                    </td>
+                    <td>
+                        考核权重:
+                    </td>
+                    <td>
+                        <input type="text" name="assessmentweight" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        填报人:
+                    </td>
+                    <td>
+                        <input type="text" name="reportedman" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        协办方:
+                    </td>
+                    <td>
+                        <input type="text" name="organizer" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        备注:
+                    </td>
+                    <td>
+                        <input type="text" name="remark" style="height:50px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        确认流程:
+                    </td>
+                    <td>
+                        <input type="text" name="affirmflow" style="height:70px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        年度目标(%):
+                    </td>
+                    <td>
+                        <input type="text" name="annualtarget" />
+                    </td>
+                </tr>
+
+            </table>
+            <div>
+                <input type="button" value="保存" onclick="Add()" style="margin-top:70px;margin-left:800px;width:50px;height:25px" />
+            </div>
+        </form>
     </div>
 </body>
 </html>

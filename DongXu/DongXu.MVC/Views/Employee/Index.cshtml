@@ -23,9 +23,9 @@
         var bloc = 0;
         $(function () {
 
-
-
-        
+            GetNum();
+            GetType();
+            GetNum();
 
         })
         function Delete(EmployeeID, obj) {
@@ -50,14 +50,7 @@
                 }
             })
         }
-        function Get() {
-            $.ajax({
-                url: 'http://localhost:8098/DongXu/GetEmployee',
-                type: 'get',
-
-            })
-
-        }
+      
 
         function Show() {
             $.ajax({
@@ -74,7 +67,40 @@
             })
         }
         //页头下拉提示框
-
+        function GetNum() {
+            $.ajax({
+                url: 'http://localhost:8098/Dongxu/GetNum',
+                type: 'get',
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        $("#s2").append("<option value='" + data.Id + "'>" + data.FeedbackName + "</option>")
+                    })
+                }
+            })
+        }
+        function Getbloc() {
+            $.ajax({
+                url: 'http://localhost:8098/Bloc/GetBloc',
+                type: 'get',
+                success: function (data) {
+                    $(data).each(function (index, data) {
+                        $("#b1").append("<option  value='" + data.id + "'>" + data.name + "</option>")
+                    })
+                }
+            })
+        }
+        function GetType() {
+            $.ajax(
+                {
+                    url: 'http://localhost:8098/DongXu/GetTarGetTypes',
+                    type: 'get',
+                    success: function (data) {
+                        $(data).each(function (index, data) {
+                            $("#t1").append("<option  value='" + data.IndexTypeId + "'>" + data.TarGetTypeName + "</option>")
+                        })
+                    }
+                })
+        }
         function abc() {
             Show();
             layer.open({

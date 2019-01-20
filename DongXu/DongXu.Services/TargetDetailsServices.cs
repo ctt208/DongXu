@@ -25,8 +25,8 @@ namespace DongXu.Services
             using (OracleConnection conn = DapperHelper.GetConnectionString())
             {
                 conn.Open();
-                string sql = @"Insert into targetdetails(targetId,indextypeid,statusid,blocid,indexlevelid,feedbacknumid,starttime,finishtime,dutyman,assessmentweight,reportedman,organizer,remark,affirmflow,annualtarget)values(:targetId,:indextypeid,:statusid,:blocid,:indexlevelid,:feedbacknumid,:starttime,:finishtime,:dutyman,:assessmentweight,:reportedman,:organizer,:remark,:affirmflow,:annualtarget)";
-                targetDetails.TargetId = 6;
+                string sql = @"Insert into targetdetails(targetId,indextypeid,statusid,blocid,IndexLevelId,feedbacknumid,starttime,finishtime,dutyman,assessmentweight,reportedman,organizer,remark,affirmflow,annualtarget)values(:targetId,:indextypeid,:statusid,:blocid,:IndexLevelId,:feedbacknumid,:starttime,:finishtime,:dutyman,:assessmentweight,:reportedman,:organizer,:remark,:affirmflow,:annualtarget)";
+              
                 int i = conn.Execute(sql, targetDetails);
                 return i;
             }

@@ -44,6 +44,7 @@ namespace DongXu.Entity
         /// 目标等级Id
         /// </summary>
         public string IndexLevelId { get; set; }
+        public int TarGetTypeID { get; set; }
         /// <summary>
         /// 反馈频次Id
         /// </summary>
