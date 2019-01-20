@@ -36,6 +36,9 @@
             <script type="text/javascript">
                 var Names = [];
                 var Nums = [];
+                var app = {};
+                option = null;
+                var pieData = [];
                 // 基于准备好的dom，初始化echarts实例
                 var myChart = echarts.init(document.getElementById('main'));
                 $(function () {
@@ -76,6 +79,53 @@
                             myChart.setOption(option);
                         }
                     });
+                    $.ajax({
+                        url: "http://localhost:8098/DongXu/GetRunnings",
+                        type: "get",
+                        success: function (data) {
+                            $(data).each(function (index, data) {
+                                $("#showrunning").append("<tr><td>" + data.Name + "</td><td>" + data.Numberids + "</td><td>" + data.Per + "%</td></tr>");
+                                pieData.push({ value: data.Numberids, name: data.Name });
+                                console.log(pieData.length);
+                            })
+                            option = {
+                                title: {
+                                    text: '目标运行情况',
+                                    x: 'center'
+                                },
+                                tooltip: {
+                                    trigger: 'item',
+                                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                                },
+                                legend: {
+                                    orient: 'vertical',
+                                    left: 'left',
+                                    data: pieData.map(function (item) {
+                                        return item.name;
+                                    })
+                                },
+                                series: [
+                                    {
+                                        name: '目标情况',
+                                        type: 'pie',
+                                        radius: '55%',
+                                        center: ['50%', '60%'],
+                                        data: pieData,
+                                        itemStyle: {
+                                            emphasis: {
+                                                shadowBlur: 10,
+                                                shadowOffsetX: 0,
+                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                            }
+                                        }
+                                    }
+                                ]
+                            };
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
+                        }
+                    })
                 }
 
             </script>
@@ -88,23 +138,40 @@
     </div>
 
    
-    <div class="content run" >
+    <div class="echart">
         <h4>运行情况</h4>
-        <div class="cot">
-         
-
+        <div>
+            <div class="echart_left">
+                <div id="container" style="height: 100%"></div>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+                <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+                <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
             </div>
+            <div class="echart_right">
+                <table id="showrunning" class="layui-table" style="text-align:center;">
+                    <tr style="background-color:#ccc;">
+                        <th>目标状态</th>
+                        <th>数量</th>
+                        <th>比例</th>
+                    </tr>
+                </table>
+            </div>
+            <div style="clear:both"></div>
         </div>
+    </div>
        
        
         <div class="content percentage">
             <h4>目标完成率</h4>
             <div class="cot"></div>
         </div>
-        <div class="content run">
-            <h4>投入产出比排名</h4>
-            <div class="cot"></div>
-        </div>
+      
         <div class="content main">
             <h4>主责事项</h4>
             <div class="cot"></div>

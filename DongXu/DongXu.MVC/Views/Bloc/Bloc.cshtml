@@ -12,7 +12,7 @@
     <link href="~/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     <link href="~/demo.css" rel="stylesheet" />
     <script src="~/Scripts/jquery.ztree.core.js"></script>
-
+    <script src="~/Scripts/MessageBox.js"></script>
     <script src="~/Scripts/axios.js"></script>
     <script src="~/Scripts/vue.js"></script>
 
@@ -28,11 +28,12 @@
                     data: $("#FormData").serialize(),
                     success: function (data) {
                         if (data > 0) {
-                          
-                            location.href='/Bloc/Bloc';
+                            showmessagebox(true, "添加成功")
+                            setTimeout("window.location.href=''/bloc/bloc'", 1500);
                         }
                         else {
-                            alert("添加失败")
+
+                            showmessagebox(false, "该层级已存在");
                         }
                     }
                 })
@@ -56,28 +57,28 @@
 
 
         })
-        $(function () {
-            $("#Xiubtn").click(function () {
+        //$(function () {
+        //    $("#Xiubtn").click(function () {
 
-                $.ajax({
+        //        $.ajax({
 
-                    url: 'http://localhost:8098/Bloc/UpdateBloc',
-                    type: 'post',
-                    data: $("#FormData").serialize(),
-                    success: function (data) {
+        //            url: 'http://localhost:8098/Bloc/UpdateBloc',
+        //            type: 'post',
+        //            data: $("#FormData").serialize(),
+        //            success: function (data) {
                    
-                        if (data > 0) {
+        //                if (data > 0) {
                            
-                        }
-                        else {
+        //                }
+        //                else {
                           
                          
-                        }
-                    }
-                })
+        //                }
+        //            }
+        //        })
 
-            })
-        })
+        //    })
+        //})
         //var zTreeObj;
         //var setting = {};        // zTree 的参数配置，后面详解
         function zTreeOnClick(event, treeId, treeNode) {
@@ -156,11 +157,11 @@
 
     </SCRIPT>
     <style>
-        /*.ztree * {
+        .ztree * {
             color: blue;
             font-size: 10pt;
-            font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial
-        }*/
+            /*font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial*/
+        }
 
         /*顶部下拉信息提示框*/
         .messageBox {
@@ -207,6 +208,93 @@
                         border: 0;
                         height: 30px;
                     }
+
+        .ztree * {
+            font-size: 10pt;
+            font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial
+        }
+
+        /*.ztree li ul {
+            margin: 0;
+            padding: 0
+        }
+
+        .ztree li {
+            line-height: 30px;
+        }
+
+            .ztree li a {
+                width: 200px;
+                height: 30px;
+                padding-top: 0px;
+            }*/
+
+                .ztree li a:hover {
+                    text-decoration: none;
+                    background-color: #E7E7E7;
+                }
+
+                .ztree li a span.button.switch {
+                    visibility: hidden
+                }
+
+        .ztree.showIcon li a span.button.switch {
+            visibility: visible
+        }
+        .ztree li span.button.switch.level1 {
+            width: 20px;
+            height: 20px
+        }
+        .ztree li span.button {
+            background-image: url('../../image/iconfont_up.png');
+            *background-image: url("./left_menuForOutLook.gif")
+        }
+            .ztree li span.button.switch.level0 {
+                width: 20px;
+                height: 20px
+            }
+
+
+        /*.ztree li a.curSelectedNode {
+            background-color: #D4D4D4;
+            border: 0;
+            height: 30px;
+        }
+
+        .ztree li span {
+            line-height: 30px;
+        }
+
+            .ztree li span.button {
+                margin-top: -7px;
+            }
+
+                .ztree li span.button.switch {
+                    width: 16px;
+                    height: 16px;
+                }
+
+        .ztree li a.level0 span {
+            font-size: 150%;
+            font-weight: bold;
+        }
+
+            .ztree li span.button.noline_open {
+                background-position: 0 0;
+            }
+
+            .ztree li span.button.noline_close {
+                background-position: -18px 0;
+            }
+
+            .ztree li span.button.noline_open.level0 {
+                background-position: 0 -18px;
+            }
+
+            .ztree li span.button.noline_close.level0 {
+                background-position: -18px -18px;
+            }*/
+	
         </style>
 </HEAD>
 <BODY>
@@ -214,7 +302,7 @@
    
     <div>
 
-        <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left; background-color:#ffffff" ></ul>
+        <ul id="treeDemo" class="ztree" style="height:500px;border:1px solid #ffffff;float:left;background-color:#ffffff"  ></ul>
         <h6 style="float:left">您当前的位置:系统管理>>组织管理</h6>
         <form id="FormData" enctype="multipart/form-data" method="post">
             <table style="float:left;margin-left:300px;margin-top:150px;margin-right:60px;border-collapse:separate; border-spacing:0px 50px;" ;>
@@ -255,12 +343,6 @@
                     <td>
                         <input type="button" value="新增" id="Addbtn" style="background-color:white;color:black;border:none;width:80px;border:1px solid black;height:40px" onclick="Adduser()"/>
                     </td>
-
-                
-
-                    @*<td>
-                        <input type="button" value="修改" id="Xiubtn" style="background-color:#ffffff;border:none;width:80px;height:50px"/>
-                    </td>*@
                 </tr>
             </table>
         </form>

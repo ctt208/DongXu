@@ -17,31 +17,13 @@
     <script src="~/Scripts/vue.js"></script>
     <script src="~/Scripts/axios.js"></script>
     <script src="~/Scripts/MessageBox.js"></script>
-
+    <script src="~/Scripts/MessageBox.js"></script>
     <SCRIPT>
 
         var bloc = 0;
         $(function () {
 
-
-
-            //$("#AddBtn").click(function () {
-            //    alert(0);
-            //    layer.open({
-            //        type: 1,
-            //        area: ['700px', '500px0'],
-
-
-            //        fix: false, //不固定
-            //        maxmin: true,
-            //        shade: 0.7,
-
-            //        title: '添加用户',
-            //        content: $('#AddUser')
-            //    });
-            //})
-
-
+         
         })
         function Delete(EmployeeID, obj) {
 
@@ -51,27 +33,21 @@
 
                 success: function (data) {
                     if (data > 0) {
-                        $(".messageBox").removeClass("messageError").text("删除成功").css("margin-left", -($(".messageBox").outerWidth() / 2)).animate({ top: 0 }, "fast").delay(1500).animate({ top: "-57px" }, "fast");
-                        location.href = "/Employee/Index";
+
+                        showmessagebox(true,"添加成功")
+                        setTimeout("window.location.href='/Employee/Index'", 1500);
 
 
-                        location.href = '/Employee/Index';
+                      
                     }
                     else {
-
+                        showmessagebox(false, "该用户已存在");
 
                     }
                 }
             })
         }
-        function Get() {
-            $.ajax({
-                url: 'http://localhost:8098/DongXu/GetEmployee',
-                type: 'get',
-
-            })
-
-        }
+      
 
         function Show() {
             $.ajax({
@@ -87,8 +63,7 @@
                 }
             })
         }
-        //页头下拉提示框
-
+      
         function abc() {
             Show();
             layer.open({
@@ -107,23 +82,23 @@
 
         }
         //修改模态窗
-        function abc() {
-            Show();
-            layer.open({
-                type: 1,
-                area: ['700px', '500px'],
+        //function abc() {
+        //    Show();
+        //    layer.open({
+        //        type: 1,
+        //        area: ['700px', '500px'],
 
 
-                fix: false, //不固定
-                maxmin: true,
-                shade: 0.1,
+        //        fix: false, //不固定
+        //        maxmin: true,
+        //        shade: 0.1,
 
-                title: '添加用户',
-                content: $('#AddUser')
+        //        title: '添加用户',
+        //        content: $('#AddUser')
 
-            });
+        //    });
 
-        }
+        //}
 
         //var zTreeObj;
         //var setting = {};        // zTree 的参数配置，后面详解
@@ -274,6 +249,7 @@
 
                         showmessagebox(true,"添加成功");
                         // location.href = '/employee/Index';
+                        setTimeout("window.location.href=''/employee/Index'", 1500);
                     }
                     else {
                         showmessagebox(false, "该用户已存在");
