@@ -51,7 +51,6 @@
     <Compile Include="Feedback.cs" />
     <Compile Include="FeedbackNum.cs" />
     <Compile Include="Hierarchy.cs" />
-    <Compile Include="HierarchyRole.cs" />
     <Compile Include="Integral.cs" />
     <Compile Include="LOAP.cs" />
     <Compile Include="PageBox.cs" />
